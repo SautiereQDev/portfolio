@@ -1,4 +1,4 @@
-import banner from "../assets/images/services_banner.png";
+import banner from "../assets/images/services_banner.webp";
 
 export const Service = () => {
   return (
@@ -9,7 +9,7 @@ export const Service = () => {
             <div className="@container">
               <div className="@[480px]:px-4 @[480px]:py-3">
                 <img
-                  className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-white @[480px]:rounded-xl min-h-[218px]"
+                  className="object-cover mx-auto max-w-md w-full"
                   src={banner}
                   alt="header banner"
                 />

@@ -16,7 +16,7 @@ export const Home = () => {
               <div className="@[480px]:px-4 @[480px]:py-3">
                 <img
                   src={homeBanner}
-                  className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-white @[480px]:rounded-xl min-h-[218px]"
+                  className="object-cover mb-6 mx-auto max-w-sm w-full"
                   alt="banner illustration"
                 />
               </div>

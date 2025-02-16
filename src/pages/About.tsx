@@ -12,7 +12,7 @@ export const About = () => {
                 <img
                   src={banner}
                   alt="header banner"
-                  className="w-full bg-center bg-no-repeat bg-cover flex flex-col justify-end overflow-hidden bg-white @[480px]:rounded-xl min-h-[218px]"
+                  className="object-cover mb-4 mx-auto max-w-md w-full"
                 />
               </div>
             </div>
