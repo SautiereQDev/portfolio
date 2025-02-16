@@ -1,4 +1,4 @@
-import banner from "../assets/images/services_baner.png";
+import banner from "../assets/images/services_banner.png";
 
 export const Service = () => {
   return (
