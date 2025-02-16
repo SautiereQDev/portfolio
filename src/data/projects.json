@@ -1,0 +1,66 @@
+[
+  {
+    "title": "Weather Dashboard",
+    "description": "A weather dashboard that allows users to search for a city and view the current weather conditions as well as the 5-day forecast.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/weather-dashboard/0.png",
+    "visit_link": "https://quentinsautiere.com/weather-dashboard",
+    "github_link": "https://github.com/SautiereQDev/weather-dashboard",
+    "key_points": [
+      "Responsive design",
+      "5-day forecast",
+      "Current weather",
+      "Ask for Geolocation and display it if accept",
+      "All places in the world aviable"
+    ],
+    "technos": [
+      "React",
+      "Tailwindcss",
+      "OpenWeatherMap API",
+      "Geolocation API",
+      "React router dom"
+    ]
+  },
+  {
+    "title": "Ecovoit",
+    "description": "A carpooling application that allows users to create an account, create a trip, and join a trip inside the agglomeration of La Rochelle.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/ecovoit/0.png",
+    "github_link": "https://github.com/SautiereQDev/Ecovoit",
+    "key_points": [
+      "Mobile app accessible on Android and iOS",
+      "UI and UX design optimized",
+      "Eco responsible application",
+      "GRPD compliant"
+    ],
+    "technos": [
+      "React Native",
+      "Expo",
+      "PHP",
+      "MariaDB",
+      "React hook form",
+      "React Query",
+      "Zod"
+    ]
+  },
+  {
+    "title": "Patate Mag",
+    "description": "A blog about the potato, its history, its recipes, and its benefits.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/patate-mag/0.png",
+    "visit_link": "https://quentinsautiere.com/patate-mag",
+    "github_link": "https://github.com/SautiereQDev/patate_mag",
+    "key_points": [
+      "Responsive design",
+      "Blog",
+      "SEO optimized"
+    ],
+    "technos": [
+      "React",
+      "Tailwindcss",
+      "React router dom",
+      "Nodejs",
+      "Express",
+      "MongoDB",
+      "Mongoose",
+      "Multer"
+    ]
+  }
+]

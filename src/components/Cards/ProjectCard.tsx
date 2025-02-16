@@ -10,13 +10,13 @@ export const ProjectCard = ({
   technos,
 }: ProjectCardProps) => {
   return (
-    <div className="flex gap-8 rounded-xl border border-[#dce0e5] bg-white p-8 font-[Manrope] mx-auto max-w-3/4">
+    <div className="flex gap-8 rounded-xl border border-[#d2d6db] bg-white p-8 font-[Manrope] mx-auto max-w-3/4">
       <div className="max-w-1/2 shrink-0 mx-auto">
-        <a href={visit_link}>
+        <a href={visit_link ?? "#"}>
           <img
             src={imageUrl}
             alt={`${title} screenshot`}
-            className="h-full w-full object-cover rounded-xl shadow-sm hover:cursor-pointer"
+            className="h-full w-full object-cover rounded-xl shadow-md hover:cursor-pointer"
           />
         </a>
       </div>
@@ -75,7 +75,7 @@ export const ProjectCard = ({
             href={visit_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center rounded-xl h-12 bg-[#1980e6] text-white font-bold transition-colors hover:bg-[#1873d1]"
+            className="flex flex-1 items-center justify-center rounded-xl h-10 bg-[#1980e6] text-white font-bold transition-colors hover:bg-[#1873d1]"
           >
             Visiter
           </a>
@@ -83,7 +83,7 @@ export const ProjectCard = ({
             href={github_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center rounded-xl h-12 border border-[#dce0e5] text-[#111418] font-bold transition-colors hover:bg-[#f0f2f4]"
+            className="flex flex-1 items-center justify-center rounded-xl h-10 border border-[#dce0e5] text-[#111418] font-bold  transition-colors hover:bg-[#f0f2f4]"
           >
             GitHub
           </a>
