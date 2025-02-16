@@ -4,7 +4,7 @@ import DatabaseIcon from "../assets/icons/DatabaseIcon.tsx";
 import SearchIcon from "../assets/icons/SearchIcon.tsx";
 import BillsIcon from "../assets/icons/BillsIcon.tsx";
 import ServiceCard from "../components/Cards/ServiceCard.tsx";
-import homeBanner from "../assets/images/home_baner.png";
+import homeBanner from "../assets/images/home_banner.png";
 
 export const Home = () => {
   return (
