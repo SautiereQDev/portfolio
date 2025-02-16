@@ -29,14 +29,21 @@ export const About = () => {
                       Web Developer and Designer
                     </p>
                     <p className="text-[#637588] text-base font-normal leading-normal">
-                      I am a web developer and designer with over 5 years of
-                      experience. I have a strong passion for creating beautiful
-                      and functional websites that help businesses grow. I
-                      specialize in front-end development, but I'm also skilled
-                      in the back end and UI/UX design. I am constantly learning
-                      new technologies to improve my skills and stay up-to-date
-                      with the latest trends. My goal is to deliver high-quality
-                      work that exceeds my clients' expectations.
+                      Développeur et concepteur Web depuis plus de cinq ans. Je
+                      suis un amoureux de la création de sites web esthétique et
+                      fonctionnels et je contribue au développement de sociétés
+                      grâce à la création de solutions numériques innovantes.
+                      Spécialisé dans le développement front-end, je maîtrise
+                      également le back-end ainsi que l&#39;expérience
+                      utilisateur. Toujours en quête d’amélioration, j’apprends
+                      continuellement de nouvelles technologies afin de
+                      perfectionner mes compétences et de rester à la pointe des
+                      tendances du web. Mon objectif est de fournir un travail
+                      de qualité qui surprend les attentes de mes clients. Je
+                      donne un soin particulier au référencement SEO de manière
+                      à assurer une visibilité maximale ainsi qu’à l’impact
+                      écologique de mes services, en adoptant des pratiques de
+                      développement durables et responsables.
                     </p>
                   </div>
                 </div>
@@ -49,10 +56,11 @@ export const About = () => {
               I am a web developer and designer with over 5 years of experience.
               I have a strong passion for creating beautiful and functional
               websites that help businesses grow. I specialize in front-end
-              development, but I'm also skilled in the back end and UI/UX
+              development, but I&#39;m also skilled in the back end and UI/UX
               design. I am constantly learning new technologies to improve my
               skills and stay up-to-date with the latest trends. My goal is to
-              deliver high-quality work that exceeds my clients' expectations.
+              deliver high-quality work that exceeds my clients&#39;
+              expectations.
             </p>
             <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
               Education
@@ -76,7 +84,7 @@ export const About = () => {
               </div>
               <div className="flex flex-col justify-center">
                 <p className="text-[#111418] text-base font-medium leading-normal line-clamp-1">
-                  Bachelor's Degree in Computer Science
+                  Bachelor&#39;s Degree in Computer Science
                 </p>
                 <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
                   2011-2015

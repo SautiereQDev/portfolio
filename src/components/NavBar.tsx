@@ -1,4 +1,4 @@
-import { ParameterIcon } from "../assets/icons/ParameterIcon.tsx";
+import { ParameterIcon } from "./icons/ParameterIcon.tsx";
 import { Link } from "@tanstack/react-router";
 
 export const NavBar = () => {
