@@ -77,6 +77,11 @@ export const Service = () => {
                   </p>
                 </div>
                 <div className="flex flex-col gap-4">
+                  <ServiceDescriptionItem
+                    key="base-included"
+                    description="Inclut toutes les fonctionnalités du plan Site vitrine"
+                    special={true}
+                  />
                   {serviceDetails.complex.map((description) => (
                     <ServiceDescriptionItem
                       key={description}
