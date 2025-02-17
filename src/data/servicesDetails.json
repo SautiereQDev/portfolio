@@ -1,0 +1,15 @@
+{
+  "simple": [
+    "Site de base avec jusqu'à 5 pages",
+    "Conception responsive",
+    "Formulaire de contact",
+    "Optimisation SEO de base"
+  ],
+  "complex": [
+    "Site personnalisé avec n'importe quel nombre de pages",
+    "Fonctionnalités avancées (comptes utilisateurs, e-commerce)",
+    "Intégration de bases de données",
+    "Intégration d'API",
+    "Design personnalisé"
+  ]
+}

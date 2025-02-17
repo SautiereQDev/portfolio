@@ -1,4 +1,7 @@
 import banner from "../assets/images/services_banner.webp";
+import serviceDetails from "../data/servicesDetails.json";
+import ServiceDescriptionItem from "../components/Items/ServiceDescriptionItem.tsx";
+import { Link } from "@tanstack/react-router";
 
 export const Service = () => {
   return (
@@ -17,25 +20,26 @@ export const Service = () => {
             </div>
             <div className="flex flex-wrap justify-between gap-3 p-4">
               <p className="text-[#111418] tracking-light text-[32px] font-bold leading-tight min-w-72">
-                Web Development
+                Développement Web
               </p>
             </div>
             <p className="text-[#111418] text-base font-normal leading-normal pb-3 pt-1 px-4">
-              I specialize in full-stack web development, which includes both
-              front-end and back-end work. I can help you with anything from
-              simple landing pages to complex web applications. Whether you need
-              a new website, a redesign, or a new feature added to an existing
-              site, I can help you bring your vision to life.
+              Je suis spécialisé dans le développement Web full-stack, qui
+              comprend à la fois le travail front-end et back-end. Je peux vous
+              aider avec tout, des simples pages de destination aux applications
+              Web complexes. Que vous ayez besoin d&#39;un nouveau site Web,
+              d&#39;une refonte ou d&#39;une nouvelle fonctionnalité ajoutée à
+              un site existant, je peux vous aider à donner vie à votre vision.
             </p>
             <div className="grid grid-cols-[repeat(auto-fit,minmax(228px,1fr))] gap-2.5 px-4 py-3 @3xl:grid-cols-4">
               <div className="flex flex-1 flex-col gap-4 rounded-xl border border-solid border-[#dce0e5] bg-white p-6">
                 <div className="flex flex-col gap-1">
                   <h1 className="text-[#111418] text-base font-bold leading-tight">
-                    Simple Site
+                    Site Simple
                   </h1>
                   <p className="flex items-baseline gap-1 text-[#111418]">
                     <span className="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em]">
-                      $1,000
+                      1 000€
                     </span>
                     <span className="text-[#111418] text-base font-bold leading-tight">
                       /site
@@ -43,199 +47,39 @@ export const Service = () => {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    Basic site with up to 5 pages
-                  </div>
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    Responsive design
-                  </div>
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    Contact form
-                  </div>
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    SEO optimization
-                  </div>
+                  {serviceDetails.simple.map((description) => (
+                    <ServiceDescriptionItem
+                      key={description}
+                      description={description}
+                    />
+                  ))}
                 </div>
               </div>
               <div className="flex flex-1 flex-col gap-4 rounded-xl border border-solid border-[#dce0e5] bg-white p-6">
                 <div className="flex flex-col gap-1">
                   <h1 className="text-[#111418] text-base font-bold leading-tight">
-                    Complex Site
+                    Site Complex
                   </h1>
                   <p className="flex items-baseline gap-1 text-[#111418]">
                     <span className="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em]">
-                      $3,000+
+                      + 2 000€
                     </span>
                     <span className="text-[#111418] text-base font-bold leading-tight">
                       /site
                     </span>
                   </p>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    Custom site with any number of pages
-                  </div>
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    Advanced features (e.g. user accounts, e-commerce)
-                  </div>
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    Database integration
-                  </div>
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    API integration
-                  </div>
-                  <div className="text-[13px] font-normal leading-normal flex gap-3 text-[#111418]">
-                    <div
-                      className="text-[#111418]"
-                      data-icon="Check"
-                      data-size="20px"
-                      data-weight="regular"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20px"
-                        height="20px"
-                        fill="currentColor"
-                        viewBox="0 0 256 256"
-                      >
-                        <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                      </svg>
-                    </div>
-                    Custom design
-                  </div>
-                </div>
+                {serviceDetails.complex.map((description) => (
+                  <ServiceDescriptionItem
+                    key={description}
+                    description={description}
+                  />
+                ))}
+                <div className="flex flex-col gap-2"></div>
               </div>
             </div>
             <h3 className="text-[#111418] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">
-              How it works
+              Comment ça marche
             </h3>
             <div className="grid grid-cols-[40px_1fr] gap-x-2 px-4">
               <div className="flex flex-col items-center gap-1 pt-3">
@@ -259,7 +103,7 @@ export const Service = () => {
               </div>
               <div className="flex flex-1 flex-col py-3">
                 <p className="text-[#111418] text-base font-medium leading-normal">
-                  Initial consultation
+                  Consultation initiale
                 </p>
                 <p className="text-[#637588] text-base font-normal leading-normal">
                   30 minutes
@@ -287,10 +131,10 @@ export const Service = () => {
               </div>
               <div className="flex flex-1 flex-col py-3">
                 <p className="text-[#111418] text-base font-medium leading-normal">
-                  Project proposal
+                  Proposition du projet
                 </p>
                 <p className="text-[#637588] text-base font-normal leading-normal">
-                  1-2 weeks
+                  1 à 2 semaines
                 </p>
               </div>
               <div className="flex flex-col items-center gap-1">
@@ -315,10 +159,10 @@ export const Service = () => {
               </div>
               <div className="flex flex-1 flex-col py-3">
                 <p className="text-[#111418] text-base font-medium leading-normal">
-                  Development
+                  Développement
                 </p>
                 <p className="text-[#637588] text-base font-normal leading-normal">
-                  Varies based on project complexity
+                  Varie en fonction de la complexité du project
                 </p>
               </div>
               <div className="flex flex-col items-center gap-1 pb-3">
@@ -342,10 +186,10 @@ export const Service = () => {
               </div>
               <div className="flex flex-1 flex-col py-3">
                 <p className="text-[#111418] text-base font-medium leading-normal">
-                  Final review
+                  Revision finale
                 </p>
                 <p className="text-[#637588] text-base font-normal leading-normal">
-                  1 week
+                  1 semaine
                 </p>
               </div>
             </div>
@@ -374,8 +218,8 @@ export const Service = () => {
                   Maintenance &amp; support
                 </p>
                 <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                  I can also help with ongoing maintenance, updates, and support
-                  after your site is complete.
+                  J&#39;assure la maintenance et le support de votre site 1 an
+                  après la livraison, le service est renouvelable.
                 </p>
               </div>
             </div>
@@ -398,18 +242,21 @@ export const Service = () => {
               </div>
               <div className="flex flex-col justify-center">
                 <p className="text-[#111418] text-base font-medium leading-normal line-clamp-1">
-                  Site consulting
+                  Consulting
                 </p>
                 <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                  If you're not sure what kind of site you need, I can help you
-                  figure that out too.
+                  Si vous n&#39;êtes pas sûr du type de site dont vous avez
+                  besoin, je peux également vous aider à le déterminer.
                 </p>
               </div>
             </div>
             <div className="flex px-4 py-3 justify-end">
-              <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1980e6] text-white text-sm font-bold leading-normal tracking-[0.015em]">
-                <span className="truncate">Get started</span>
-              </button>
+              <Link
+                to="/contact"
+                className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1980e6] text-white text-sm font-bold leading-normal tracking-[0.015em]"
+              >
+                <span className="truncate">Commencer</span>
+              </Link>
             </div>
           </div>
         </div>
