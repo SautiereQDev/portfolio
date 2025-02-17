@@ -1,7 +1,8 @@
 import banner from "../assets/images/services_banner.webp";
 import serviceDetails from "../data/servicesDetails.json";
-import ServiceDescriptionItem from "../components/Items/ServiceDescriptionItem.tsx";
+import ServiceDescriptionItem from "../components/items/ServiceDescriptionItem.tsx";
 import { Link } from "@tanstack/react-router";
+import Rocket from "../assets/icons/Rocket.svg";
 
 export const Service = () => {
   return (
@@ -187,6 +188,25 @@ export const Service = () => {
               <div className="flex flex-1 flex-col py-3">
                 <p className="text-[#111418] text-base font-medium leading-normal">
                   Revision finale
+                </p>
+                <p className="text-[#637588] text-base font-normal leading-normal">
+                  1 semaine
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-1 pb-3">
+                <div className="w-[1.5px] bg-[#dce0e5] h-2"></div>
+                <div
+                  className="text-[#111418]"
+                  data-icon="Rocket"
+                  data-size="24px"
+                  data-weight="regular"
+                >
+                  <img src={Rocket} alt="rocket icon" height={24} width={24} />
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col py-3">
+                <p className="text-[#111418] text-base font-medium leading-normal">
+                  Lancement du site
                 </p>
                 <p className="text-[#637588] text-base font-normal leading-normal">
                   1 semaine
