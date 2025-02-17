@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Site Web",
+    "icon": "DesktopIcon",
+    "description": "De la landing page au site complexe, je conçois une présence en ligne unique et sur mesure pour vous ou votre entreprise."
+  },
+  {
+    "title": "Application Mobile",
+    "icon": "MobileIcon",
+    "description": "Je développe des applications mobiles performantes et intuitives, adaptées à vos besoins sur iOS, Android ou en multiplateforme."
+  },
+  {
+    "title": "Base de données",
+    "icon": "DatabaseIcon",
+    "description": "Je conçois et déploie des bases de données optimisées avec des outils performants pour une gestion efficace."
+  },
+  {
+    "title": "Optimisation SEO",
+    "icon": "SearchIcon",
+    "description": "Améliorez votre visibilité en ligne avec une stratégie SEO efficace : mots-clés, optimisation on-page et plus encore."
+  },
+  {
+    "title": "E-commerce",
+    "icon": "ShoppingCartIcon",
+    "description": "Je crée des sites e-commerce sécurisés, intuitifs et sur mesure pour vendre vos produits physiques ou numériques."
+  }
+]
