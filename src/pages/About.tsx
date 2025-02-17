@@ -63,9 +63,9 @@ export const About = () => {
             {about.education.map((item, index) => (
               <EducationListItem key={index} {...item} />
             ))}
-            {["skills", "interests"].map((sectionName) => (
+            {["Compétences", "Passions"].map((sectionName) => (
               <AboutSection
-                sectionName={sectionName as "skills" | "interests"}
+                sectionName={sectionName as "Compétences" | "Passions"}
                 key={sectionName}
               />
             ))}
