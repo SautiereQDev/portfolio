@@ -1,4 +1,4 @@
-export const CodeIcon = () => (
+export const BillsIcon = () => (
   <div
     className="text-[#111418]"
     data-icon="Money"
@@ -17,4 +17,4 @@ export const CodeIcon = () => (
   </div>
 );
 
-export default CodeIcon;
+export default BillsIcon;

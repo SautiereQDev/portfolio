@@ -1,0 +1,34 @@
+{
+  "education": [
+    {
+      "title": "Licence Informatique",
+      "date": "2023-Actuellement",
+      "school": "Université de La Rochelle, La Rochelle, 17000"
+    },
+    {
+      "title": "Bacalauréat Général (mathématiques, physique-chimie)",
+      "date": "2020-2023",
+      "mention": "Assez bien",
+      "school": "Lycée Condorcet, Saint-Maur-des-Fossés, 94100"
+    }
+  ],
+  "skills": [
+    "HTML",
+    "CSS",
+    "UI/UX",
+    "Accessibility",
+    "Javascript",
+    "Typescript",
+    "React",
+    "Node.js",
+    "PHP",
+    "SQL",
+    "MongoDB"
+  ],
+  "interests": [
+    "Informatique",
+    "Course à pied",
+    "Cuisine",
+    "Voyages"
+  ]
+}

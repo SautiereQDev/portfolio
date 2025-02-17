@@ -1,5 +1,7 @@
+import { ReactElement } from "react";
+
 export interface ServiceCardProps {
   title: string;
-  icon: JSX.Element;
   description: string;
+  icon: ReactElement | null;
 }
