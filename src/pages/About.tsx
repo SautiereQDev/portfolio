@@ -1,7 +1,7 @@
 import banner from "../assets/images/about_banner.png";
 import about from "../data/about.json";
 import EducationListItem from "../components/Items/EducationListItem.tsx";
-import TagItem from "../components/Items/TagItem.tsx";
+import AboutSection from "../components/AboutSection.tsx";
 
 export const About = () => {
   return (
@@ -63,22 +63,12 @@ export const About = () => {
             {about.education.map((item, index) => (
               <EducationListItem key={index} {...item} />
             ))}
-            <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-              Skills
-            </h2>
-            <div className="flex gap-3 p-3 flex-wrap pr-4">
-              {about.skills.map((skill, index) => (
-                <TagItem key={index} skill={skill} />
-              ))}
-            </div>
-            <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-              Interests
-            </h2>
-            <div className="flex gap-3 p-3 flex-wrap pr-4">
-              {about.interests.map((interest, index) => (
-                <TagItem key={index} skill={interest} />
-              ))}
-            </div>
+            {["skills", "interests"].map((sectionName) => (
+              <AboutSection
+                sectionName={sectionName as "skills" | "interests"}
+                key={sectionName}
+              />
+            ))}
           </div>
         </div>
       </div>
