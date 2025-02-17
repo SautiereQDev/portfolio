@@ -2,7 +2,9 @@ import banner from "../assets/images/services_banner.webp";
 import serviceDetails from "../data/servicesDetails.json";
 import ServiceDescriptionItem from "../components/items/ServiceDescriptionItem.tsx";
 import { Link } from "@tanstack/react-router";
-import Rocket from "../assets/icons/Rocket.svg";
+import rocket from "../assets/icons/rocket.svg";
+import check from "../assets/icons/check.svg";
+import fileCode from "../assets/icons/file-code.svg";
 
 export const Service = () => {
   return (
@@ -83,7 +85,7 @@ export const Service = () => {
               Comment ça marche
             </h3>
             <div className="grid grid-cols-[40px_1fr] gap-x-2 px-4">
-              <div className="flex flex-col items-center gap-1 pt-3">
+              <div className="flex flex-col items-center gap-1 pt-4">
                 <div
                   className="text-[#111418]"
                   data-icon="Calendar"
@@ -146,15 +148,12 @@ export const Service = () => {
                   data-size="24px"
                   data-weight="regular"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24px"
-                    height="24px"
-                    fill="currentColor"
-                    viewBox="0 0 256 256"
-                  >
-                    <path d="M181.66,146.34a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L164.69,152l-18.35-18.34a8,8,0,0,1,11.32-11.32Zm-72-24a8,8,0,0,0-11.32,0l-24,24a8,8,0,0,0,0,11.32l24,24a8,8,0,0,0,11.32-11.32L91.31,152l18.35-18.34A8,8,0,0,0,109.66,122.34ZM216,88V216a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88Zm-56-8h28.69L160,51.31Zm40,136V96H152a8,8,0,0,1-8-8V40H56V216H200Z"></path>
-                  </svg>
+                  <img
+                    src={fileCode}
+                    alt="fileCode icon"
+                    height={24}
+                    width={24}
+                  />
                 </div>
                 <div className="w-[1.5px] bg-[#dce0e5] h-2 grow"></div>
               </div>
@@ -166,7 +165,7 @@ export const Service = () => {
                   Varie en fonction de la complexité du project
                 </p>
               </div>
-              <div className="flex flex-col items-center gap-1 pb-3">
+              <div className="flex flex-col items-center gap-1">
                 <div className="w-[1.5px] bg-[#dce0e5] h-2"></div>
                 <div
                   className="text-[#111418]"
@@ -174,16 +173,9 @@ export const Service = () => {
                   data-size="24px"
                   data-weight="regular"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24px"
-                    height="24px"
-                    fill="currentColor"
-                    viewBox="0 0 256 256"
-                  >
-                    <path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"></path>
-                  </svg>
+                  <img src={check} alt="check icon" />
                 </div>
+                <div className="w-[1.5px] bg-[#dce0e5] h-2 grow"></div>
               </div>
               <div className="flex flex-1 flex-col py-3">
                 <p className="text-[#111418] text-base font-medium leading-normal">
@@ -193,7 +185,7 @@ export const Service = () => {
                   1 semaine
                 </p>
               </div>
-              <div className="flex flex-col items-center gap-1 pb-3">
+              <div className="flex flex-col items-center gap-1">
                 <div className="w-[1.5px] bg-[#dce0e5] h-2"></div>
                 <div
                   className="text-[#111418]"
@@ -201,15 +193,12 @@ export const Service = () => {
                   data-size="24px"
                   data-weight="regular"
                 >
-                  <img src={Rocket} alt="rocket icon" height={24} width={24} />
+                  <img src={rocket} alt="rocket icon" height={24} width={24} />
                 </div>
               </div>
               <div className="flex flex-1 flex-col py-3">
                 <p className="text-[#111418] text-base font-medium leading-normal">
                   Lancement du site
-                </p>
-                <p className="text-[#637588] text-base font-normal leading-normal">
-                  1 semaine
                 </p>
               </div>
             </div>
