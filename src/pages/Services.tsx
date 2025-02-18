@@ -1,4 +1,4 @@
-import banner from "../assets/images/services_banner.webp";
+import banner from "../assets/images/services_banner.svg";
 import serviceDetails from "../data/servicesDetails.json";
 import ServiceDescriptionItem from "../components/items/ServiceDescriptionItem.tsx";
 import { Link } from "@tanstack/react-router";
@@ -46,7 +46,7 @@ export const Service = () => {
                   </h1>
                   <p className="flex items-baseline gap-1 text-[#111418]">
                     <span className="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em]">
-                      1 000€
+                      700€
                     </span>
                     <span className="text-[#111418] text-base font-bold leading-tight">
                       /site
@@ -69,7 +69,7 @@ export const Service = () => {
                   </h1>
                   <p className="flex items-baseline gap-1 text-[#111418]">
                     <span className="text-[#111418] text-4xl font-black leading-tight tracking-[-0.033em]">
-                      + 2 000€
+                      + 2000€
                     </span>
                     <span className="text-[#111418] text-base font-bold leading-tight">
                       /site
@@ -79,7 +79,7 @@ export const Service = () => {
                 <div className="flex flex-col gap-4">
                   <ServiceDescriptionItem
                     key="base-included"
-                    description="Inclut toutes les fonctionnalités du plan Site vitrine"
+                    description="Inclut toutes les fonctionnalités du plan précédent"
                     special={true}
                   />
                   {serviceDetails.complex.map((description) => (
@@ -212,7 +212,7 @@ export const Service = () => {
                 to="/contact"
                 className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 px-4 bg-[#1980e6] text-white text-sm font-bold leading-normal tracking-[0.015em]"
               >
-                <span className="truncate">Commencer</span>
+                <span className="truncate">Me contacter</span>
               </Link>
             </div>
           </div>

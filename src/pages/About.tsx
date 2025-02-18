@@ -1,4 +1,4 @@
-import banner from "../assets/images/about_banner.png";
+import banner from "../assets/images/about_banner.svg";
 import about from "../data/about.json";
 import EducationListItem from "../components/items/EducationListItem.tsx";
 import AboutSection from "../components/AboutSection.tsx";
@@ -61,7 +61,7 @@ export const About = () => {
               Education
             </h2>
             {about.education.map((item, index) => (
-              <EducationListItem key={index} {...item} />
+              <EducationListItem key={`${item}_${index}`} {...item} />
             ))}
             {["Compétences", "Passions"].map((sectionName) => (
               <AboutSection

@@ -3,6 +3,7 @@ import { ProjectCardProps } from "./ProjectCard.types.ts";
 export const ProjectCard = ({
   title,
   description,
+
   imageUrl,
   github_link,
   visit_link,
@@ -20,7 +21,6 @@ export const ProjectCard = ({
           />
         </a>
       </div>
-
       {/* Contenu à droite */}
       <div className="flex w-1/3 flex-col gap-6">
         <div className="flex flex-col gap-3">
