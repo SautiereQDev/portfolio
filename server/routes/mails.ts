@@ -1,38 +1,44 @@
-import type { Request, Response } from "express";
-import express from "express";
+import express, { type Request, type Response } from "express";
 import transporter from "../config/nodemailer.js";
-import sanitizeHtml from "sanitize-html";
+import { limiter } from "../midleware/rateLimiter.js";
+import { mailSchema } from "../utils/validator.js";
+import { ZodError } from "zod";
 
 const router = express.Router();
 
-router.post("/send-mail", async (req: Request, res: Response) => {
-  const { name, email, message } = req.body;
-  transporter
-    .sendMail({
-      // Envoi du message à soi-même
-      from: "contact@quentinsautiere.com", // Utilisation de l'adresse autorisée
-      replyTo: sanitizeHtml(email), // Pour permettre la réponse à l'expéditeur original
-      to: "contact@quentinsautiere.com",
-      subject: `Nouveau message de contact de ${sanitizeHtml(name)}`,
-      text: `Message de ${sanitizeHtml(name)} (${sanitizeHtml(email)}) : ${sanitizeHtml(message)}`,
-      html: `
-        <p><p><strong>Email :</strong> ${sanitizeHtml(email)}</p>
+router.post(
+  "/send-mail",
+  limiter,
+  async (req: Request, res: Response): Promise<void> => {
+    try {
+      const validatedData = mailSchema.parse(req.body);
+
+      await transporter.sendMail({
+        from: "contact@quentinsautiere.com",
+        replyTo: validatedData.email,
+        to: "contact@quentinsautiere.com",
+        subject: `Nouveau message de ${validatedData.name}`,
+        text: `Message de ${validatedData.name} (${validatedData.email}) : ${validatedData.message}`,
+        html: `
+        <p><strong>De :</strong> ${validatedData.name}</p>
+        ${validatedData.company ? `<p><strong>Entreprise :</strong> ${validatedData.company}</p>` : ""}
+        <p><strong>Email :</strong> ${validatedData.email}</p>
         <p><strong>Message :</strong></p>
-        <p>${sanitizeHtml(message)}</p>
+        <p>${validatedData.message}</p>
       `,
-    })
-    .then(() => {
-      console.log(
-        `Message sent by ${sanitizeHtml(name)} (${sanitizeHtml(email)})`,
-      );
-      res.status(200).send("Message sent");
-    })
-    .catch((error) => {
-      console.error(
-        `Error while sending message by ${sanitizeHtml(name)} (${sanitizeHtml(email)}) : ${sanitizeHtml(error)}`,
-      );
-      res.status(500).send(`Error while sending message ${error}`);
-    });
-});
+      });
+
+      res.status(200).json({ message: "Message envoyé" });
+    } catch (error: unknown) {
+      if (error instanceof ZodError) {
+        res
+          .status(400)
+          .json({ message: "Données invalides", errors: error.issues });
+        return;
+      }
+      res.status(500).json({ message: "Erreur serveur" });
+    }
+  },
+);
 
 export default router;
