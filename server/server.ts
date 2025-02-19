@@ -1,10 +1,9 @@
-import express from "express";
+import express, { Application } from "express";
 import cors from "cors";
+import mailRoutes from "./routes/mails.js";
+import transporter from "./config/nodemailer.js";
 
-const app = express();
-
-console.log(`Environment: ${process.env.NODE_ENV}`);
-console.log(`Port: ${process.env.PORT}`);
+export const server: Application = express();
 
 const corsOptions = {
   origin:
@@ -16,12 +15,22 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));
-app.use(express.json());
+server.use(cors(corsOptions));
+server.use(express.json());
 
-// Conversion en nombre avec parseInt
-const PORT = process.env.PORT ?? 3001;
+server.use("/portfolio", mailRoutes);
 
-app.listen(PORT, () => {
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
+
+// Verification de la configuration du serveur de messagerie
+transporter.verify((error) => {
+  if (error) {
+    console.log("Erreur:", error);
+  } else {
+    console.log("Serveur prêt à envoyer des emails");
+  }
+});
+
+server.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
