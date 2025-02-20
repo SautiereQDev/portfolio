@@ -1,4 +1,64 @@
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import sanitizeHtml, { IOptions } from "sanitize-html";
+import { zodResolver } from "@hookform/resolvers/zod";
+
+const sanitizeOptions: IOptions = {
+  allowedTags: [], // N'autorise aucune balise HTML
+  allowedAttributes: {}, // N'autorise aucun attribut HTML
+  disallowedTagsMode: "recursiveEscape", // Utilisation d'une valeur valide du type DisallowedTagsModes
+};
+
+const sanitizeInput = (input: string): string => {
+  return sanitizeHtml(input, sanitizeOptions);
+};
+
+const contactSchema = z.object({
+  name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+  company: z.string().optional(),
+  email: z.string().email("Format d'email invalide"),
+  message: z
+    .string()
+    .min(10, "Le message doit contenir au moins 10 caractères"),
+});
+
+type ContactFormInputs = z.infer<typeof contactSchema>;
+
 export const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<ContactFormInputs>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
+    try {
+      const sanitizedData = {
+        name: sanitizeInput(data.name),
+        company: data.company ? sanitizeInput(data.company) : undefined,
+        email: sanitizeInput(data.email),
+        message: sanitizeInput(data.message),
+      };
+
+      const response = await fetch("/portfolio/send-mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(sanitizedData),
+      });
+
+      if (!response.ok) throw new Error("Erreur d'envoi");
+
+      reset();
+      alert("Message envoyé avec succès");
+    } catch (error) {
+      alert(`Erreur lors de l'envoi du message ${error}`);
+    }
+  };
+  // TODO: ajouter un asterix sur les champs obligatoires
+
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden font-[Manrope]">
       <div className="layout-container flex h-full grow flex-col">
@@ -15,16 +75,24 @@ export const Contact = () => {
                 </p>
               </div>
             </div>
-            <form className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+            <form
+              className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <label className="flex flex-col min-w-40 flex-1">
                 <p className="text-[#111418] text-base font-medium leading-normal pb-2">
                   Nom
                 </p>
                 <input
+                  {...register("name", { required: "Le nom est obligatoire" })}
                   placeholder="Votre nom"
                   className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
-                  value=""
                 />
+                {errors.name && (
+                  <span className="text-red-500 text-sm">
+                    {errors.name.message}
+                  </span>
+                )}
               </label>
             </form>
             <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
@@ -35,7 +103,6 @@ export const Contact = () => {
                 <input
                   placeholder="Votre entreprise ou organisation"
                   className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
-                  value=""
                 />
               </label>
             </div>
@@ -45,10 +112,15 @@ export const Contact = () => {
                   Email
                 </p>
                 <input
+                  {...register("email", { required: "L'email est requis" })}
                   placeholder="Votre email"
                   className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
-                  value=""
                 />
+                {errors.email && (
+                  <span className="text-red-500 text-sm">
+                    {errors.email.message}
+                  </span>
+                )}
               </label>
             </div>
             <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
@@ -57,9 +129,17 @@ export const Contact = () => {
                   Message
                 </p>
                 <textarea
+                  {...register("message", {
+                    required: "Le message est requis",
+                  })}
                   placeholder="Votre message"
                   className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] min-h-36 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
                 ></textarea>
+                {errors.message && (
+                  <span className="text-red-500 text-sm">
+                    {errors.message.message}
+                  </span>
+                )}
               </label>
             </div>
             <a
@@ -69,8 +149,14 @@ export const Contact = () => {
               Ouvrir dans une mail app
             </a>
             <div className="flex px-4 py-3 justify-end">
-              <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[#1980e6] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#0f70c0] focus:outline-0 focus:ring-0 focus:border-[#1980e6]">
-                <span className="truncate">Envoyer</span>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[#1980e6] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#0f70c0] focus:outline-0 focus:ring-0 focus:border-[#1980e6]"
+              >
+                <span className="truncate">
+                  {isSubmitting ? "Envoi..." : "Envoyer"}
+                </span>
               </button>
             </div>
           </div>
