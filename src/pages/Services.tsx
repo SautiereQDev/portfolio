@@ -1,6 +1,5 @@
 import banner from "../assets/images/services_banner.svg";
 import serviceDetails from "../data/servicesDetails.json";
-import ServiceDescriptionItem from "../components/items/ServiceDescriptionItem.tsx";
 import { Link } from "@tanstack/react-router";
 import rocket from "../assets/icons/rocket.svg";
 import check from "../assets/icons/check.svg";
@@ -9,6 +8,7 @@ import calendar from "../assets/icons/calendar.svg";
 import fileDoc from "../assets/icons/file-doc.svg";
 import wrench from "../assets/icons/wrench.svg";
 import search from "../assets/icons/search.svg";
+import ServiceDescriptionItem from "../components/Items/ServiceDescriptionItem.tsx";
 
 export const Service = () => {
   return (

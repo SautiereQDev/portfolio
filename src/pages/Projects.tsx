@@ -1,4 +1,4 @@
-import { ProjectCard } from "../components/Cards/ProjectCard.tsx";
+import { ProjectCard } from "../components/cards/ProjectCard.tsx";
 import banner from "../assets/images/project_banner.svg";
 import projects from "../data/projects.json";
 

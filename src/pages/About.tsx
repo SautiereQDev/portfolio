@@ -1,7 +1,7 @@
 import banner from "../assets/images/about_banner.svg";
 import about from "../data/about.json";
-import EducationListItem from "../components/items/EducationListItem.tsx";
 import AboutSection from "../components/AboutSection.tsx";
+import EducationListItem from "../components/Items/EducationListItem.tsx";
 
 export const About = () => {
   return (
