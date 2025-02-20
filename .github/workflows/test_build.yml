@@ -1,7 +1,9 @@
+# The goal of this action is to the build the project, check the code quality and run the tests
+
 name: Build
 on:
   push:
-    branches: ['*']
+    branches: 'master'
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:

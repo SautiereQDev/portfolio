@@ -1,50 +1,31 @@
-# React + TypeScript + Vite
+# Web Developer Portfolio - Quentin Sautière
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-Currently, two official plugins are available:
+Welcome to my personal portfolio repository!  
+This project was built using [React](https://reactjs.org/) and [Vite](https://vitejs.dev/) to showcase my work, skills, and projects as a web developer.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## **🖥️ Overview**
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+You can view the portfolio online [here](https://quentinsautiere.com/).
 
-- Configure the top-level `parserOptions` property like this:
+The portfolio includes:
+- A personal introduction
+- A services section
+- A projects portfolio
+- A about section
+- A contact form
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
+- **Dark theme** by default, users can switch to a **light theme** from the navbar settings
+- **Automatic translation** the text is in French by default but you can switch it in the navbar settings
+---
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## **⚡ Technologies Used**
+### **Frontend**
+- React + Vite, TailwindCSS
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules,
-  },
-});
-```
+### **Backend**
+- Node.js, Express.js
+- Mailer: Nodemailer

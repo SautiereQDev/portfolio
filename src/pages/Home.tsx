@@ -1,8 +1,7 @@
-import homeBanner from "../assets/images/home_banner.png";
+import homeBanner from "../assets/images/home_banner.svg";
 import services from "../data/services.json";
-import { ServiceCardProps } from "../components/Cards/ServiceCard.types";
-import ServiceCard from "../components/Cards/ServiceCard";
 import { Link } from "@tanstack/react-router";
+import ServiceCard from "../components/cards/ServiceCard.tsx";
 
 export const Home = () => {
   return (
@@ -19,7 +18,7 @@ export const Home = () => {
                 />
               </div>
             </div>
-            <h1 className="text-[#111418] tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-3 pt-6">
+            <h1 className="text-[#111418] tracking-light text-[32px] font-bold leading-tight px-4 text-center pb-4 pt-6">
               Salut, moi c&apos;est Quentin ! Je suis développeur et je conçois
               des sites web ainsi que des applications mobiles.
             </h1>
@@ -30,13 +29,12 @@ export const Home = () => {
               e-commerce complète, je suis là pour concrétiser vos idées. Je
               propose également le développement d&#39;applications mobiles.
             </p>
-            <div className="flex px-4 py-6">
+            <div className="flex px-4 py-8">
               <Link
-                href="/contact"
-                className="flex min-w-[84px] max-w-[320px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 flex-1 bg-[#1980e6] text-white text-base font-bold leading-normal tracking-[0.015em]"
-                to={undefined}
+                className="flex min-w-[84px] max-w-[320px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 flex-1 bg-[#1980e6] text-white text-base font-bold leading-normal tracking-[0.015em] mx-auto shadow-md"
+                to={"/services"}
               >
-                <span className="truncate">Entrer en contact</span>
+                <span className="truncate">Voir mes offres</span>
               </Link>
             </div>
             <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
