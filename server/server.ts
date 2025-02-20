@@ -9,11 +9,13 @@ const corsOptions = {
   origin:
     process.env.NODE_ENV === "development"
       ? "*"
-      : "https://quentinsautiere.com",
+      : /\.quentinsautiere\.com$/,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 };
+
+server.disable("x-powered-by");
 
 server.use(cors(corsOptions));
 server.use(express.json());
