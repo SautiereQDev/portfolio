@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import sanitizeHtml, { IOptions } from "sanitize-html";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect } from "@tanstack/react-router";
 
 const sanitizeOptions: IOptions = {
   allowedTags: [], // No HTML tags allowed
@@ -17,7 +18,9 @@ const contactSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
   company: z.string().optional(),
   email: z.string().email("Format d'email invalide"),
-  message: z.string().min(10, "Le message doit contenir au moins 10 caractères"),
+  message: z
+    .string()
+    .min(10, "Le message doit contenir au moins 10 caractères"),
 });
 
 type ContactFormInputs = z.infer<typeof contactSchema>;
@@ -41,18 +44,30 @@ export const Contact = () => {
         message: sanitizeInput(data.message),
       };
 
-      const response = await fetch("https://api.quentinsautiere.com/portfolio/send-mail", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(sanitizedData),
-      });
+      const response = await fetch(
+        "https://api.quentinsautiere.com/mailer/send",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify(sanitizedData),
+        },
+      );
 
-      if (!response.ok) throw new Error("Erreur d'envoi");
-
-      reset();
-      alert("Message envoyé avec succès");
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi du message");
+      } else {
+        reset();
+        redirect({ to: "/" });
+        alert("Message envoyé avec succès");
+      }
     } catch (error) {
-      alert(`Erreur lors de l'envoi du message ${error}`);
+      console.error("Erreur de formulaire:", error);
+      alert(
+        "Échec de l'envoi du message. Veuillez réessayer plus tard ou utiliser le lien email direct.",
+      );
     }
   };
 
@@ -66,7 +81,8 @@ export const Contact = () => {
                 Créons ensemble quelque chose de génial
               </h1>
               <p className="text-[#637588] text-sm font-normal leading-normal">
-                Remplissez le formulaire ci-dessous pour me contacter et discuter de votre projet, je vous répondrais au plus vite.
+                Remplissez le formulaire ci-dessous pour me contacter et
+                discuter de votre projet, je vous répondrais au plus vite.
               </p>
             </header>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -76,7 +92,9 @@ export const Contact = () => {
                     Nom
                   </p>
                   <input
-                    {...register("name", { required: "Le nom est obligatoire" })}
+                    {...register("name", {
+                      required: "Le nom est obligatoire",
+                    })}
                     placeholder="Votre nom"
                     className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
                   />
@@ -122,7 +140,9 @@ export const Contact = () => {
                     Message
                   </p>
                   <textarea
-                    {...register("message", { required: "Le message est requis" })}
+                    {...register("message", {
+                      required: "Le message est requis",
+                    })}
                     placeholder="Votre message"
                     className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] min-h-36 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
                   ></textarea>
