@@ -47,11 +47,7 @@
     "imageUrl": "https://cdn.quentinsautiere.com/portfolio/patate-mag/0.png",
     "visit_link": "https://quentinsautiere.com/patate-mag",
     "github_link": "https://github.com/SautiereQDev/patate_mag",
-    "key_points": [
-      "Responsive design",
-      "Blog",
-      "SEO optimized"
-    ],
+    "key_points": ["Responsive design", "Blog", "SEO optimized"],
     "technos": [
       "React",
       "Tailwindcss",

@@ -12,6 +12,7 @@ This project was built using [React](https://reactjs.org/) and [Vite](https://vi
 You can view the portfolio online [here](https://quentinsautiere.com/).
 
 The portfolio includes:
+
 - A personal introduction
 - A services section
 - A projects portfolio
@@ -20,12 +21,16 @@ The portfolio includes:
 
 - **Dark theme** by default, users can switch to a **light theme** from the navbar settings
 - **Automatic translation** the text is in French by default but you can switch it in the navbar settings
+
 ---
 
 ## **⚡ Technologies Used**
+
 ### **Frontend**
+
 - React + Vite, TailwindCSS
 
 ### **Backend**
+
 - Node.js, Express.js
 - Mailer: Nodemailer

@@ -18,13 +18,15 @@ export const Home = () => {
             </div>
           </div>
           <h1 className="text-[#111418] tracking-light text-[32px] font-bold leading-tight text-center pb-4 pt-6">
-            Salut, moi c&apos;est Quentin ! Je suis développeur et je conçois des sites web ainsi que des applications
-            mobiles.
+            Salut, moi c&apos;est Quentin ! Je suis développeur et je conçois
+            des sites web ainsi que des applications mobiles.
           </h1>
           <p className="text-[#111418] text-base font-normal leading-normal pb-3 pt-1 text-center">
-            Développeur Web full-stack avec plus de 5 ans d&apos;expérience personnelle. Que vous ayez besoin d&apos;un
-            site web simple, d&apos;une application web sur mesure ou d&apos;une solution e-commerce complète, je suis
-            là pour concrétiser vos idées. Je propose également le développement d&apos;applications mobiles.
+            Développeur Web full-stack avec plus de 5 ans d&apos;expérience
+            personnelle. Que vous ayez besoin d&apos;un site web simple,
+            d&apos;une application web sur mesure ou d&apos;une solution
+            e-commerce complète, je suis là pour concrétiser vos idées. Je
+            propose également le développement d&apos;applications mobiles.
           </p>
           <nav className="flex px-4 py-8">
             <Link

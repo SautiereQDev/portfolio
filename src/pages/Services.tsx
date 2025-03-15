@@ -1,14 +1,14 @@
-import banner from '../assets/images/services_banner.svg';
-import serviceDetails from '../data/servicesDetails.json';
-import { Link } from '@tanstack/react-router';
-import rocket from '../assets/icons/rocket.svg';
-import check from '../assets/icons/check.svg';
-import fileCode from '../assets/icons/file-code.svg';
-import calendar from '../assets/icons/calendar.svg';
-import fileDoc from '../assets/icons/file-doc.svg';
-import wrench from '../assets/icons/wrench.svg';
-import search from '../assets/icons/search.svg';
-import ServiceDescriptionItem from '../components/Items/ServiceDescriptionItem.tsx';
+import banner from "../assets/images/services_banner.svg";
+import serviceDetails from "../data/servicesDetails.json";
+import { Link } from "@tanstack/react-router";
+import rocket from "../assets/icons/rocket.svg";
+import check from "../assets/icons/check.svg";
+import fileCode from "../assets/icons/file-code.svg";
+import calendar from "../assets/icons/calendar.svg";
+import fileDoc from "../assets/icons/file-doc.svg";
+import wrench from "../assets/icons/wrench.svg";
+import search from "../assets/icons/search.svg";
+import ServiceDescriptionItem from "../components/Items/ServiceDescriptionItem.tsx";
 
 export const Service = () => {
   return (
@@ -32,7 +32,12 @@ export const Service = () => {
               </h1>
             </header>
             <p className="text-[#111418] text-base font-normal leading-normal pb-3 pt-1 px-4">
-              Je suis spécialisé dans le développement Web full-stack, qui comprend à la fois le travail front-end et back-end. Je peux vous aider avec tout, des simples pages de destination aux applications Web complexes. Que vous ayez besoin d&#39;un nouveau site Web, d&#39;une refonte ou d&#39;une nouvelle fonctionnalité ajoutée à un site existant, je peux vous aider à donner vie à votre vision.
+              Je suis spécialisé dans le développement Web full-stack, qui
+              comprend à la fois le travail front-end et back-end. Je peux vous
+              aider avec tout, des simples pages de destination aux applications
+              Web complexes. Que vous ayez besoin d&#39;un nouveau site Web,
+              d&#39;une refonte ou d&#39;une nouvelle fonctionnalité ajoutée à
+              un site existant, je peux vous aider à donner vie à votre vision.
             </p>
             <section className="grid grid-cols-[repeat(auto-fit,minmax(228px,1fr))] gap-2.5 px-4 py-3 @3xl:grid-cols-4">
               <article className="flex flex-1 flex-col gap-4 rounded-xl border border-solid border-[#dce0e5] bg-white p-6">
@@ -111,7 +116,12 @@ export const Service = () => {
                 </article>
                 <div className="flex flex-col items-center gap-1">
                   <div className="w-[1.5px] bg-[#dce0e5] h-2"></div>
-                  <img src={fileDoc} alt="fileDoc icon" height={24} width={24} />
+                  <img
+                    src={fileDoc}
+                    alt="fileDoc icon"
+                    height={24}
+                    width={24}
+                  />
                   <div className="w-[1.5px] bg-[#dce0e5] h-2 grow"></div>
                 </div>
                 <article className="flex flex-1 flex-col py-3">
@@ -155,12 +165,7 @@ export const Service = () => {
                 </article>
                 <div className="flex flex-col items-center gap-1">
                   <div className="w-[1.5px] bg-[#dce0e5] h-2"></div>
-                  <img
-                    src={rocket}
-                    alt="rocket icon"
-                    height={24}
-                    width={24}
-                  />
+                  <img src={rocket} alt="rocket icon" height={24} width={24} />
                 </div>
                 <article className="flex flex-1 flex-col py-3">
                   <p className="text-[#111418] text-base font-medium leading-normal">
@@ -187,7 +192,8 @@ export const Service = () => {
                     Maintenance &amp; support
                   </p>
                   <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                    J&#39;assure la maintenance et le support de votre site 1 an après la livraison, le service est renouvelable.
+                    J&#39;assure la maintenance et le support de votre site 1 an
+                    après la livraison, le service est renouvelable.
                   </p>
                 </div>
               </article>
@@ -205,7 +211,8 @@ export const Service = () => {
                     Consulting
                   </p>
                   <p className="text-[#637588] text-sm font-normal leading-normal line-clamp-2">
-                    Si vous n&#39;êtes pas sûr du type de site dont vous avez besoin, je peux également vous aider à le déterminer.
+                    Si vous n&#39;êtes pas sûr du type de site dont vous avez
+                    besoin, je peux également vous aider à le déterminer.
                   </p>
                 </div>
               </article>

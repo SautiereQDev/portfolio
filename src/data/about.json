@@ -25,10 +25,5 @@
     "SQL",
     "MongoDB"
   ],
-  "interests": [
-    "Informatique",
-    "Course à pied",
-    "Cuisine",
-    "Voyages"
-  ]
+  "interests": ["Informatique", "Course à pied", "Cuisine", "Voyages"]
 }

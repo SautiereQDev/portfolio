@@ -7,12 +7,10 @@ export const server: Application = express();
 
 const corsOptions = {
   origin:
-    process.env.NODE_ENV === "development"
-      ? "*"
-      : /\.quentinsautiere\.com$/,
+    process.env.NODE_ENV === "development" ? "*" : /\.quentinsautiere\.com$/,
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 server.disable("x-powered-by");

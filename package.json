@@ -6,8 +6,10 @@
   "homepage": "/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
+    "build": "npm run lint:fix && npm run format && vite build",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "format": "prettier --write .",
     "preview": "vite preview"
   },
   "dependencies": {

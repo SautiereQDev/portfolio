@@ -1,9 +1,9 @@
 name: Deploy Backend
 on:
   push:
-    branches: ['*']
+    branches: ["*"]
     paths:
-      - 'backend/**'
+      - "backend/**"
 
 jobs:
   deploy:
@@ -17,9 +17,9 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '23' # Necessary to use the latest version of Node.js to compile the TypeScript code
-          cache: 'npm'
-          cache-dependency-path: './backend/package-lock.json'
+          node-version: "23" # Necessary to use the latest version of Node.js to compile the TypeScript code
+          cache: "npm"
+          cache-dependency-path: "./backend/package-lock.json"
 
       - name: Install dependencies
         working-directory: ./backend

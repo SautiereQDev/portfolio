@@ -15,6 +15,24 @@ export default [
   {
     rules: {
       "react/react-in-jsx-scope": "off",
+      "@typescript-eslint/no-unused-expressions": [
+        "error",
+        {
+          allowShortCircuit: true,
+          allowTernary: true,
+          allowTaggedTemplates: true,
+        },
+      ],
     },
+    ignores: [
+      "**/dist/**",
+      "**/build/**",
+      "**/public/**",
+      "**/coverage/**",
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.turbo/**",
+      "**/.vercel/**",
+    ],
   },
 ];
