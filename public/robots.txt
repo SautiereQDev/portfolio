@@ -1,0 +1,31 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://quentinsautiere.com/sitemap.xml
+
+# Disallow common non-content paths
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.tsx$
+Disallow: /*.ts$
+Disallow: /*.js$
+Disallow: /*.css$
+Disallow: /vite.config.*
+Disallow: /tsconfig.*
+Disallow: /tailwind.config.*
+Disallow: /eslint.config.*
+Disallow: /package*.json
+Disallow: /.git/
+Disallow: /.vscode/
+Disallow: /dist/
+
+# Allow important assets
+Allow: /icon.ico
+Allow: /assets/
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.svg$
+Allow: /*.webp$
