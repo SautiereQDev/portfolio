@@ -17,10 +17,15 @@ import {
   Clock,
   Globe,
   User,
-  HelpCircle
+  HelpCircle,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Badge } from "../components/ui/badge";
@@ -57,22 +62,22 @@ const contactMethods = [
     title: "Email",
     value: "contact@quentinsautiere.com",
     link: "mailto:contact@quentinsautiere.com",
-    description: "Réponse sous 24h"
+    description: "Réponse sous 24h",
   },
   {
     icon: Phone,
     title: "Téléphone",
     value: "+33 6 51 54 69 48",
     link: "tel:+33600000000",
-    description: "Lun-Ven 9h-18h"
+    description: "Lun-Ven 9h-18h",
   },
   {
     icon: MapPin,
     title: "Localisation",
     value: "France",
     link: "https:quentinsautiere.com/contact#map",
-    description: "Travail à distance"
-  }
+    description: "Travail à distance",
+  },
 ];
 
 const socialLinks = [
@@ -80,13 +85,13 @@ const socialLinks = [
     icon: Github,
     name: "GitHub",
     url: "https://github.com/SautiereQDev",
-    color: "hover:text-gray-800"
+    color: "hover:text-gray-800",
   },
   {
     icon: Linkedin,
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/quentin-sauti%C3%A8re/",
-    color: "hover:text-blue-600"
+    color: "hover:text-blue-600",
   },
 ];
 
@@ -94,26 +99,30 @@ const sections = [
   { id: "intro", title: "Introduction", icon: User },
   { id: "contact-info", title: "Informations", icon: MessageSquare },
   { id: "form", title: "Formulaire", icon: Send },
-  { id: "faq", title: "FAQ", icon: HelpCircle }
+  { id: "faq", title: "FAQ", icon: HelpCircle },
 ];
 
 const faqs = [
   {
     question: "Quel est votre délai de réponse ?",
-    answer: "Je réponds généralement sous 24h maximum. Pour les urgences, n'hésitez pas à mentionner la priorité dans votre message."
+    answer:
+      "Je réponds généralement sous 24h maximum. Pour les urgences, n'hésitez pas à mentionner la priorité dans votre message.",
   },
   {
     question: "Proposez-vous des consultations gratuites ?",
-    answer: "Oui, je propose un premier appel de 30 minutes gratuit pour discuter de votre projet et voir comment je peux vous aider."
+    answer:
+      "Oui, je propose un premier appel de 30 minutes gratuit pour discuter de votre projet et voir comment je peux vous aider.",
   },
   {
     question: "Travaillez-vous avec des équipes ?",
-    answer: "Non, je travaille en freelance de manière indépendante. Je gère chaque projet de A à Z pour garantir une qualité optimale."
+    answer:
+      "Non, je travaille en freelance de manière indépendante. Je gère chaque projet de A à Z pour garantir une qualité optimale.",
   },
   {
     question: "Quels sont vos tarifs ?",
-    answer: "Mes tarifs varient selon la complexité du projet. Contactez-moi pour un devis personnalisé et détaillé."
-  }
+    answer:
+      "Mes tarifs varient selon la complexité du projet. Contactez-moi pour un devis personnalisé et détaillé.",
+  },
 ];
 
 export const Contact = () => {
@@ -141,20 +150,28 @@ export const Contact = () => {
           y: 50,
           opacity: 0,
           duration: 1,
-          ease: "power3.out"
+          ease: "power3.out",
         })
-          .from(".hero-subtitle", {
-            y: 30,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out"
-          }, "-=0.6")
-          .from(".hero-badges", {
-            y: 20,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power3.out"
-          }, "-=0.4");
+          .from(
+            ".hero-subtitle",
+            {
+              y: 30,
+              opacity: 0,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            "-=0.6",
+          )
+          .from(
+            ".hero-badges",
+            {
+              y: 20,
+              opacity: 0,
+              duration: 0.6,
+              ease: "power3.out",
+            },
+            "-=0.4",
+          );
       }
 
       // Contact cards animation
@@ -168,7 +185,7 @@ export const Contact = () => {
           scrollTrigger: {
             trigger: contactCardsRef.current,
             start: "top 80%",
-          }
+          },
         });
       }
 
@@ -183,7 +200,7 @@ export const Contact = () => {
           scrollTrigger: {
             trigger: formRef.current,
             start: "top 80%",
-          }
+          },
         });
       }
 
@@ -197,9 +214,8 @@ export const Contact = () => {
         scrollTrigger: {
           trigger: ".faq-section",
           start: "top 80%",
-        }
+        },
       });
-
     });
 
     return () => ctx.revert();
@@ -232,7 +248,7 @@ export const Contact = () => {
         duration: 0.3,
         yoyo: true,
         repeat: 1,
-        ease: "power2.inOut"
+        ease: "power2.inOut",
       });
 
       setTimeout(() => setIsSubmitted(false), 5000);
@@ -250,10 +266,12 @@ export const Contact = () => {
           <Breadcrumb />
         </div>
       </div>
-
       {/* Hero Section */}
       <div id="intro">
-        <section ref={heroRef} className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+        <section
+          ref={heroRef}
+          className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden"
+        >
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
           </div>
@@ -273,19 +291,19 @@ export const Contact = () => {
 
               <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Créons ensemble
-                <span className="block">
-                  quelque chose de génial
-                </span>
+                <span className="block">quelque chose de génial</span>
               </h1>
 
               <p className="hero-subtitle text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Vous avez un projet en tête ? Discutons de vos idées et donnons-leur vie ensemble.
-                Je suis là pour transformer votre vision en réalité digitale.
+                Vous avez un projet en tête ? Discutons de vos idées et
+                donnons-leur vie ensemble. Je suis là pour transformer votre
+                vision en réalité digitale.
               </p>
             </div>
           </div>
         </section>
-      </div>      {/* Contact Methods */}
+      </div>{" "}
+      {/* Contact Methods */}
       <div id="contact-info">
         <AnimatedSection className="py-16 bg-gray-50">
           <div className="container mx-auto px-6 lg:px-8">
@@ -298,45 +316,72 @@ export const Contact = () => {
               </p>
             </div>
 
-            <div ref={contactCardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div
+              ref={contactCardsRef}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            >
               {contactMethods.map((method, index) => (
-                <Card key={index} className="contact-card bg-white border-gray-200 hover:shadow-lg transition-all duration-300 group h-full">
+                <Card
+                  key={index}
+                  className="contact-card bg-white border-gray-200 hover:shadow-lg transition-all duration-300 group h-full"
+                >
                   <CardContent className="p-6 text-center h-full flex flex-col justify-between">
                     <div>
                       <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
                         <method.icon className="w-6 h-6 text-white" />
                       </div>
-                      <h3 className="text-gray-900 font-semibold text-lg mb-2">{method.title}</h3>
-                      <a href={method.link} className="text-blue-600 hover:text-blue-800 transition-colors duration-200 block mb-2 font-medium">
+                      <h3 className="text-gray-900 font-semibold text-lg mb-2">
+                        {method.title}
+                      </h3>
+                      <a
+                        href={method.link}
+                        className="text-blue-600 hover:text-blue-800 transition-colors duration-200 block mb-2 font-medium"
+                      >
                         {method.value}
                       </a>
                     </div>
-                    <p className="text-gray-500 text-sm mt-auto">{method.description}</p>
+                    <p className="text-gray-500 text-sm mt-auto">
+                      {method.description}
+                    </p>
                   </CardContent>
                 </Card>
               ))}
             </div>
           </div>
         </AnimatedSection>
-      </div>{/* Main Content */}
+      </div>
+      {/* Main Content */}
       <div id="form" className="container mx-auto px-6 lg:px-8 pb-16 mt-12">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <AnimatedSection>
             <Card className="bg-white border-gray-200 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-900">Envoyez-moi un message</CardTitle>
-                <p className="text-gray-600">Remplissez le formulaire ci-dessous et je vous répondrai rapidement.</p>
+                <CardTitle className="text-2xl font-bold text-gray-900">
+                  Envoyez-moi un message
+                </CardTitle>
+                <p className="text-gray-600">
+                  Remplissez le formulaire ci-dessous et je vous répondrai
+                  rapidement.
+                </p>
               </CardHeader>
               <CardContent>
                 {isSubmitted ? (
                   <div className="success-message text-center py-8">
                     <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">Message envoyé avec succès !</h3>
-                    <p className="text-gray-600">Je vous répondrai dans les plus brefs délais.</p>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      Message envoyé avec succès !
+                    </h3>
+                    <p className="text-gray-600">
+                      Je vous répondrai dans les plus brefs délais.
+                    </p>
                   </div>
                 ) : (
-                  <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                  <form
+                    ref={formRef}
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
                     <div className="form-field">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Nom *
@@ -347,7 +392,9 @@ export const Contact = () => {
                         className="border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.name.message}
+                        </p>
                       )}
                     </div>
 
@@ -373,7 +420,9 @@ export const Contact = () => {
                         className="border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.email.message}
+                        </p>
                       )}
                     </div>
 
@@ -388,7 +437,9 @@ export const Contact = () => {
                         className="border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                       {errors.message && (
-                        <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
+                        <p className="text-red-500 text-sm mt-1">
+                          {errors.message.message}
+                        </p>
                       )}
                     </div>
 
@@ -413,21 +464,26 @@ export const Contact = () => {
                 )}
 
                 <div className="mt-6 pt-6 border-t border-gray-200">
-                  <p className="text-gray-500 text-sm text-center mb-4">Ou contactez-moi directement :</p>
-                  <div className="flex justify-center">                    <Button
-                    asChild
-                    variant="outline"
-                    className="border-blue-200 text-blue-600 hover:bg-blue-50"
-                  >
-                    <a href="mailto:contact@quentinsautiere.com">
-                      <Mail className="w-4 h-4 mr-2" />
-                      Ouvrir l&apos;application mail
-                    </a>
-                  </Button>
+                  <p className="text-gray-500 text-sm text-center mb-4">
+                    Ou contactez-moi directement :
+                  </p>
+                  <div className="flex justify-center">
+                    {" "}
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                    >
+                      <a href="mailto:contact@quentinsautiere.com">
+                        <Mail className="w-4 h-4 mr-2" />
+                        Ouvrir l&apos;application mail
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </CardContent>
-            </Card>          </AnimatedSection>
+            </Card>{" "}
+          </AnimatedSection>
 
           {/* Additional Info */}
           <div className="space-y-8">
@@ -439,7 +495,8 @@ export const Contact = () => {
                     <Globe className="w-5 h-5 mr-2" />
                     Retrouvez-moi sur
                   </CardTitle>
-                </CardHeader>                <CardContent>
+                </CardHeader>{" "}
+                <CardContent>
                   <div className="grid grid-cols-2 gap-4">
                     {socialLinks.map((social, index) => (
                       <a
@@ -449,7 +506,9 @@ export const Contact = () => {
                         rel="noopener noreferrer"
                         className="flex flex-col items-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all duration-300 group"
                       >
-                        <social.icon className={`w-6 h-6 text-gray-600 ${social.color} transition-colors duration-300 mb-2`} />
+                        <social.icon
+                          className={`w-6 h-6 text-gray-600 ${social.color} transition-colors duration-300 mb-2`}
+                        />
                         <span className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
                           {social.name}
                         </span>
@@ -462,7 +521,6 @@ export const Contact = () => {
           </div>
         </div>
       </div>
-
       {/* FAQ Section */}
       <div id="faq">
         <AnimatedSection className="faq-section py-16 bg-gray-50">
@@ -482,9 +540,15 @@ export const Contact = () => {
                   <div className="space-y-6">
                     {faqs.map((faq, index) => (
                       <div key={index} className="faq-item">
-                        <h4 className="text-gray-900 font-semibold text-lg mb-3">{faq.question}</h4>
-                        <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
-                        {index < faqs.length - 1 && <div className="border-b border-gray-200 mt-6" />}
+                        <h4 className="text-gray-900 font-semibold text-lg mb-3">
+                          {faq.question}
+                        </h4>
+                        <p className="text-gray-600 leading-relaxed">
+                          {faq.answer}
+                        </p>
+                        {index < faqs.length - 1 && (
+                          <div className="border-b border-gray-200 mt-6" />
+                        )}
                       </div>
                     ))}
                   </div>

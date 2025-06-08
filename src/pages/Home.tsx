@@ -1,66 +1,91 @@
-import { HeroSection } from "../components/HeroSection"
-import { AnimatedSection } from "../components/ui/animated-section"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card"
-import { Badge } from "../components/ui/badge"
-import { Button } from "../components/ui/button"
-import Breadcrumb from "../components/ui/breadcrumb"
-import SectionNavigation from "../components/ui/section-navigation"
-import { ArrowRight, Code, Smartphone, Palette, Zap, Monitor, Database, Search, House, Star, Briefcase } from "lucide-react"
-import { Link } from "@tanstack/react-router"
-import homeBanner from "../assets/images/home_banner.svg"
+import { HeroSection } from "../components/HeroSection";
+import { AnimatedSection } from "../components/ui/animated-section";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
+import Breadcrumb from "../components/ui/breadcrumb";
+import SectionNavigation from "../components/ui/section-navigation";
+import {
+  ArrowRight,
+  Code,
+  Smartphone,
+  Palette,
+  Zap,
+  Monitor,
+  Database,
+  Search,
+  House,
+  Star,
+  Briefcase,
+} from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import homeBanner from "../assets/images/home_banner.svg";
 
 export const Home = () => {
   const sections = [
     { id: "hero", title: "Accueil", icon: House },
     { id: "features", title: "Compétences", icon: Star },
-    { id: "services", title: "Services", icon: Briefcase }
+    { id: "services", title: "Services", icon: Briefcase },
   ];
 
   const features = [
     {
       icon: Code,
       title: "Développement Web",
-      description: "Applications web modernes et performantes avec les dernières technologies"
+      description:
+        "Applications web modernes et performantes avec les dernières technologies",
     },
     {
       icon: Smartphone,
       title: "Applications Mobile",
-      description: "Applications natives et cross-platform pour iOS et Android"
+      description: "Applications natives et cross-platform pour iOS et Android",
     },
     {
       icon: Palette,
       title: "UI/UX Design",
-      description: "Interfaces utilisateur intuitives et expériences utilisateur optimales"
+      description:
+        "Interfaces utilisateur intuitives et expériences utilisateur optimales",
     },
     {
       icon: Zap,
       title: "Performance",
-      description: "Optimisation et performance pour une expérience utilisateur fluide"
-    }
-  ]
+      description:
+        "Optimisation et performance pour une expérience utilisateur fluide",
+    },
+  ];
 
   const services = [
     {
       icon: Monitor,
       title: "Site Web",
-      description: "De la landing page au site complexe, je conçois une présence en ligne unique et sur mesure pour vous ou votre entreprise."
+      description:
+        "De la landing page au site complexe, je conçois une présence en ligne unique et sur mesure pour vous ou votre entreprise.",
     },
     {
       icon: Smartphone,
       title: "Application Mobile",
-      description: "Je développe des applications mobiles performantes et intuitives, adaptées à vos besoins sur iOS, Android ou en multiplateforme."
+      description:
+        "Je développe des applications mobiles performantes et intuitives, adaptées à vos besoins sur iOS, Android ou en multiplateforme.",
     },
     {
       icon: Database,
       title: "Base de données",
-      description: "Je conçois et déploie des bases de données optimisées avec des outils performants pour une gestion efficace."
+      description:
+        "Je conçois et déploie des bases de données optimisées avec des outils performants pour une gestion efficace.",
     },
     {
       icon: Search,
       title: "Optimisation SEO",
-      description: "Améliorez votre visibilité en ligne avec une stratégie SEO efficace : mots-clés, optimisation on-page et plus encore."
-    }
-  ]
+      description:
+        "Améliorez votre visibilité en ligne avec une stratégie SEO efficace : mots-clés, optimisation on-page et plus encore.",
+    },
+  ];
   return (
     <div className="min-h-screen bg-white font-[Manrope]">
       {/* Navigation par sections */}
@@ -73,14 +98,16 @@ export const Home = () => {
       </div>
 
       {/* Hero Section */}
-      <div id="hero">        <HeroSection
-        title="Salut, moi c'est Quentin&nbsp;!"// espace insécable pour éviter la coupure du nom
-        subtitle="Développeur Full-Stack & Designer"
-        description="Développeur Web full-stack avec plus de 5 ans d'expérience personnelle. Que vous ayez besoin d'un site web simple, d'une application web sur mesure ou d'une solution e-commerce complète, je suis là pour concrétiser vos idées."
-        ctaText="Voir mes offres"
-        ctaLink="/services"
-        imageUrl={homeBanner}
-      />
+      <div id="hero">
+        {" "}
+        <HeroSection
+          title="Salut, moi c'est Quentin&nbsp;!" // espace insécable pour éviter la coupure du nom
+          subtitle="Développeur Full-Stack & Designer"
+          description="Développeur Web full-stack avec plus de 5 ans d'expérience personnelle. Que vous ayez besoin d'un site web simple, d'une application web sur mesure ou d'une solution e-commerce complète, je suis là pour concrétiser vos idées."
+          ctaText="Voir mes offres"
+          ctaLink="/services"
+          imageUrl={homeBanner}
+        />
       </div>
 
       {/* Features Section */}
@@ -92,7 +119,8 @@ export const Home = () => {
                 Ce que je fais de mieux
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Des solutions techniques modernes pour transformer vos idées en réalité digitale
+                Des solutions techniques modernes pour transformer vos idées en
+                réalité digitale
               </p>
             </div>
 
@@ -120,7 +148,8 @@ export const Home = () => {
                     </CardContent>
                   </Card>
                 </AnimatedSection>
-              ))}          </div>
+              ))}{" "}
+            </div>
           </div>
         </AnimatedSection>
       </div>
@@ -135,11 +164,12 @@ export const Home = () => {
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Mes offres de service
-              </h2>              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Des solutions adaptées à vos besoins, du site vitrine à l&apos;application complexe
+              </h2>{" "}
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Des solutions adaptées à vos besoins, du site vitrine à
+                l&apos;application complexe
               </p>
             </div>
-
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
               {services.map((service, index) => (
                 <AnimatedSection
@@ -165,16 +195,27 @@ export const Home = () => {
                   </Card>
                 </AnimatedSection>
               ))}
-            </div>            <div className="text-center">
-              <Button asChild size="lg" className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group">
-                <Link to="/services" className="flex items-center gap-2 px-8 py-4">
-                  <span className="relative z-10">Découvrir tous mes services</span>
+            </div>{" "}
+            <div className="text-center">
+              <Button
+                asChild
+                size="lg"
+                className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group"
+              >
+                <Link
+                  to="/services"
+                  className="flex items-center gap-2 px-8 py-4"
+                >
+                  <span className="relative z-10">
+                    Découvrir tous mes services
+                  </span>
                   <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                 </Link>
               </Button>
-            </div></div>
+            </div>
+          </div>
         </AnimatedSection>
       </div>
 
@@ -185,18 +226,25 @@ export const Home = () => {
             Prêt à donner vie à votre projet ?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Discutons de votre projet et voyons comment je peux vous aider à atteindre vos objectifs
+            Discutons de votre projet et voyons comment je peux vous aider à
+            atteindre vos objectifs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-gray-50">
-              <Link to="/contact">
-                Contactez-moi
-              </Link>
+            <Button
+              asChild
+              size="lg"
+              variant="secondary"
+              className="bg-white text-blue-600 hover:bg-gray-50"
+            >
+              <Link to="/contact">Contactez-moi</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600">
-              <Link to="/projects">
-                Voir mes réalisations
-              </Link>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-blue-600"
+            >
+              <Link to="/projects">Voir mes réalisations</Link>
             </Button>
           </div>
         </div>

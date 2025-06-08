@@ -35,10 +35,5 @@
     "Symfony",
     "Next"
   ],
-  "interests": [
-    "Informatique",
-    "Course à pied",
-    "Voile",
-    "Randonnée"
-  ]
+  "interests": ["Informatique", "Course à pied", "Voile", "Randonnée"]
 }

@@ -1,39 +1,39 @@
-import { useEffect, useRef } from "react"
-import { Link } from "@tanstack/react-router"
-import { Github, Linkedin, Mail, Heart } from "lucide-react"
-import { gsap } from "gsap"
+import { useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
+import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { gsap } from "gsap";
 
 export const Footer = () => {
-  const footerRef = useRef<HTMLElement>(null)
+  const footerRef = useRef<HTMLElement>(null);
 
   const socialLinks = [
     {
       name: "GitHub",
       icon: Github,
       url: "https://github.com/SautiereQDev",
-      color: "hover:text-gray-900"
+      color: "hover:text-gray-900",
     },
     {
       name: "LinkedIn",
       icon: Linkedin,
       url: "https://linkedin.com/in/quentin-sautiere",
-      color: "hover:text-blue-600"
+      color: "hover:text-blue-600",
     },
     {
       name: "Email",
       icon: Mail,
       url: "mailto:contact@quentinsautiere.com",
-      color: "hover:text-green-600"
-    }
-  ]
+      color: "hover:text-green-600",
+    },
+  ];
 
   const navigationLinks = [
     { name: "Accueil", path: "/" },
     { name: "À propos", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Projets", path: "/projects" },
-    { name: "Contact", path: "/contact" }
-  ]
+    { name: "Contact", path: "/contact" },
+  ];
 
   const contactLinks = [
     {
@@ -44,7 +44,7 @@ export const Footer = () => {
       name: "06 51 54 69 48",
       url: "tel:+33651546948",
     },
-  ]
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -56,20 +56,20 @@ export const Footer = () => {
               opacity: 0,
               duration: 0.8,
               stagger: 0.1,
-              ease: "power2.out"
-            })
+              ease: "power2.out",
+            });
           }
-        })
+        });
       },
-      { threshold: 0.1 }
-    )
+      { threshold: 0.1 },
+    );
 
     if (footerRef.current) {
-      observer.observe(footerRef.current)
+      observer.observe(footerRef.current);
     }
 
-    return () => observer.disconnect()
-  }, [])
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <footer
@@ -90,7 +90,8 @@ export const Footer = () => {
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md">
               Passionné par la création d'expériences digitales exceptionnelles.
-              Je transforme vos idées en solutions techniques innovantes et performantes.
+              Je transforme vos idées en solutions techniques innovantes et
+              performantes.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -147,16 +148,18 @@ export const Footer = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm">
-              &copy; {new Date().getFullYear()} Quentin Sautière. Tous droits réservés.
+              &copy; {new Date().getFullYear()} Quentin Sautière. Tous droits
+              réservés.
             </p>
             <p className="text-gray-400 text-sm flex items-center gap-1">
-              Fait avec le <Heart className="w-4 h-4 text-red-500" /> depuis La Rochelle
+              Fait avec le <Heart className="w-4 h-4 text-red-500" /> depuis La
+              Rochelle
             </p>
           </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;

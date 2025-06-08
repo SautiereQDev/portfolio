@@ -1,75 +1,112 @@
-import { useState, useEffect, useRef } from "react"
-import { Link, useRouterState } from "@tanstack/react-router"
-import { Menu, X, Home, User, Briefcase, FolderOpen, Mail, ChevronUp, ArrowRight } from "lucide-react"
-import { Button } from "./ui/button"
-import { Badge } from "./ui/badge"
-import { gsap } from "gsap"
+import { useState, useEffect, useRef } from "react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import {
+  Menu,
+  X,
+  Home,
+  User,
+  Briefcase,
+  FolderOpen,
+  Mail,
+  ChevronUp,
+  ArrowRight,
+} from "lucide-react";
+import { Button } from "./ui/button";
+import { Badge } from "./ui/badge";
+import { gsap } from "gsap";
 
 export const NavBar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [scrollProgress, setScrollProgress] = useState(0)
-  const [showBackToTop, setShowBackToTop] = useState(false)
-  const router = useRouterState()
-  const navRef = useRef<HTMLElement>(null)
-  const logoRef = useRef<HTMLDivElement>(null)
-  const menuRef = useRef<HTMLDivElement>(null)
-  const progressRef = useRef<HTMLDivElement>(null)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const router = useRouterState();
+  const navRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   const navigationItems = [
     { name: "Accueil", path: "/", icon: Home, description: "Page d'accueil" },
     { name: "À propos", path: "/about", icon: User, description: "Mon profil" },
-    { name: "Services", path: "/services", icon: Briefcase, description: "Mes prestations" },
-    { name: "Projets", path: "/projects", icon: FolderOpen, description: "Mon portfolio" },
-    { name: "Contact", path: "/contact", icon: Mail, description: "Me contacter" }
-  ]
+    {
+      name: "Services",
+      path: "/services",
+      icon: Briefcase,
+      description: "Mes prestations",
+    },
+    {
+      name: "Projets",
+      path: "/projects",
+      icon: FolderOpen,
+      description: "Mon portfolio",
+    },
+    {
+      name: "Contact",
+      path: "/contact",
+      icon: Mail,
+      description: "Me contacter",
+    },
+  ];
 
   // Fonction pour obtenir le titre de la page courante
   const getCurrentPageTitle = () => {
-    const currentItem = navigationItems.find(item => item.path === router.location.pathname)
-    return currentItem?.name || "Portfolio"
-  }
+    const currentItem = navigationItems.find(
+      (item) => item.path === router.location.pathname,
+    );
+    return currentItem?.name || "Portfolio";
+  };
 
   // Fonction de scroll vers le haut
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   useEffect(() => {
     // Animation d'entrée de la navbar
-    const tl = gsap.timeline()
+    const tl = gsap.timeline();
 
     tl.from(navRef.current, {
       y: -100,
       opacity: 0,
       duration: 0.8,
-      ease: "power2.out"
+      ease: "power2.out",
     })
-      .from(logoRef.current, {
-        x: -30,
-        opacity: 0,
-        duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.4")
-      .from(menuRef.current?.children || [], {
-        y: -20,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power2.out"
-      }, "-=0.4")
+      .from(
+        logoRef.current,
+        {
+          x: -30,
+          opacity: 0,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      )
+      .from(
+        menuRef.current?.children || [],
+        {
+          y: -20,
+          opacity: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      );
 
     // Animation au scroll et progress tracking
-    let lastScroll = 0
+    let lastScroll = 0;
     const handleScroll = () => {
-      const currentScroll = window.pageYOffset
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = documentHeight > 0 ? (currentScroll / documentHeight) * 100 : 0
+      const currentScroll = window.pageYOffset;
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress =
+        documentHeight > 0 ? (currentScroll / documentHeight) * 100 : 0;
 
       // Mise à jour du progress
-      setScrollProgress(progress)
+      setScrollProgress(progress);
 
       // Affichage du bouton back-to-top
-      setShowBackToTop(currentScroll > 500)
+      setShowBackToTop(currentScroll > 500);
 
       // Animation de la navbar au scroll
       if (currentScroll > lastScroll && currentScroll > 100) {
@@ -77,26 +114,26 @@ export const NavBar = () => {
         gsap.to(navRef.current, {
           y: -100,
           duration: 0.3,
-          ease: "power2.out"
-        })
+          ease: "power2.out",
+        });
       } else {
         // Scroll vers le haut - afficher la navbar
         gsap.to(navRef.current, {
           y: 0,
           duration: 0.3,
-          ease: "power2.out"
-        })
+          ease: "power2.out",
+        });
       }
 
-      lastScroll = currentScroll
-    }
+      lastScroll = currentScroll;
+    };
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <>
@@ -129,22 +166,29 @@ export const NavBar = () => {
             </div>
 
             {/* Navigation Desktop avec icônes améliorées */}
-            <div ref={menuRef} className="hidden md:flex items-center space-x-2">
+            <div
+              ref={menuRef}
+              className="hidden md:flex items-center space-x-2"
+            >
               {navigationItems.map((item) => {
-                const isActive = router.location.pathname === item.path
-                const Icon = item.icon
+                const isActive = router.location.pathname === item.path;
+                const Icon = item.icon;
 
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${isActive
-                        ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg'
-                        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                      }`}
+                    className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
+                      isActive
+                        ? "text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                    }`}
                   >
-                    <Icon className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'
-                      }`} />
+                    <Icon
+                      className={`w-4 h-4 transition-transform duration-300 ${
+                        isActive ? "scale-110" : "group-hover:scale-110"
+                      }`}
+                    />
                     <span>{item.name}</span>
 
                     {/* Tooltip */}
@@ -152,7 +196,7 @@ export const NavBar = () => {
                       {item.description}
                     </div>
                   </Link>
-                )
+                );
               })}
 
               <div className="ml-4 pl-4 border-l border-gray-200">
@@ -171,7 +215,10 @@ export const NavBar = () => {
             {/* Menu Mobile avec compteur de pages */}
             <div className="md:hidden flex items-center space-x-4">
               <Badge variant="outline" className="text-xs">
-                {navigationItems.findIndex(item => item.path === router.location.pathname) + 1}/{navigationItems.length}
+                {navigationItems.findIndex(
+                  (item) => item.path === router.location.pathname,
+                ) + 1}
+                /{navigationItems.length}
               </Badge>
               <Button
                 variant="ghost"
@@ -179,7 +226,11 @@ export const NavBar = () => {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-700 hover:bg-blue-50 transition-colors duration-200"
               >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </Button>
             </div>
           </div>
@@ -191,23 +242,26 @@ export const NavBar = () => {
             <div className="container mx-auto px-6 py-6">
               <div className="space-y-2">
                 {navigationItems.map((item, index) => {
-                  const isActive = router.location.pathname === item.path
-                  const Icon = item.icon
+                  const isActive = router.location.pathname === item.path;
+                  const Icon = item.icon;
 
                   return (
                     <Link
                       key={item.path}
                       to={item.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActive
-                          ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600'
-                          : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                        }`}
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
+                        isActive
+                          ? "text-white bg-gradient-to-r from-blue-600 to-purple-600"
+                          : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                      }`}
                     >
                       <Icon className="w-5 h-5" />
                       <div className="flex-1">
                         <div>{item.name}</div>
-                        <div className="text-xs opacity-75">{item.description}</div>
+                        <div className="text-xs opacity-75">
+                          {item.description}
+                        </div>
                       </div>
                       {isActive && (
                         <Badge variant="secondary" className="text-xs">
@@ -215,7 +269,7 @@ export const NavBar = () => {
                         </Badge>
                       )}
                     </Link>
-                  )
+                  );
                 })}
 
                 <div className="pt-4 mt-4 border-t border-gray-200">
@@ -223,7 +277,11 @@ export const NavBar = () => {
                     asChild
                     className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                   >
-                    <Link to="/contact" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center space-x-2">
+                    <Link
+                      to="/contact"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center justify-center space-x-2"
+                    >
                       <Mail className="w-4 h-4" />
                       <span>Contactez-moi</span>
                     </Link>
@@ -246,7 +304,7 @@ export const NavBar = () => {
         </Button>
       )}
     </>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

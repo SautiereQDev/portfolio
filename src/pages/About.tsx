@@ -1,7 +1,12 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { User, GraduationCap, Star, Heart } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { AnimatedSection } from "../components/ui/animated-section";
 import Breadcrumb from "../components/ui/breadcrumb";
@@ -18,7 +23,7 @@ export const About = () => {
     { id: "profile", title: "Profil", icon: User },
     { id: "education", title: "Formation", icon: GraduationCap },
     { id: "skills", title: "Compétences", icon: Star },
-    { id: "interests", title: "Passions", icon: Heart }
+    { id: "interests", title: "Passions", icon: Heart },
   ];
 
   return (
@@ -49,8 +54,10 @@ export const About = () => {
                 Développeur web et logiciel
               </h1>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                Développeur et concepteur Web depuis plus de cinq ans. Je suis un amoureux de la création de sites web esthétiques et
-                fonctionnels et je contribue au développement de sociétés grâce à la création de solutions numériques innovantes.
+                Développeur et concepteur Web depuis plus de cinq ans. Je suis
+                un amoureux de la création de sites web esthétiques et
+                fonctionnels et je contribue au développement de sociétés grâce
+                à la création de solutions numériques innovantes.
               </p>
             </div>
           </div>
@@ -73,10 +80,13 @@ export const About = () => {
                 </CardHeader>
                 <CardContent>
                   <p className="text-lg text-gray-700 leading-relaxed text-center">
-                    Étudiant en deuxième année de licence informatique à l'Université de La Rochelle,
-                    je suis passionné par les nouvelles technologies et l'innovation. J'aime relever des défis
-                    et mener mes projets avec rigueur et créativité. En parallèle, je me dépasse également
-                    sur la piste en compétition de demi-fond, où persévérance et performance sont mes maîtres-mots.
+                    Étudiant en deuxième année de licence informatique à
+                    l'Université de La Rochelle, je suis passionné par les
+                    nouvelles technologies et l'innovation. J'aime relever des
+                    défis et mener mes projets avec rigueur et créativité. En
+                    parallèle, je me dépasse également sur la piste en
+                    compétition de demi-fond, où persévérance et performance
+                    sont mes maîtres-mots.
                   </p>
                 </CardContent>
               </Card>
@@ -97,38 +107,49 @@ export const About = () => {
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Formation
                 </h2>
-              </div>              <div className="space-y-6">
+              </div>{" "}
+              <div className="space-y-6">
                 {about.education.map((item, index) => (
-                  <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 group hover:scale-[1.02]">                    <div className="flex items-start gap-4">
-                    {/* Logos conditionnels selon la formation */}
-                    {item.title === "Licence Informatique" ? (
-                      <img
-                        src="/logo_lr_univ.png"
-                        alt="Université de La Rochelle"
-                        className="w-12 h-12 object-contain rounded-full"
-                      />
-                    ) : item.title === "CQP IV - Moniteur de voile" ? (
-                      <img
-                        src="/glenans.png"
-                        alt="École de voile des Glénans"
-                        className="w-12 h-12 object-contain rounded-full border border-gray-400"
-                      />
-                    ) : (
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        <GraduationCap className="w-6 h-6 text-white" />
-                      </div>
-                    )}
-                    <div className="flex-grow">
-                      <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
-                      <p className="text-gray-600 mb-1">{item.date}</p>
-                      <p className="text-gray-600 mb-2">{item.school}</p>
-                      {item.mention && (
-                        <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-                          Mention: {item.mention}
-                        </Badge>
+                  <Card
+                    key={index}
+                    className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 group hover:scale-[1.02]"
+                  >
+                    {" "}
+                    <div className="flex items-start gap-4">
+                      {/* Logos conditionnels selon la formation */}
+                      {item.title === "Licence Informatique" ? (
+                        <img
+                          src="/logo_lr_univ.png"
+                          alt="Université de La Rochelle"
+                          className="w-12 h-12 object-contain rounded-full"
+                        />
+                      ) : item.title === "CQP IV - Moniteur de voile" ? (
+                        <img
+                          src="/glenans.png"
+                          alt="École de voile des Glénans"
+                          className="w-12 h-12 object-contain rounded-full border border-gray-400"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <GraduationCap className="w-6 h-6 text-white" />
+                        </div>
                       )}
+                      <div className="flex-grow">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                          {item.title}
+                        </h3>
+                        <p className="text-gray-600 mb-1">{item.date}</p>
+                        <p className="text-gray-600 mb-2">{item.school}</p>
+                        {item.mention && (
+                          <Badge
+                            variant="secondary"
+                            className="bg-blue-100 text-blue-700"
+                          >
+                            Mention: {item.mention}
+                          </Badge>
+                        )}
+                      </div>
                     </div>
-                  </div>
                   </Card>
                 ))}
               </div>
