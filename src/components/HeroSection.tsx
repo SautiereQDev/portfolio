@@ -79,13 +79,12 @@ export const HeroSection = ({
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Contenu textuel */}
                     <div className="space-y-8">
-                        <div className="space-y-4">
-                            <h1
-                                ref={titleRef}
-                                className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight drop-shadow-lg"
-                            >
-                                {title}
-                            </h1>
+                        <div className="space-y-4">                            <h1
+                            ref={titleRef}
+                            className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight drop-shadow-lg break-keep whitespace-nowrap"
+                        >
+                            {title}
+                        </h1>
                             <p
                                 ref={subtitleRef}
                                 className="text-xl md:text-2xl text-black font-bold drop-shadow-md"

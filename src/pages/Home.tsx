@@ -73,15 +73,14 @@ export const Home = () => {
       </div>
 
       {/* Hero Section */}
-      <div id="hero">
-        <HeroSection
-          title="Salut, moi c'est Quentin !"
-          subtitle="Développeur Full-Stack & Designer"
-          description="Développeur Web full-stack avec plus de 5 ans d'expérience personnelle. Que vous ayez besoin d'un site web simple, d'une application web sur mesure ou d'une solution e-commerce complète, je suis là pour concrétiser vos idées."
-          ctaText="Voir mes offres"
-          ctaLink="/services"
-          imageUrl={homeBanner}
-        />
+      <div id="hero">        <HeroSection
+        title="Salut, moi c'est Quentin&nbsp;!"// espace insécable pour éviter la coupure du nom
+        subtitle="Développeur Full-Stack & Designer"
+        description="Développeur Web full-stack avec plus de 5 ans d'expérience personnelle. Que vous ayez besoin d'un site web simple, d'une application web sur mesure ou d'une solution e-commerce complète, je suis là pour concrétiser vos idées."
+        ctaText="Voir mes offres"
+        ctaLink="/services"
+        imageUrl={homeBanner}
+      />
       </div>
 
       {/* Features Section */}
@@ -136,9 +135,8 @@ export const Home = () => {
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Mes offres de service
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Des solutions adaptées à vos besoins, du site vitrine à l'application complexe
+              </h2>              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Des solutions adaptées à vos besoins, du site vitrine à l&apos;application complexe
               </p>
             </div>
 
@@ -167,16 +165,16 @@ export const Home = () => {
                   </Card>
                 </AnimatedSection>
               ))}
-            </div>
-
-            <div className="text-center">
-              <Button asChild size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
-                <Link to="/services" className="flex items-center gap-2">
-                  Découvrir tous mes services
-                  <ArrowRight className="w-4 h-4" />
+            </div>            <div className="text-center">
+              <Button asChild size="lg" className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group">
+                <Link to="/services" className="flex items-center gap-2 px-8 py-4">
+                  <span className="relative z-10">Découvrir tous mes services</span>
+                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                 </Link>
               </Button>
-            </div>        </div>
+            </div></div>
         </AnimatedSection>
       </div>
 

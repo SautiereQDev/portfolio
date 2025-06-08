@@ -35,6 +35,17 @@ export const Footer = () => {
     { name: "Contact", path: "/contact" }
   ]
 
+  const contactLinks = [
+    {
+      name: "contact@quentinsautiere.com",
+      url: "mailto:contact@quentinsautiere.com",
+    },
+    {
+      name: "06 51 54 69 48",
+      url: "tel:+33651546948",
+    },
+  ]
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -105,7 +116,7 @@ export const Footer = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-200 hover:translate-x-1 transform inline-block"
+                    className="text-gray-400 hover:text-white transition-colors duration-500 hover:translate-x-1 transform inline-block"
                   >
                     {link.name}
                   </Link>
@@ -116,12 +127,19 @@ export const Footer = () => {
 
           {/* Contact */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Contact</h4>
-            <div className="space-y-3 text-gray-400">
-              <p>contact@quentinsautiere.com</p>
-              <p>+33 (0)6 XX XX XX XX</p>
-              <p>France</p>
-            </div>
+            <h4 className="text-lg font-semibold text-white">Navigation</h4>
+            <ul className="space-y-3">
+              {contactLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.url}
+                    className="text-gray-400 hover:text-white transition-colors duration-500 hover:translate-x-1 transform inline-block"
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
@@ -132,7 +150,7 @@ export const Footer = () => {
               &copy; {new Date().getFullYear()} Quentin Sautière. Tous droits réservés.
             </p>
             <p className="text-gray-400 text-sm flex items-center gap-1">
-              Fait avec <Heart className="w-4 h-4 text-red-500" /> en France
+              Fait avec le <Heart className="w-4 h-4 text-red-500" /> depuis La Rochelle
             </p>
           </div>
         </div>
