@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { User, GraduationCap, Star, Heart } from "lucide-react";
@@ -13,8 +12,6 @@ import about from "../data/about.json";
 gsap.registerPlugin(ScrollTrigger);
 
 export const About = () => {
-  const statsRef = useRef<HTMLDivElement>(null);
-
   const sections = [
     { id: "intro", title: "Introduction", icon: User },
     { id: "stats", title: "Statistiques", icon: Star },
@@ -24,33 +21,8 @@ export const About = () => {
     { id: "interests", title: "Passions", icon: Heart }
   ];
 
-  useEffect(() => {
-    // Animation des statistiques
-    if (statsRef.current) {
-      const stats = statsRef.current.querySelectorAll('[data-stat]');
-      stats.forEach((stat) => {
-        const target = parseInt(stat.getAttribute('data-stat') || '0');
-        const counter = { value: 0 };
-
-        gsap.to(counter, {
-          value: target,
-          duration: 2,
-          ease: "power2.out",
-          onUpdate: () => {
-            stat.textContent = Math.round(counter.value).toString();
-          },
-          scrollTrigger: {
-            trigger: stat,
-            start: "top 80%",
-            once: true
-          }
-        });
-      });
-    }
-  }, []);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-body">
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
       {/* Breadcrumb */}
@@ -80,36 +52,6 @@ export const About = () => {
                 Développeur et concepteur Web depuis plus de cinq ans. Je suis un amoureux de la création de sites web esthétiques et
                 fonctionnels et je contribue au développement de sociétés grâce à la création de solutions numériques innovantes.
               </p>
-            </div>
-          </div>
-
-          {/* Statistiques */}
-          <div id="stats" ref={statsRef} className="container mx-auto px-4 mt-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
-                  <span data-stat="5">0</span>+
-                </div>
-                <p className="text-gray-600">Années d'expérience</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">
-                  <span data-stat="50">0</span>+
-                </div>
-                <p className="text-gray-600">Projets réalisés</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-indigo-600 mb-2">
-                  <span data-stat="15">0</span>+
-                </div>
-                <p className="text-gray-600">Technologies maîtrisées</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-500 mb-2">
-                  <span data-stat="100">0</span>%
-                </div>
-                <p className="text-gray-600">Satisfaction client</p>
-              </div>
             </div>
           </div>
         </AnimatedSection>
@@ -155,26 +97,38 @@ export const About = () => {
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Formation
                 </h2>
-              </div>
-
-              <div className="space-y-6">
+              </div>              <div className="space-y-6">
                 {about.education.map((item, index) => (
-                  <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm group hover:scale-[1.02]">
-                    <div className="flex items-start gap-4">
+                  <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 group hover:scale-[1.02]">                    <div className="flex items-start gap-4">
+                    {/* Logos conditionnels selon la formation */}
+                    {item.title === "Licence Informatique" ? (
+                      <img
+                        src="/logo_lr_univ.png"
+                        alt="Université de La Rochelle"
+                        className="w-12 h-12 object-contain rounded-full"
+                      />
+                    ) : item.title === "CQP IV - Moniteur de voile" ? (
+                      <img
+                        src="/glenans.png"
+                        alt="École de voile des Glénans"
+                        className="w-12 h-12 object-contain rounded-full border border-gray-400"
+                      />
+                    ) : (
                       <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                         <GraduationCap className="w-6 h-6 text-white" />
                       </div>
-                      <div className="flex-grow">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
-                        <p className="text-gray-600 mb-1">{item.date}</p>
-                        <p className="text-gray-600 mb-2">{item.school}</p>
-                        {item.mention && (
-                          <Badge variant="secondary" className="bg-blue-100 text-blue-700">
-                            Mention: {item.mention}
-                          </Badge>
-                        )}
-                      </div>
+                    )}
+                    <div className="flex-grow">
+                      <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
+                      <p className="text-gray-600 mb-1">{item.date}</p>
+                      <p className="text-gray-600 mb-2">{item.school}</p>
+                      {item.mention && (
+                        <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                          Mention: {item.mention}
+                        </Badge>
+                      )}
                     </div>
+                  </div>
                   </Card>
                 ))}
               </div>
