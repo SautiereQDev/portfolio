@@ -64,6 +64,27 @@
     ]
   },
   {
+    "title": "Portfolio",
+    "description": "Mon portfolio personnel qui présente mes projets, mes compétences et mon parcours. Il est conçu pour être responsive et optimisé pour le SEO.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/portfolio/0.png",
+    "visit_link": "https://quentinsautiere.com",
+    "github_link": "https://github.com/SautiereQDev/portfolio",
+    "key_points": [
+      "Design responsive",
+      "Optimisé pour le SEO",
+      "Présente mes projets et compétences",
+      "Formulaire de contact"
+    ],
+    "technos": [
+      "React",
+      "Tailwindcss",
+      "TypeScript",
+      "Zod",
+      "React hook form",
+      "React router dom"
+    ]
+  },
+  {
     "title": "Weather Dashboard",
     "description": "Un tableau de bord météorologique qui permet aux utilisateurs de rechercher une ville et de consulter les conditions météorologiques actuelles ainsi que les prévisions sur 5 jours.",
     "imageUrl": "https://cdn.quentinsautiere.com/portfolio/weather-dashboard/0.png",
