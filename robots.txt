@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Emplacement du sitemap
+Sitemap: https://quentinsautiere.com/sitemap.xml
