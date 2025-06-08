@@ -29,23 +29,42 @@ export const Projects = () => {
     { id: "mobile", name: "Mobile", icon: Smartphone, count: projects.filter(p => p.technos.some(t => ["React Native", "Expo"].includes(t))).length },
     { id: "api", name: "API", icon: Database, count: projects.filter(p => p.technos.some(t => ["NestJs", "API Platform", "PHP"].includes(t))).length }
   ]
-
   useEffect(() => {
+    let tl: gsap.core.Timeline | null = null
+
     // Animation d'entrée du hero
     if (heroRef.current) {
-      const tl = gsap.timeline()
-      tl.from(heroRef.current.children, {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out"
-      })
+      tl = gsap.timeline()
+
+      // Animation de l'image avec les blobs
+      tl.fromTo(".hero-image",
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1, ease: "power2.out" }
+      )
+        // Animation du badge
+        .fromTo(".hero-badge",
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+          "-=0.5"
+        )
+        // Animation du titre
+        .fromTo(".hero-title",
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
+          "-=0.3"
+        )
+        // Animation de la description
+        .fromTo(".hero-description",
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+          "-=0.3"
+        )
     }
 
     // Animation des statistiques
+    let observer: IntersectionObserver | null = null
     if (statsRef.current) {
-      const observer = new IntersectionObserver(
+      observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -66,7 +85,12 @@ export const Projects = () => {
       )
 
       observer.observe(statsRef.current)
-      return () => observer.disconnect()
+    }
+
+    // Nettoyage des animations
+    return () => {
+      if (tl) tl.kill()
+      if (observer) observer.disconnect()
     }
   }, [])
 
@@ -115,11 +139,9 @@ export const Projects = () => {
         <section className="relative py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
-          </div>
-
-          <div ref={heroRef} className="container mx-auto px-6 lg:px-8 relative z-10">
+          </div>          <div ref={heroRef} className="container mx-auto px-6 lg:px-8 relative z-10">
             <div className="text-center space-y-8">
-              <div className="relative inline-block">
+              <div className="relative inline-block hero-image">
                 <img
                   src={banner}
                   alt="Projets illustration"
@@ -129,13 +151,13 @@ export const Projects = () => {
                 <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
               </div>
               <div className="space-y-4">
-                <Badge className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0">
+                <Badge className="hero-badge bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0">
                   Portfolio
                 </Badge>
-                <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Mes Projets
                 </h1>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <p className="hero-description text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                   Découvrez une sélection de mes réalisations, des applications web modernes aux solutions mobiles innovantes
                 </p>
               </div>
@@ -155,10 +177,9 @@ export const Projects = () => {
             <div className="space-y-2">
               <div className="text-3xl font-bold text-purple-600" data-count="15">0</div>
               <div className="text-gray-600">Technologies maîtrisées</div>
-            </div>
-            <div className="space-y-2">
+            </div>            <div className="space-y-2">
               <div className="text-3xl font-bold text-green-600" data-count="5">0</div>
-              <div className="text-gray-600">Années d'expérience</div>
+              <div className="text-gray-600">Années d&apos;expérience</div>
             </div>
             <div className="space-y-2">
               <div className="text-3xl font-bold text-orange-600" data-count="100">0</div>
@@ -192,8 +213,8 @@ export const Projects = () => {
                     onClick={() => setSelectedCategory(category.id)}
                     variant={selectedCategory === category.id ? "default" : "outline"}
                     className={`flex items-center gap-2 transition-all duration-300 ${selectedCategory === category.id
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                        : "hover:border-blue-300"
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                      : "hover:border-blue-300"
                       }`}
                   >
                     <category.icon className="w-4 h-4" />
