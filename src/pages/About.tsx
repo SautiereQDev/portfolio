@@ -1,76 +1,250 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { User, GraduationCap, Star, Heart } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { AnimatedSection } from "../components/ui/animated-section";
+import Breadcrumb from "../components/ui/breadcrumb";
+import SectionNavigation from "../components/ui/section-navigation";
 import banner from "../assets/images/about_banner.svg";
 import about from "../data/about.json";
-import AboutSection from "../components/AboutSection.tsx";
-import EducationListItem from "../components/Items/EducationListItem.tsx";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const About = () => {
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  const sections = [
+    { id: "intro", title: "Introduction", icon: User },
+    { id: "stats", title: "Statistiques", icon: Star },
+    { id: "profile", title: "Profil", icon: User },
+    { id: "education", title: "Formation", icon: GraduationCap },
+    { id: "skills", title: "Compétences", icon: Star },
+    { id: "interests", title: "Passions", icon: Heart }
+  ];
+
+  useEffect(() => {
+    // Animation des statistiques
+    if (statsRef.current) {
+      const stats = statsRef.current.querySelectorAll('[data-stat]');
+      stats.forEach((stat) => {
+        const target = parseInt(stat.getAttribute('data-stat') || '0');
+        const counter = { value: 0 };
+
+        gsap.to(counter, {
+          value: target,
+          duration: 2,
+          ease: "power2.out",
+          onUpdate: () => {
+            stat.textContent = Math.round(counter.value).toString();
+          },
+          scrollTrigger: {
+            trigger: stat,
+            start: "top 80%",
+            once: true
+          }
+        });
+      });
+    }
+  }, []);
+
   return (
-    <div className="relative flex size-full min-h-screen flex-col bg-white group/design-root overflow-x-hidden font-[Manrope]">
-      <div className="layout-container flex h-full grow flex-col">
-        <div className="px-40 flex flex-1 justify-center py-5">
-          <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div className="@container">
-              <div className="@[480px]:px-4 @[480px]:py-3">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      {/* Navigation par sections */}
+      <SectionNavigation sections={sections} />
+      
+      {/* Breadcrumb */}
+      <div className="pt-20 pb-4">
+        <div className="container mx-auto px-4">
+          <Breadcrumb />
+        </div>
+      </div>
+
+      {/* Hero Section */}
+      <div id="intro">
+        <AnimatedSection className="relative overflow-hidden py-12">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="mb-8">
                 <img
                   src={banner}
-                  alt="header banner"
-                  className="object-cover mb-4 mx-auto max-w-md w-full"
+                  alt="À propos"
+                  className="w-64 mx-auto mb-8 drop-shadow-2xl animate-float"
                 />
               </div>
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+                Développeur web et logiciel
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                Développeur et concepteur Web depuis plus de cinq ans. Je suis un amoureux de la création de sites web esthétiques et
+                fonctionnels et je contribue au développement de sociétés grâce à la création de solutions numériques innovantes.
+              </p>
             </div>
-            <div className="flex p-4 @container">
-              <div className="flex w-full flex-col gap-4 @[520px]:flex-row @[520px]:justify-between @[520px]:items-center">
-                <div className="flex gap-4">
-                  <div className="flex flex-col gap-3 justify-center">
-                    <p className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em]">
-                      Développeur web et logiciel
-                    </p>
-                    <p className="text-[#111418] text-base font-normal leading-normal">
-                      Développeur et concepteur Web depuis plus de cinq ans. Je
-                      suis un amoureux de la création de sites web esthétique et
-                      fonctionnels et je contribue au développement de sociétés
-                      grâce à la création de solutions numériques innovantes.
-                      Spécialisé dans le développement front-end, je maîtrise
-                      également le back-end ainsi que l&#39;expérience
-                      utilisateur. Toujours en quête d’amélioration, j’apprends
-                      continuellement de nouvelles technologies afin de
-                      perfectionner mes compétences et de rester à la pointe des
-                      tendances du web. Mon objectif est de fournir un travail
-                      de qualité qui surprend les attentes de mes clients. Je
-                      donne un soin particulier au référencement SEO de manière
-                      à assurer une visibilité maximale ainsi qu’à l’impact
-                      écologique de mes services, en adoptant des pratiques de
-                      développement durables et responsables.
-                    </p>
-                  </div>
+          </div>
+
+          {/* Statistiques */}
+          <div id="stats" ref={statsRef} className="container mx-auto px-4 mt-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">
+                  <span data-stat="5">0</span>+
                 </div>
+                <p className="text-gray-600">Années d'expérience</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">
+                  <span data-stat="50">0</span>+
+                </div>
+                <p className="text-gray-600">Projets réalisés</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-indigo-600 mb-2">
+                  <span data-stat="15">0</span>+
+                </div>
+                <p className="text-gray-600">Technologies maîtrisées</p>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl md:text-4xl font-bold text-blue-500 mb-2">
+                  <span data-stat="100">0</span>%
+                </div>
+                <p className="text-gray-600">Satisfaction client</p>
               </div>
             </div>
-            <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-              A propos de moi
-            </h2>
-            <p className="text-[#111418] text-base font-normal leading-normal pb-3 pt-1 px-4">
-              Étudiant en deuxième année de licence informatique à l’Université
-              de La Rochelle, je suis passionné par les nouvelles technologies
-              et l’innovation. J’aime relever des défis et mener mes projets
-              avec rigueur et créativité. En parallèle, je me dépasse également
-              sur la piste en compétition de demi-fond, où persévérance et
-              performance sont mes maîtres-mots.
-            </p>
-            <h2 className="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
-              Education
-            </h2>
-            {about.education.map((item, index) => (
-              <EducationListItem key={`${item}_${index}`} {...item} />
-            ))}
-            {["Compétences", "Passions"].map((sectionName) => (
-              <AboutSection
-                sectionName={sectionName as "Compétences" | "Passions"}
-                key={sectionName}
-              />
-            ))}
           </div>
-        </div>
+        </AnimatedSection>
+      </div>
+
+      {/* À propos */}
+      <div id="profile">
+        <AnimatedSection className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
+                <CardHeader className="text-center pb-8">
+                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <User className="w-8 h-8 text-white" />
+                  </div>
+                  <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    À propos de moi
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-lg text-gray-700 leading-relaxed text-center">
+                    Étudiant en deuxième année de licence informatique à l'Université de La Rochelle,
+                    je suis passionné par les nouvelles technologies et l'innovation. J'aime relever des défis
+                    et mener mes projets avec rigueur et créativité. En parallèle, je me dépasse également
+                    sur la piste en compétition de demi-fond, où persévérance et performance sont mes maîtres-mots.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+
+      {/* Éducation */}
+      <div id="education">
+        <AnimatedSection className="py-20 bg-white/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <GraduationCap className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Formation
+                </h2>
+              </div>
+
+              <div className="space-y-6">
+                {about.education.map((item, index) => (
+                  <Card key={index} className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm group hover:scale-[1.02]">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                        <GraduationCap className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-grow">
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">{item.title}</h3>
+                        <p className="text-gray-600 mb-1">{item.date}</p>
+                        <p className="text-gray-600 mb-2">{item.school}</p>
+                        {item.mention && (
+                          <Badge variant="secondary" className="bg-blue-100 text-blue-700">
+                            Mention: {item.mention}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+
+      {/* Compétences */}
+      <div id="skills">
+        <AnimatedSection className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Star className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Compétences
+                </h2>
+              </div>
+
+              <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {about.skills.map((skill, index) => (
+                    <Badge
+                      key={index}
+                      variant="outline"
+                      className="px-4 py-2 text-lg font-medium border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 cursor-default hover:scale-105"
+                    >
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+
+      {/* Passions */}
+      <div id="interests">
+        <AnimatedSection className="py-20 bg-white/50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-12">
+                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Heart className="w-8 h-8 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Passions
+                </h2>
+              </div>
+
+              <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
+                <div className="flex flex-wrap gap-4 justify-center">
+                  {about.interests.map((interest, index) => (
+                    <Badge
+                      key={index}
+                      className="px-6 py-3 text-lg font-medium bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white border-0 transition-all duration-300 cursor-default hover:scale-105"
+                    >
+                      {interest}
+                    </Badge>
+                  ))}
+                </div>
+              </Card>
+            </div>
+          </div>
+        </AnimatedSection>
       </div>
     </div>
   );
