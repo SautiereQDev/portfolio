@@ -29,9 +29,7 @@ export const HeroSection = ({
     const imageRef = useRef<HTMLImageElement>(null)
 
     useEffect(() => {
-        const tl = gsap.timeline()
-
-        // Animation d'entrée
+        const tl = gsap.timeline()        // Animation d'entrée
         tl.from(imageRef.current, {
             scale: 0.8,
             opacity: 0,
@@ -41,7 +39,19 @@ export const HeroSection = ({
             .fromTo(titleRef.current, { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "-=0.5")
             .fromTo(subtitleRef.current, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "-=0.6")
             .fromTo(descriptionRef.current, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "-=0.4")
-            .fromTo(ctaRef.current, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, "-=0.2")
+            .fromTo(ctaRef.current, { 
+                y: 30, 
+                autoAlpha: 0, 
+                scale: 0.8,
+                rotation: -5
+            }, { 
+                y: 0, 
+                autoAlpha: 1, 
+                scale: 1,
+                rotation: 0,
+                duration: 0.7, 
+                ease: "back.out(1.7)" 
+            }, "-=0.5")
 
         // Animation parallax sur l'image
         ScrollTrigger.create({
@@ -98,14 +108,14 @@ export const HeroSection = ({
                             {description}
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <a
+                        <div className="flex flex-col sm:flex-row gap-4">                            <a
                                 ref={ctaRef}
                                 href={ctaLink}
-                                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                                className="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden transform-gpu"
                             >
-                                <span className="relative z-10">{ctaText}</span>
+                                <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">{ctaText}</span>
                                 <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
                             </a>
                             <a
                                 href="/projects"
