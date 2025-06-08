@@ -136,13 +136,13 @@ export const Service = () => {
       <div id="intro">
         <AnimatedSection className="relative overflow-hidden py-20">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="mb-8">
+          <div className="container mx-auto px-4 relative z-10 ">
+            <div className="max-w-4xl mx-auto text-center ">
+              <div className="mb-8 ">
                 <img
                   src={banner}
                   alt="Services"
-                  className="w-64 mx-auto mb-8 drop-shadow-2xl animate-float"
+                  className="w-64 mx-auto mb-8 drop-shadow-2xl"
                 />
               </div>
               <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">

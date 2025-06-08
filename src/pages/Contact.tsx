@@ -13,7 +13,6 @@ import {
   CheckCircle,
   Github,
   Linkedin,
-  Twitter,
   MessageSquare,
   Clock,
   Globe,
@@ -63,7 +62,7 @@ const contactMethods = [
   {
     icon: Phone,
     title: "Téléphone",
-    value: "+33 6 XX XX XX XX",
+    value: "+33 6 51 54 69 48",
     link: "tel:+33600000000",
     description: "Lun-Ven 9h-18h"
   },
@@ -80,21 +79,15 @@ const socialLinks = [
   {
     icon: Github,
     name: "GitHub",
-    url: "https://github.com/quentinsautiere",
+    url: "https://github.com/SautiereQDev",
     color: "hover:text-gray-800"
   },
   {
     icon: Linkedin,
     name: "LinkedIn",
-    url: "https://linkedin.com/in/quentinsautiere",
+    url: "https://www.linkedin.com/in/quentin-sauti%C3%A8re/",
     color: "hover:text-blue-600"
   },
-  {
-    icon: Twitter,
-    name: "Twitter",
-    url: "https://twitter.com/quentinsautiere",
-    color: "hover:text-blue-400"
-  }
 ];
 
 const sections = [
@@ -298,10 +291,10 @@ export const Contact = () => {
       <div id="contact-info">
         <AnimatedSection className="py-16 bg-gray-50">
           <div className="container mx-auto px-6 lg:px-8">
-            <div ref={contactCardsRef} className="grid md:grid-cols-3 gap-8 mb-16">
+            <div ref={contactCardsRef} className="grid grid-cols-3 gap-8 mb-16">
               {contactMethods.map((method, index) => (
-                <Card key={index} className="contact-card bg-white border-gray-200 hover:shadow-lg transition-all duration-300 group">
-                  <CardContent className="p-6 text-center">
+                <Card key={index} className="contact-card bg-white border-gray-200 hover:shadow-lg transition-all duration-300 group h-full">
+                  <CardContent className="p-6 text-center flex flex-col justify-start h-full">
                     <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
                       <method.icon className="w-6 h-6 text-white" />
                     </div>
@@ -438,9 +431,8 @@ export const Contact = () => {
                     <Globe className="w-5 h-5 mr-2" />
                     Retrouvez-moi sur
                   </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-3 gap-4">
+                </CardHeader>                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
                     {socialLinks.map((social, index) => (
                       <a
                         key={index}
