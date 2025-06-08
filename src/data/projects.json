@@ -1,35 +1,37 @@
 [
   {
-    "title": "Weather Dashboard",
-    "description": "A weather dashboard that allows users to search for a city and view the current weather conditions as well as the 5-day forecast.",
-    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/weather-dashboard/0.png",
-    "visit_link": "https://quentinsautiere.com/weather-dashboard",
-    "github_link": "https://github.com/SautiereQDev/weather-dashboard",
+    "title": "Records Viewer",
+    "description": "Un site web pour consulter les records d'athletisme sous forme de tabelau avec des fonctionalités de tri et de recherche. Vous pouvez également consulter les détails du record et des athlètes.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/records-viewer/0.png",
+    "github_link": "https://github.com/SautiereQDev/RecordsViewer",
     "key_points": [
       "Responsive design",
-      "5-day forecast",
-      "Current weather",
-      "Ask for Geolocation and display it if accept",
-      "All places in the world aviable"
+      "Tableau de records",
+      "Fonctionalités de tri et de recherche",
+      "Détails des records et des athlètes",
+      "Map intéractive"
     ],
     "technos": [
-      "React",
+      "Symfony",
+      "API Plateform",
+      "Vuejs",
+      "Nuxt",
+      "Pinia",
       "Tailwindcss",
-      "OpenWeatherMap API",
-      "Geolocation API",
-      "React router dom"
+      "Leaflet",
+      "Docker"
     ]
   },
   {
     "title": "Ecovoit",
-    "description": "A carpooling application that allows users to create an account, create a trip, and join a trip inside the agglomeration of La Rochelle.",
+    "description": "Une application de covoiturage qui permet aux utilisateurs de créer un compte, créer un trajet et rejoindre un trajet dans l'agglomération de La Rochelle.",
     "imageUrl": "https://cdn.quentinsautiere.com/portfolio/ecovoit/0.png",
     "github_link": "https://github.com/SautiereQDev/Ecovoit",
     "key_points": [
-      "Mobile app accessible on Android and iOS",
-      "UI and UX design optimized",
-      "Eco responsible application",
-      "GRPD compliant"
+      "Application mobile Android et iOS",
+      "Design UI et UX optimisé",
+      "Application éco-responsable",
+      "Conforme au normes RGPD"
     ],
     "technos": [
       "React Native",
@@ -42,15 +44,77 @@
     ]
   },
   {
+    "title": "Mailer",
+    "description": "Une API REST basé sur NestJs qui permet de s'envoyer des mails à soi-même dans le cadre de formualires de contact. L'api embarque un système de templates Handlebars pour rendre les mails plus acceuillants.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/mailer/0.jpg",
+    "visit_link": "https://api.quentinsautiere.com/contact",
+    "github_link": "https://github.com/SautiereQDev/mailer",
+    "key_points": [
+      "API REST",
+      "Envoi de mails",
+      "Formulaire de contact",
+      "Templates Handlebars"
+    ],
+    "technos": [
+      "NestJs",
+      "TypeScript",
+      "Handlebars",
+      "Nodemailer",
+      "Docker"
+    ]
+  },
+  {
+    "title": "Portfolio",
+    "description": "Mon portfolio personnel qui présente mes projets, mes compétences et mon parcours. Il est conçu pour être responsive et optimisé pour le SEO.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/portfolio/0.png",
+    "visit_link": "https://quentinsautiere.com",
+    "github_link": "https://github.com/SautiereQDev/portfolio",
+    "key_points": [
+      "Design responsive",
+      "Optimisé pour le SEO",
+      "Présente mes projets et compétences",
+      "Formulaire de contact"
+    ],
+    "technos": [
+      "React",
+      "Tailwindcss",
+      "TypeScript",
+      "Zod",
+      "React hook form",
+      "React router dom"
+    ]
+  },
+  {
+    "title": "Weather Dashboard",
+    "description": "Un tableau de bord météorologique qui permet aux utilisateurs de rechercher une ville et de consulter les conditions météorologiques actuelles ainsi que les prévisions sur 5 jours.",
+    "imageUrl": "https://cdn.quentinsautiere.com/portfolio/weather-dashboard/0.png",
+    "visit_link": "https://quentinsautiere.com/weather-dashboard",
+    "github_link": "https://github.com/SautiereQDev/weather-dashboard",
+    "key_points": [
+      "Design responsive",
+      "Prévisions sur 5 jours",
+      "Météo actuelle",
+      "Demande la géolocalisation et l'affiche si acceptée",
+      "Tous les lieux dans le monde consultables"
+    ],
+    "technos": [
+      "React",
+      "Tailwindcss",
+      "OpenWeatherMap API",
+      "Geolocation API",
+      "React router dom"
+    ]
+  },
+  {
     "title": "Patate Mag",
-    "description": "A blog about the potato, its history, its recipes, and its benefits.",
+    "description": "Projet universitaire de création d'un blog sur les pommes de terre. Le site permet de consulter des articles, de les commenter et de les partager. Il est également possible de s'inscrire et de se connecter pour publier des articles.",
     "imageUrl": "https://cdn.quentinsautiere.com/portfolio/patate-mag/0.png",
     "visit_link": "https://quentinsautiere.com/patate-mag",
     "github_link": "https://github.com/SautiereQDev/patate_mag",
     "key_points": [
-      "Responsive design",
+      "Design responsive",
       "Blog",
-      "SEO optimized"
+      "SEO optimisé"
     ],
     "technos": [
       "React",

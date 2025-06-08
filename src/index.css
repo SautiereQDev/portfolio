@@ -1,1 +1,19 @@
 @import "tailwindcss";
+
+/* Désactive la sélection de texte globalement pour éviter le curseur clignotant */
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Réactive la sélection pour les éléments où elle est nécessaire */
+input,
+textarea,
+[contenteditable="true"] {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}

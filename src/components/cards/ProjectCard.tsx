@@ -75,7 +75,8 @@ export const ProjectCard = ({
             href={visit_link}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-1 items-center justify-center rounded-xl h-10 bg-[#1980e6] text-white font-bold transition-colors hover:bg-[#1873d1]"
+            className={`flex flex-1 items-center justify-center rounded-xl h-10 bg-[#1980e6] text-white font-bold transition-colors hover:bg-[#1873d1] ${!visit_link ? 'opacity-50 pointer-events-none' : ''}`}
+            aria-disabled={!visit_link}
           >
             Visiter
           </a>
