@@ -61,7 +61,7 @@ export const Footer = () => {
   }, [])
 
   return (
-    <footer 
+    <footer
       ref={footerRef}
       className="bg-gradient-to-br from-gray-900 to-gray-800 text-white font-[Manrope]"
     >
@@ -78,7 +78,7 @@ export const Footer = () => {
               </p>
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md">
-              Passionné par la création d'expériences digitales exceptionnelles. 
+              Passionné par la création d'expériences digitales exceptionnelles.
               Je transforme vos idées en solutions techniques innovantes et performantes.
             </p>
             <div className="flex space-x-4">

@@ -22,35 +22,35 @@ export const ProjectCard = ({
   useEffect(() => {
     const card = cardRef.current;
     const image = imageRef.current;
-    
+
     if (!card || !image) return;
 
     // Animation au hover
     const handleMouseEnter = () => {
-      gsap.to(card, { 
-        scale: 1.02, 
+      gsap.to(card, {
+        scale: 1.02,
         y: -10,
         boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
         duration: 0.3,
         ease: "power2.out"
       });
-      gsap.to(image, { 
-        scale: 1.1, 
+      gsap.to(image, {
+        scale: 1.1,
         duration: 0.3,
         ease: "power2.out"
       });
     };
 
     const handleMouseLeave = () => {
-      gsap.to(card, { 
-        scale: 1, 
+      gsap.to(card, {
+        scale: 1,
         y: 0,
         boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
         duration: 0.3,
         ease: "power2.out"
       });
-      gsap.to(image, { 
-        scale: 1, 
+      gsap.to(image, {
+        scale: 1,
         duration: 0.3,
         ease: "power2.out"
       });
@@ -67,7 +67,7 @@ export const ProjectCard = ({
 
   return (
     <AnimatedSection animation="slideUp" className="w-full">
-      <Card 
+      <Card
         ref={cardRef}
         className="group overflow-hidden border-0 bg-gradient-to-br from-white to-gray-50/50 backdrop-blur-sm transition-all duration-300 hover:border-primary/20"
       >
@@ -83,7 +83,7 @@ export const ProjectCard = ({
           </div>
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          
+
           {/* Badges flottants */}
           <div className="absolute top-4 right-4 flex gap-2">
             {visit_link && (
@@ -175,7 +175,7 @@ export const ProjectCard = ({
               Visiter
             </Button>
           )}
-          
+
           <Button
             asChild
             variant="outline"

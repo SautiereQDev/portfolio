@@ -53,9 +53,8 @@ export const About = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
-      
       {/* Breadcrumb */}
-      <div className="pt-20 pb-4">
+      <div className="pt-4 pb-4">
         <div className="container mx-auto px-4">
           <Breadcrumb />
         </div>

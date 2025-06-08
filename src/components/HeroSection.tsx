@@ -38,30 +38,10 @@ export const HeroSection = ({
             duration: 1,
             ease: "power2.out"
         })
-            .from(titleRef.current, {
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.5")
-            .from(subtitleRef.current, {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.6")
-            .from(descriptionRef.current, {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: "power2.out"
-            }, "-=0.4")
-            .from(ctaRef.current, {
-                y: 20,
-                opacity: 0,
-                duration: 0.6,
-                ease: "power2.out"
-            }, "-=0.2")
+            .fromTo(titleRef.current, { y: 50, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "-=0.5")
+            .fromTo(subtitleRef.current, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "-=0.6")
+            .fromTo(descriptionRef.current, { y: 30, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" }, "-=0.4")
+            .fromTo(ctaRef.current, { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.6, ease: "power2.out" }, "-=0.2")
 
         // Animation parallax sur l'image
         ScrollTrigger.create({
@@ -88,9 +68,12 @@ export const HeroSection = ({
     return (
         <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50">
             {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-30">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
+            <div className="absolute inset-0 opacity-20">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.2)_1px,transparent_0)] bg-[length:50px_50px]"></div>
             </div>
+
+            {/* Overlay pour améliorer la lisibilité */}
+            <div className="absolute inset-0 bg-white/60"></div>
 
             <div className="container mx-auto px-6 lg:px-8 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -99,21 +82,19 @@ export const HeroSection = ({
                         <div className="space-y-4">
                             <h1
                                 ref={titleRef}
-                                className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight"
+                                className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight drop-shadow-lg"
                             >
                                 {title}
                             </h1>
                             <p
                                 ref={subtitleRef}
-                                className="text-xl md:text-2xl text-gray-700 font-medium"
+                                className="text-xl md:text-2xl text-black font-bold drop-shadow-md"
                             >
                                 {subtitle}
                             </p>
-                        </div>
-
-                        <p
+                        </div>                        <p
                             ref={descriptionRef}
-                            className="text-lg text-gray-600 leading-relaxed max-w-2xl"
+                            className="text-lg text-black leading-relaxed max-w-2xl font-medium drop-shadow-sm"
                         >
                             {description}
                         </p>
@@ -129,7 +110,7 @@ export const HeroSection = ({
                             </a>
                             <a
                                 href="/projects"
-                                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-gray-700 bg-white border-2 border-gray-200 rounded-xl hover:border-gray-300 transition-all duration-300 hover:shadow-md"
+                                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-gray-800 bg-white border-2 border-gray-300 rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 hover:shadow-md"
                             >
                                 Voir mes projets
                             </a>

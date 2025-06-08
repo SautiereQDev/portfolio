@@ -1,5 +1,4 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
-import { NavBar } from "../components/NavBar.tsx";
 import Footer from "../components/Footer.tsx";
 import PageNavigation from "../components/ui/page-navigation.tsx";
 import React from "react";
@@ -17,7 +16,6 @@ const TanStackRouterDevtools =
 export const Route = createRootRoute({
   component: () => (
     <div className="select-none">
-      <NavBar />
       <main>
         <Outlet />
       </main>

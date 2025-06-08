@@ -5,13 +5,13 @@ import sanitizeHtml, { IOptions } from "sanitize-html";
 import { zodResolver } from "@hookform/resolvers/zod";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle, 
-  Github, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  Github,
   Linkedin,
   Twitter,
   MessageSquare,
@@ -128,7 +128,7 @@ export const Contact = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const contactCardsRef = useRef<HTMLDivElement>(null);
-  
+
   const {
     register,
     handleSubmit,
@@ -143,25 +143,25 @@ export const Contact = () => {
       // Hero animations
       if (heroRef.current) {
         const tl = gsap.timeline();
-        
+
         tl.from(".hero-title", {
           y: 50,
           opacity: 0,
           duration: 1,
           ease: "power3.out"
         })
-        .from(".hero-subtitle", {
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out"
-        }, "-=0.6")
-        .from(".hero-badges", {
-          y: 20,
-          opacity: 0,
-          duration: 0.6,
-          ease: "power3.out"
-        }, "-=0.4");
+          .from(".hero-subtitle", {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+          }, "-=0.6")
+          .from(".hero-badges", {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power3.out"
+          }, "-=0.4");
       }
 
       // Contact cards animation
@@ -232,7 +232,7 @@ export const Contact = () => {
 
       reset();
       setIsSubmitted(true);
-      
+
       // Animation de succès
       gsap.to(".success-message", {
         scale: 1.05,
@@ -241,7 +241,7 @@ export const Contact = () => {
         repeat: 1,
         ease: "power2.inOut"
       });
-      
+
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
       console.error("Erreur lors de l'envoi:", error);
@@ -251,9 +251,8 @@ export const Contact = () => {
     <div className="min-h-screen bg-white font-[Manrope]">
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
-      
       {/* Breadcrumb */}
-      <div className="pt-20 pb-4">
+      <div className="pt-4 pb-4">
         <div className="container mx-auto px-4">
           <Breadcrumb />
         </div>
@@ -265,7 +264,7 @@ export const Contact = () => {
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
           </div>
-          
+
           <div className="container mx-auto px-6 lg:px-8 relative z-10">
             <div className="text-center space-y-8">
               <div className="hero-badges flex justify-center gap-2 mb-6">
@@ -278,14 +277,14 @@ export const Contact = () => {
                   Réponse 24h
                 </Badge>
               </div>
-              
+
               <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                 Créons ensemble
                 <span className="block">
                   quelque chose de génial
                 </span>
               </h1>
-              
+
               <p className="hero-subtitle text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Vous avez un projet en tête ? Discutons de vos idées et donnons-leur vie ensemble.
                 Je suis là pour transformer votre vision en réalité digitale.
@@ -410,7 +409,7 @@ export const Contact = () => {
                     </Button>
                   </form>
                 )}
-                
+
                 <div className="mt-6 pt-6 border-t border-gray-200">
                   <p className="text-gray-500 text-sm text-center mb-4">Ou contactez-moi directement :</p>
                   <div className="flex justify-center">
@@ -477,7 +476,7 @@ export const Contact = () => {
                   Trouvez rapidement les réponses à vos questions
                 </p>
               </div>
-              
+
               <Card className="bg-white border-gray-200 shadow-lg">
                 <CardContent className="p-8">
                   <div className="space-y-6">

@@ -64,7 +64,7 @@ export const Projects = () => {
         },
         { threshold: 0.5 }
       )
-      
+
       observer.observe(statsRef.current)
       return () => observer.disconnect()
     }
@@ -80,9 +80,9 @@ export const Projects = () => {
         mobile: ["React Native", "Expo"],
         api: ["NestJs", "API Platform", "PHP", "NodeJs"]
       }
-      
-      filtered = filtered.filter(project => 
-        project.technos.some(tech => 
+
+      filtered = filtered.filter(project =>
+        project.technos.some(tech =>
           categoryTechnos[selectedCategory as keyof typeof categoryTechnos]?.includes(tech)
         )
       )
@@ -103,9 +103,8 @@ export const Projects = () => {
     <div className="min-h-screen bg-white font-[Manrope]">
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
-      
       {/* Breadcrumb */}
-      <div className="pt-20 pb-4">
+      <div className="pt-4 pb-4">
         <div className="container mx-auto px-4">
           <Breadcrumb />
         </div>
@@ -114,35 +113,35 @@ export const Projects = () => {
       {/* Hero Section */}
       <div id="intro">
         <section className="relative py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
-        </div>
-        
-        <div ref={heroRef} className="container mx-auto px-6 lg:px-8 relative z-10">
-          <div className="text-center space-y-8">
-            <div className="relative inline-block">
-              <img
-                src={banner}
-                alt="Projets illustration"
-                className="w-64 h-auto mx-auto animate-float"
-              />
-              <div className="absolute -top-4 -right-4 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-            </div>
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
+          </div>
+
+          <div ref={heroRef} className="container mx-auto px-6 lg:px-8 relative z-10">
+            <div className="text-center space-y-8">
+              <div className="relative inline-block">
+                <img
+                  src={banner}
+                  alt="Projets illustration"
+                  className="w-64 h-auto mx-auto animate-float"
+                />
+                <div className="absolute -top-4 -right-4 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+              </div>
               <div className="space-y-4">
-              <Badge className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0">
-                Portfolio
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Mes Projets
-              </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Découvrez une sélection de mes réalisations, des applications web modernes aux solutions mobiles innovantes
-              </p>
+                <Badge className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0">
+                  Portfolio
+                </Badge>
+                <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Mes Projets
+                </h1>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                  Découvrez une sélection de mes réalisations, des applications web modernes aux solutions mobiles innovantes
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       </div>
 
       {/* Statistiques */}
@@ -192,11 +191,10 @@ export const Projects = () => {
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
                     variant={selectedCategory === category.id ? "default" : "outline"}
-                    className={`flex items-center gap-2 transition-all duration-300 ${
-                      selectedCategory === category.id
+                    className={`flex items-center gap-2 transition-all duration-300 ${selectedCategory === category.id
                         ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                         : "hover:border-blue-300"
-                    }`}
+                      }`}
                   >
                     <category.icon className="w-4 h-4" />
                     {category.name}
@@ -215,36 +213,36 @@ export const Projects = () => {
       <div id="projects">
         <AnimatedSection className="py-12">
           <div className="container mx-auto px-6 lg:px-8">            {filteredProjects.length > 0 ? (
-              <div className="grid lg:grid-cols-2 gap-12">
-                {filteredProjects.map((project, index) => (
-                  <AnimatedSection
-                    key={project.title}
-                    animation="slideUp"
-                    delay={index * 0.1}
-                  >
-                    <ProjectCard
-                      title={project.title}
-                      description={project.description}
-                      imageUrl={project.imageUrl}
-                      visit_link={project.visit_link}
-                      github_link={project.github_link}
-                      key_points={project.key_points}
-                      technos={project.technos}
-                    />
-                  </AnimatedSection>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-24">
-                <div className="text-gray-400 text-6xl mb-4">🔍</div>
-                <h3 className="text-xl font-semibold text-gray-700 mb-2">
-                  Aucun projet trouvé
-                </h3>
-                <p className="text-gray-500">
-                  Essayez de modifier vos critères de recherche ou de filtrage
-                </p>
-              </div>
-            )}
+            <div className="grid lg:grid-cols-2 gap-12">
+              {filteredProjects.map((project, index) => (
+                <AnimatedSection
+                  key={project.title}
+                  animation="slideUp"
+                  delay={index * 0.1}
+                >
+                  <ProjectCard
+                    title={project.title}
+                    description={project.description}
+                    imageUrl={project.imageUrl}
+                    visit_link={project.visit_link}
+                    github_link={project.github_link}
+                    key_points={project.key_points}
+                    technos={project.technos}
+                  />
+                </AnimatedSection>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-24">
+              <div className="text-gray-400 text-6xl mb-4">🔍</div>
+              <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                Aucun projet trouvé
+              </h3>
+              <p className="text-gray-500">
+                Essayez de modifier vos critères de recherche ou de filtrage
+              </p>
+            </div>
+          )}
           </div>
         </AnimatedSection>
       </div>

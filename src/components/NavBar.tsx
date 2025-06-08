@@ -67,7 +67,7 @@ export const NavBar = () => {
 
       // Mise à jour du progress
       setScrollProgress(progress)
-      
+
       // Affichage du bouton back-to-top
       setShowBackToTop(currentScroll > 500)
 
@@ -105,7 +105,7 @@ export const NavBar = () => {
         className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-lg border-b border-gray-200/50 font-[Manrope] shadow-sm"
       >
         {/* Barre de progression du scroll */}
-        <div 
+        <div
           ref={progressRef}
           className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-300 ease-out"
           style={{ width: `${scrollProgress}%` }}
@@ -133,22 +133,20 @@ export const NavBar = () => {
               {navigationItems.map((item) => {
                 const isActive = router.location.pathname === item.path
                 const Icon = item.icon
-                
+
                 return (
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                      isActive
+                    className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${isActive
                         ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg'
                         : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                    }`}
+                      }`}
                   >
-                    <Icon className={`w-4 h-4 transition-transform duration-300 ${
-                      isActive ? 'scale-110' : 'group-hover:scale-110'
-                    }`} />
+                    <Icon className={`w-4 h-4 transition-transform duration-300 ${isActive ? 'scale-110' : 'group-hover:scale-110'
+                      }`} />
                     <span>{item.name}</span>
-                    
+
                     {/* Tooltip */}
                     <div className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
                       {item.description}
@@ -195,17 +193,16 @@ export const NavBar = () => {
                 {navigationItems.map((item, index) => {
                   const isActive = router.location.pathname === item.path
                   const Icon = item.icon
-                  
+
                   return (
                     <Link
                       key={item.path}
                       to={item.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
-                        isActive
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActive
                           ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600'
                           : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                      }`}
+                        }`}
                     >
                       <Icon className="w-5 h-5" />
                       <div className="flex-1">
@@ -220,7 +217,7 @@ export const NavBar = () => {
                     </Link>
                   )
                 })}
-                
+
                 <div className="pt-4 mt-4 border-t border-gray-200">
                   <Button
                     asChild

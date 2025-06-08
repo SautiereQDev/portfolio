@@ -127,13 +127,12 @@ export const Service = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
-      
       {/* Breadcrumb */}
-      <div className="pt-20 pb-4">
+      <div className="pt-4 pb-4">
         <div className="container mx-auto px-4">
           <Breadcrumb />
         </div>
-      </div>      {/* Hero Section */}
+      </div>{/* Hero Section */}
       <div id="intro">
         <AnimatedSection className="relative overflow-hidden py-20">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
@@ -170,69 +169,69 @@ export const Service = () => {
               </div>
 
               <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {/* Site Vitrine */}
-              <Card data-service-card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm hover:scale-105 transition-all duration-300 group">
-                <CardHeader className="text-center pb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Globe className="w-8 h-8 text-white" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-gray-800 mb-2">Site Vitrine</CardTitle>
-                  <div className="text-center">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">700€</span>
-                    <span className="text-gray-600 text-lg">/site</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    {serviceDetails.simple.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-3">
-                        <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Check className="w-3 h-3 text-green-600" />
-                        </div>
-                        <span className="text-gray-700">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Site Complexe */}
-              <Card data-service-card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm hover:scale-105 transition-all duration-300 group relative overflow-hidden">
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                    <Star className="w-3 h-3 mr-1" />
-                    Populaire
-                  </Badge>
-                </div>
-                <CardHeader className="text-center pb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <Database className="w-8 h-8 text-white" />
-                  </div>
-                  <CardTitle className="text-2xl font-bold text-gray-800 mb-2">Site Web Complexe</CardTitle>
-                  <div className="text-center">
-                    <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">+2000€</span>
-                    <span className="text-gray-600 text-lg">/site</span>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg">
-                      <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Star className="w-3 h-3 text-blue-600" />
-                      </div>
-                      <span className="text-blue-700 font-medium">Inclut toutes les fonctionnalités du plan précédent</span>
+                {/* Site Vitrine */}
+                <Card data-service-card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm hover:scale-105 transition-all duration-300 group">
+                  <CardHeader className="text-center pb-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Globe className="w-8 h-8 text-white" />
                     </div>
-                    {serviceDetails.complex.map((feature, index) => (
-                      <div key={index} className="flex items-center gap-3">
-                        <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Check className="w-3 h-3 text-green-600" />
+                    <CardTitle className="text-2xl font-bold text-gray-800 mb-2">Site Vitrine</CardTitle>
+                    <div className="text-center">
+                      <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">700€</span>
+                      <span className="text-gray-600 text-lg">/site</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      {serviceDetails.simple.map((feature, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                          <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Check className="w-3 h-3 text-green-600" />
+                          </div>
+                          <span className="text-gray-700">{feature}</span>
                         </div>
-                        <span className="text-gray-700">{feature}</span>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Site Complexe */}
+                <Card data-service-card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm hover:scale-105 transition-all duration-300 group relative overflow-hidden">
+                  <div className="absolute top-4 right-4">
+                    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+                      <Star className="w-3 h-3 mr-1" />
+                      Populaire
+                    </Badge>
+                  </div>
+                  <CardHeader className="text-center pb-6">
+                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Database className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-2xl font-bold text-gray-800 mb-2">Site Web Complexe</CardTitle>
+                    <div className="text-center">
+                      <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">+2000€</span>
+                      <span className="text-gray-600 text-lg">/site</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg">
+                        <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Star className="w-3 h-3 text-blue-600" />
+                        </div>
+                        <span className="text-blue-700 font-medium">Inclut toutes les fonctionnalités du plan précédent</span>
                       </div>
-                    ))}
-                  </div>                </CardContent>
-              </Card>
-            </div>
+                      {serviceDetails.complex.map((feature, index) => (
+                        <div key={index} className="flex items-center gap-3">
+                          <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Check className="w-3 h-3 text-green-600" />
+                          </div>
+                          <span className="text-gray-700">{feature}</span>
+                        </div>
+                      ))}
+                    </div>                </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </AnimatedSection>
