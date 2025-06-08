@@ -31,19 +31,19 @@ export const NavBar = () => {
                 className="text-[#111418] text-sm font-medium leading-normal"
                 to="/projects"
               >
-                Projects
+                Projets
               </Link>
               <Link
                 className="text-[#111418] text-sm font-medium leading-normal"
                 to="/about"
               >
-                About
+                À  propos
               </Link>
               <Link
                 className="text-[#111418] text-sm font-medium leading-normal"
                 to="/contact"
               >
-                Contact
+                Me contacter
               </Link>
             </div>
             <button className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-10 bg-[#f0f2f4] text-[#111418] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5">
