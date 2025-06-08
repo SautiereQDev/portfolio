@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "@tanstack/react-router";
 import { ChevronDown, Eye } from "lucide-react";
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
@@ -92,7 +91,7 @@ export const SectionNavigation = ({
         {/* Section Links */}
         {isExpanded && (
           <div className="border-t border-gray-200/50">
-            {sections.map((section, index) => {
+            {sections.map((section) => {
               const isActive = activeSection === section.id;
               const Icon = section.icon;
 

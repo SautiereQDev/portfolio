@@ -53,7 +53,7 @@ export const NavBar = () => {
     const currentItem = navigationItems.find(
       (item) => item.path === router.location.pathname,
     );
-    return currentItem?.name || "Portfolio";
+    return currentItem?.name ?? "Portfolio";
   };
 
   // Fonction de scroll vers le haut
@@ -178,16 +178,14 @@ export const NavBar = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                      isActive
+                    className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${isActive
                         ? "text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg"
                         : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                    }`}
+                      }`}
                   >
                     <Icon
-                      className={`w-4 h-4 transition-transform duration-300 ${
-                        isActive ? "scale-110" : "group-hover:scale-110"
-                      }`}
+                      className={`w-4 h-4 transition-transform duration-300 ${isActive ? "scale-110" : "group-hover:scale-110"
+                        }`}
                     />
                     <span>{item.name}</span>
 
@@ -241,7 +239,7 @@ export const NavBar = () => {
           <div className="md:hidden border-t border-gray-200/50 bg-white/95 backdrop-blur-lg">
             <div className="container mx-auto px-6 py-6">
               <div className="space-y-2">
-                {navigationItems.map((item, index) => {
+                {navigationItems.map((item) => {
                   const isActive = router.location.pathname === item.path;
                   const Icon = item.icon;
 
@@ -250,11 +248,10 @@ export const NavBar = () => {
                       key={item.path}
                       to={item.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${
-                        isActive
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActive
                           ? "text-white bg-gradient-to-r from-blue-600 to-purple-600"
                           : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
-                      }`}
+                        }`}
                     >
                       <Icon className="w-5 h-5" />
                       <div className="flex-1">
