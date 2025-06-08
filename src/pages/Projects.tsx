@@ -22,13 +22,18 @@ export const Projects = () => {
     { id: "filters", title: "Filtres", icon: Filter },
     { id: "projects", title: "Projets", icon: Grid }
   ]
-
   const categories = [
     { id: "all", name: "Tous", icon: Globe, count: projects.length },
     { id: "web", name: "Web", icon: Code, count: projects.filter(p => p.technos.some(t => ["React", "Vue", "Nuxt", "Symfony"].includes(t))).length },
     { id: "mobile", name: "Mobile", icon: Smartphone, count: projects.filter(p => p.technos.some(t => ["React Native", "Expo"].includes(t))).length },
     { id: "api", name: "API", icon: Database, count: projects.filter(p => p.technos.some(t => ["NestJs", "API Platform", "PHP"].includes(t))).length }
   ]
+
+  // Fonction pour changer de catégorie et réinitialiser la recherche
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId)
+    setSearchTerm("") // Réinitialise la barre de recherche
+  }
   useEffect(() => {
     let tl: gsap.core.Timeline | null = null
 
@@ -203,14 +208,12 @@ export const Projects = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 />
-              </div>
-
-              {/* Filtres par catégorie */}
+              </div>              {/* Filtres par catégorie */}
               <div className="flex flex-wrap justify-center gap-4">
                 {categories.map((category) => (
                   <Button
                     key={category.id}
-                    onClick={() => setSelectedCategory(category.id)}
+                    onClick={() => handleCategoryChange(category.id)}
                     variant={selectedCategory === category.id ? "default" : "outline"}
                     className={`flex items-center gap-2 transition-all duration-300 ${selectedCategory === category.id
                       ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
@@ -228,33 +231,33 @@ export const Projects = () => {
             </div>
           </div>
         </AnimatedSection>
-      </div>
-
-      {/* Grille des projets */}
+      </div>      {/* Grille des projets */}
       <div id="projects">
         <AnimatedSection className="py-12">
-          <div className="container mx-auto px-6 lg:px-8">            {filteredProjects.length > 0 ? (
-            <div className="grid lg:grid-cols-2 gap-12">
-              {filteredProjects.map((project, index) => (
-                <AnimatedSection
-                  key={project.title}
-                  animation="slideUp"
-                  delay={index * 0.1}
-                >
-                  <ProjectCard
-                    title={project.title}
-                    description={project.description}
-                    imageUrl={project.imageUrl}
-                    visit_link={project.visit_link}
-                    github_link={project.github_link}
-                    key_points={project.key_points}
-                    technos={project.technos}
-                  />
-                </AnimatedSection>
-              ))}
-            </div>
+          <div className="container mx-auto px-6 lg:px-8">            {filteredProjects.length > 0 ? (<div
+            className="grid lg:grid-cols-2 gap-12 projects-grid"
+            key={`projects-${selectedCategory}-${searchTerm}-${filteredProjects.length}-${Date.now()}`}
+          >
+            {filteredProjects.map((project, index) => (
+              <div
+                key={`${project.title}-${selectedCategory}-${searchTerm}`}
+                className="project-card"
+                style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
+              >
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  imageUrl={project.imageUrl}
+                  visit_link={project.visit_link}
+                  github_link={project.github_link}
+                  key_points={project.key_points}
+                  technos={project.technos}
+                />
+              </div>
+            ))}
+          </div>
           ) : (
-            <div className="text-center py-24">
+            <div className="text-center py-24 animate-fade-in">
               <div className="text-gray-400 text-6xl mb-4">🔍</div>
               <h3 className="text-xl font-semibold text-gray-700 mb-2">
                 Aucun projet trouvé
