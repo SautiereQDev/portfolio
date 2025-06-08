@@ -57,6 +57,18 @@ export const Projects = () => {
         p.technos.some((t) => ["NestJs", "API Platform", "PHP"].includes(t)),
       ).length,
     },
+    {
+      id: "divers",
+      name: "Divers",
+      icon: FolderOpen,
+      count: projects.filter(
+        (p) =>
+          !p.technos.some(
+            (t) =>
+              ["React", "Vue", "Nuxt", "Symfony", "React Native", "Expo", "NestJs", "API Platform", "PHP"].includes(t),
+          ),
+      ).length,
+    }
   ];
 
   // Fonction pour changer de catégorie et réinitialiser la recherche
@@ -110,7 +122,7 @@ export const Projects = () => {
               const counters = entry.target.querySelectorAll("[data-count]");
               counters.forEach((counter) => {
                 const target = parseInt(
-                  counter.getAttribute("data-count") || "0",
+                  counter.getAttribute("data-count") ?? "0",
                 );
                 gsap.to(counter, {
                   innerHTML: target,
@@ -146,13 +158,26 @@ export const Projects = () => {
         api: ["NestJs", "API Platform", "PHP", "NodeJs"],
       };
 
-      filtered = filtered.filter((project) =>
-        project.technos.some((tech) =>
-          categoryTechnos[
-            selectedCategory as keyof typeof categoryTechnos
-          ]?.includes(tech),
-        ),
-      );
+      if (selectedCategory === "divers") {
+        // Pour la catégorie "divers", on filtre les projets qui n'ont AUCUNE des technologies des autres catégories
+        const allOtherTechnos = [
+          ...categoryTechnos.web,
+          ...categoryTechnos.mobile,
+          ...categoryTechnos.api
+        ];
+
+        filtered = filtered.filter((project) =>
+          !project.technos.some((tech) => allOtherTechnos.includes(tech))
+        );
+      } else {
+        filtered = filtered.filter((project) =>
+          project.technos.some((tech) =>
+            categoryTechnos[
+              selectedCategory as keyof typeof categoryTechnos
+            ]?.includes(tech),
+          ),
+        );
+      }
     }
 
     // Filtrage par recherche
@@ -283,11 +308,10 @@ export const Projects = () => {
                     variant={
                       selectedCategory === category.id ? "default" : "outline"
                     }
-                    className={`flex items-center gap-2 transition-all duration-300 ${
-                      selectedCategory === category.id
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                        : "hover:border-blue-300"
-                    }`}
+                    className={`flex items-center gap-2 transition-all duration-300 ${selectedCategory === category.id
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                      : "hover:border-blue-300"
+                      }`}
                   >
                     <category.icon className="w-4 h-4" />
                     {category.name}
