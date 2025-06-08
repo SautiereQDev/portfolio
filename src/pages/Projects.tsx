@@ -178,17 +178,15 @@ export const Projects = () => {
             <div className="space-y-2">
               <div className="text-3xl font-bold text-blue-600" data-count={projects.length}>0</div>
               <div className="text-gray-600">Projets réalisés</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-purple-600" data-count="15">0</div>
+            </div>            <div className="space-y-2">
+              <div className="text-3xl font-bold text-purple-600" data-count="20">0</div>
               <div className="text-gray-600">Technologies maîtrisées</div>
             </div>            <div className="space-y-2">
               <div className="text-3xl font-bold text-green-600" data-count="5">0</div>
               <div className="text-gray-600">Années d&apos;expérience</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-orange-600" data-count="100">0</div>
-              <div className="text-gray-600">% Satisfaction client</div>
+            </div>            <div className="space-y-2">
+              <div className="text-3xl font-bold text-orange-600" data-count="2">0</div>
+              <div className="text-gray-600">Années d&apos;études</div>
             </div>
           </div>
         </div>
