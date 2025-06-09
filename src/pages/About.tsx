@@ -47,10 +47,10 @@ export const About = () => {
                 <img
                   src={banner}
                   alt="À propos"
-                  className="w-64 mx-auto mb-8 drop-shadow-2xl animate-float"
+                  className="w-64 mx-auto mb-8 drop-shadow-2xl"
                 />
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 leading-tight">
                 Développeur web et logiciel
               </h1>
               <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">

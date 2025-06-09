@@ -75,7 +75,7 @@ const contactMethods = [
     icon: MapPin,
     title: "Localisation",
     value: "France",
-    link: "https:quentinsautiere.com/contact#map",
+    link: "https://www.google.fr/maps/place/La+Rochelle/@46.1555459,-1.1832109,13z/data=!4m6!3m5!1s0x48015383c9253d75:0x405d39260ee9640!8m2!3d46.160329!4d-1.151139!16zL20vMHFiNDg?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D",
     description: "Travail à distance",
   },
 ];
@@ -289,7 +289,7 @@ export const Contact = () => {
                 </Badge>
               </div>
 
-              <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight pb-2">
+              <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
                 Créons ensemble
                 <span className="block">quelque chose de génial</span>
               </h1>

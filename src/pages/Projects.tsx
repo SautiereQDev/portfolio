@@ -211,7 +211,7 @@ export const Projects = () => {
         <section className="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
-          </div>{" "}
+          </div>
           <div
             ref={heroRef}
             className="container mx-auto px-6 lg:px-8 relative z-10"
@@ -221,7 +221,7 @@ export const Projects = () => {
                 <img
                   src={banner}
                   alt="Projets illustration"
-                  className="w-64 h-auto mx-auto animate-float"
+                  className="w-64 h-auto mx-auto"
                 />
                 <div className="absolute -top-4 -right-4 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
                 <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
@@ -254,7 +254,7 @@ export const Projects = () => {
                 0
               </div>
               <div className="text-gray-600">Projets réalisés</div>
-            </div>{" "}
+            </div>
             <div className="space-y-2">
               <div
                 className="text-3xl font-bold text-purple-600"
@@ -263,13 +263,13 @@ export const Projects = () => {
                 0
               </div>
               <div className="text-gray-600">Technologies maîtrisées</div>
-            </div>{" "}
+            </div>
             <div className="space-y-2">
               <div className="text-3xl font-bold text-green-600" data-count="5">
                 0
               </div>
               <div className="text-gray-600">Années d&apos;expérience</div>
-            </div>{" "}
+            </div>
             <div className="space-y-2">
               <div
                 className="text-3xl font-bold text-orange-600"
@@ -288,7 +288,7 @@ export const Projects = () => {
         <AnimatedSection className="py-12">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="space-y-8">
-              {" "}
+
               {/* Barre de recherche */}
               <div className="relative max-w-md mx-auto">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
