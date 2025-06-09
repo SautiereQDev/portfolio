@@ -108,7 +108,9 @@ export const HeroSection = ({
       <div className="absolute inset-0 bg-white/60"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">          {/* Contenu textuel */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+          {/* Contenu textuel */}
           <div className="space-y-6 lg:space-y-8 order-2 lg:order-1">
             <div className="space-y-3 lg:space-y-4">
               <h1
@@ -130,17 +132,19 @@ export const HeroSection = ({
             >
               {description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">              <a
-              ref={ctaRef}
-              href={ctaLink}
-              className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden transform-gpu"
-            >
-              <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
-                {ctaText}
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
+
+              <a
+                ref={ctaRef}
+                href={ctaLink}
+                className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden transform-gpu"
+              >
+                <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
+                  {ctaText}
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+              </a>
               <a
                 href="/projects"
                 className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold text-gray-800 bg-white border-2 border-gray-300 rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 hover:shadow-md"
@@ -148,7 +152,8 @@ export const HeroSection = ({
                 Voir mes projets
               </a>
             </div>
-          </div>          {/* Image */}
+          </div>
+          {/* Image */}
           <div className="relative order-1 lg:order-2 mb-8 lg:mb-0">
             <div className="relative z-10">
               <img

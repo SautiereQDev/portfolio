@@ -165,7 +165,7 @@ export const Service = () => {
                 applications Web complexes.
               </p>
             </div>
-          </div>{" "}
+          </div>
         </AnimatedSection>
       </div>
 
@@ -260,7 +260,7 @@ export const Service = () => {
                           <span className="text-gray-700">{feature}</span>
                         </div>
                       ))}
-                    </div>{" "}
+                    </div>
                   </CardContent>
                 </Card>
               </div>

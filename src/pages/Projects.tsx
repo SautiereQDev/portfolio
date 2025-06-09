@@ -208,7 +208,7 @@ export const Projects = () => {
       </div>
       {/* Hero Section */}
       <div id="intro">
-        <section className="relative py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+        <section className="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
           </div>{" "}
@@ -233,7 +233,7 @@ export const Projects = () => {
                 <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Mes Projets
                 </h1>
-                <p className="hero-description text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                <p className="hero-description text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                   Découvrez une sélection de mes réalisations, des applications
                   web modernes aux solutions mobiles innovantes
                 </p>
@@ -275,6 +275,7 @@ export const Projects = () => {
                 className="text-3xl font-bold text-orange-600"
                 data-count="2"
               >
+
                 0
               </div>
               <div className="text-gray-600">Années d&apos;études</div>
@@ -298,7 +299,7 @@ export const Projects = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                 />
-              </div>{" "}
+              </div>
               {/* Filtres par catégorie */}
               <div className="flex flex-wrap justify-center gap-4">
                 {categories.map((category) => (
@@ -308,7 +309,7 @@ export const Projects = () => {
                     variant={
                       selectedCategory === category.id ? "default" : "outline"
                     }
-                    className={`flex items-center gap-2 transition-all duration-300 ${selectedCategory === category.id
+                    className={`flex items-center gap-1.5 sm:gap-2 transition-all duration-300 text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5 ${selectedCategory === category.id
                       ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
                       : "hover:border-blue-300"
                       }`}
@@ -324,12 +325,11 @@ export const Projects = () => {
             </div>
           </div>
         </AnimatedSection>
-      </div>{" "}
+      </div>
       {/* Grille des projets */}
       <div id="projects">
-        <AnimatedSection className="py-12">
-          <div className="container mx-auto px-6 lg:px-8">
-            {" "}
+        <AnimatedSection className="py-8 lg:py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {filteredProjects.length > 0 ? (
               <div
                 className="grid lg:grid-cols-2 gap-12 projects-grid"
