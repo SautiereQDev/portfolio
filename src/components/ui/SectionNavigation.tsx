@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
+import { useFirstVisit } from "../../hooks/useFirstVisit";
 
 interface SectionLink {
   id: string;
@@ -24,31 +25,37 @@ export const SectionNavigation = ({
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
+  const { showIntro, dismissIntro } = useFirstVisit();
 
   useEffect(() => {
-    // Animation d'apparition subtile après 2 secondes
-    const introTimer = setTimeout(() => {
-      if (!hasInteracted && isVisible) {
-        // Légère animation d'attention
-        const element = document.querySelector("[data-section-nav]");
-        if (element) {
-          element.animate(
-            [
-              { transform: "scale(1) translateY(-50%)", opacity: "1" },
-              { transform: "scale(1.05) translateY(-50%)", opacity: "1" },
-              { transform: "scale(1) translateY(-50%)", opacity: "1" },
-            ],
-            {
-              duration: 800,
-              easing: "ease-in-out",
-            }
-          );
+    // Animation d'apparition subtile après 2 secondes pour la première visite
+    const introTimer = setTimeout(
+      () => {
+        if (!hasInteracted && isVisible && showIntro) {
+          // Animation d'attention plus prononcée pour la première visite
+          const element = document.querySelector("[data-section-nav]");
+          if (element) {
+            element.animate(
+              [
+                { transform: "scale(1) translateY(-50%)", opacity: "1" },
+                { transform: "scale(1.1) translateY(-50%)", opacity: "1" },
+                { transform: "scale(1) translateY(-50%)", opacity: "1" },
+                { transform: "scale(1.05) translateY(-50%)", opacity: "1" },
+                { transform: "scale(1) translateY(-50%)", opacity: "1" },
+              ],
+              {
+                duration: 1200,
+                easing: "ease-in-out",
+              }
+            );
+          }
         }
-      }
-    }, 2000);
+      },
+      showIntro ? 3000 : 2000
+    ); // Plus de délai pour la première visite
 
     return () => clearTimeout(introTimer);
-  }, [isVisible, hasInteracted]);
+  }, [isVisible, hasInteracted, showIntro]);
   useEffect(() => {
     const handleScroll = () => {
       // Afficher le composant après avoir scrollé un peu
@@ -120,19 +127,57 @@ export const SectionNavigation = ({
                 onClick={() => {
                   setIsExpanded(true);
                   setHasInteracted(true);
+                  if (showIntro) dismissIntro();
                 }}
-                className="relative flex h-14 w-14 items-center justify-center overflow-hidden p-0 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
+                className={cn(
+                  "relative flex h-14 w-14 items-center justify-center overflow-hidden p-0 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50",
+                  showIntro && "animate-pulse-intro"
+                )}
               >
+                {/* Animation de background pour première visite */}
+                {showIntro && (
+                  <div className="animate-gradient-wave absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-blue-600/20 bg-[length:200%_200%]" />
+                )}
+
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <Menu className="relative z-10 h-5 w-5 text-gray-600 transition-colors duration-300 group-hover:text-blue-600" />
+
+                {/* Pastille verte pour première visite */}
+                {showIntro && (
+                  <div className="absolute -top-1 -right-1 z-20">
+                    <div className="relative">
+                      <div className="animate-bounce-gentle h-3 w-3 rounded-full bg-green-500 shadow-lg" />
+                      <div className="absolute inset-0 h-3 w-3 animate-ping rounded-full bg-green-400" />
+                    </div>
+                  </div>
+                )}
               </Button>
 
               {/* Tooltip repositionné pour éviter le chevauchement */}
-              <div className="pointer-events-none absolute top-full left-1/2 z-30 mt-2 -translate-x-1/2 transform opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <div className="rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white">
-                  Navigation
+              <div
+                className={cn(
+                  "pointer-events-none absolute top-full left-1/2 z-30 mt-2 -translate-x-1/2 transform transition-opacity duration-300",
+                  showIntro
+                    ? "opacity-100"
+                    : "opacity-0 group-hover:opacity-100"
+                )}
+              >
+                <div
+                  className={cn(
+                    "rounded px-2 py-1 text-xs whitespace-nowrap text-white",
+                    showIntro
+                      ? "animate-pulse bg-green-600 shadow-lg"
+                      : "bg-gray-900"
+                  )}
+                >
+                  {showIntro ? "✨ Cliquez pour naviguer !" : "Navigation"}
                 </div>
-                <div className="mx-auto h-0 w-0 rotate-180 transform border-r-4 border-b-4 border-l-4 border-transparent border-b-gray-900"></div>
+                <div
+                  className={cn(
+                    "mx-auto h-0 w-0 rotate-180 transform border-r-4 border-b-4 border-l-4 border-transparent",
+                    showIntro ? "border-b-green-600" : "border-b-gray-900"
+                  )}
+                ></div>
               </div>
             </div>
           )}
@@ -261,6 +306,70 @@ export const SectionNavigation = ({
               <span className="rounded bg-white px-1 text-xs text-gray-500 shadow-sm">
                 {activeIndex + 1}/{sections.length}
               </span>
+            </div>
+          </div>
+        )}
+        {/* Message d'aide pour première visite */}
+        {showIntro && !isExpanded && (
+          <div className="absolute top-1/2 -left-72 z-40 hidden w-64 -translate-y-1/2 transform lg:block">
+            <div className="animate-pulse-intro relative">
+              <div className="rounded-lg bg-gradient-to-r from-green-500 to-green-600 p-4 text-white shadow-2xl">
+                <div className="flex items-start space-x-3">
+                  <div className="flex-shrink-0">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                      <span className="text-sm">✨</span>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="mb-1 text-sm font-semibold">
+                      Navigation rapide
+                    </h4>
+                    <p className="text-xs opacity-90">
+                      Cliquez ici pour naviguer facilement entre les sections de
+                      la page !
+                    </p>
+                  </div>
+                  <button
+                    onClick={dismissIntro}
+                    className="flex-shrink-0 text-white/70 transition-colors hover:text-white"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+              {/* Flèche pointant vers le bouton - suit maintenant l'animation du parent */}
+              <div className="absolute top-1/2 -right-2 -translate-y-1/2 transform">
+                <div className="h-0 w-0 border-t-8 border-b-8 border-l-8 border-transparent border-l-green-500 drop-shadow-sm"></div>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* Message d'aide mobile pour première visite */}
+        {showIntro && !isExpanded && (
+          <div className="fixed right-4 bottom-20 left-4 z-50 lg:hidden">
+            <div className="animate-pulse-intro mx-auto max-w-sm rounded-lg bg-gradient-to-r from-green-500 to-green-600 p-4 text-white shadow-2xl">
+              <div className="flex items-start space-x-3">
+                <div className="flex-shrink-0">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                    <span className="text-sm">✨</span>
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h4 className="mb-1 text-sm font-semibold">
+                    Navigation rapide
+                  </h4>
+                  <p className="text-xs opacity-90">
+                    Utilisez le bouton de navigation en haut à droite pour
+                    explorer les sections !
+                  </p>
+                </div>
+                <button
+                  onClick={dismissIntro}
+                  className="flex-shrink-0 text-white/70 transition-colors hover:text-white"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
           </div>
         )}
