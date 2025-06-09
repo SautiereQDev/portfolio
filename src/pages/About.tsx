@@ -107,14 +107,14 @@ export const About = () => {
                 <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Formation
                 </h2>
-              </div>
+              </div>{" "}
               <div className="space-y-6">
                 {about.education.map((item) => (
                   <Card
                     key={item.title}
                     className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 group hover:scale-[1.02]"
                   >
-
+                    {" "}
                     <div className="flex items-start gap-4">
                       {/* Logos conditionnels selon la formation */}
                       {item.title === "Licence Informatique" ? (

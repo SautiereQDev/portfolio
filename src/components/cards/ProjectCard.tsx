@@ -76,7 +76,7 @@ export const ProjectCard = ({
 
   return (
     <AnimatedSection animation="slideUp" className="w-full">
-
+      {" "}
       <Card
         ref={cardRef}
         className="group overflow-hidden border-0 bg-gradient-to-br from-white to-gray-50/50 transition-all duration-300 hover:border-primary/20"
@@ -96,7 +96,7 @@ export const ProjectCard = ({
 
           {/* Badges flottants */}
           <div className="absolute top-4 right-4 flex gap-2">
-
+            {" "}
             {visit_link && (
               <Badge variant="secondary" className="bg-white/90 text-gray-900">
                 Live

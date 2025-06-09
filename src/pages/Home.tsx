@@ -99,7 +99,7 @@ export const Home = () => {
 
       {/* Hero Section */}
       <div id="hero">
-
+        {" "}
         <HeroSection
           title="Salut, moi c'est Quentin&nbsp;!" // espace insécable pour éviter la coupure du nom
           subtitle="Développeur Full-Stack & Designer"
@@ -148,7 +148,7 @@ export const Home = () => {
                     </CardContent>
                   </Card>
                 </AnimatedSection>
-              ))}
+              ))}{" "}
             </div>
           </div>
         </AnimatedSection>
@@ -164,7 +164,7 @@ export const Home = () => {
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Mes offres de service
-              </h2>
+              </h2>{" "}
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Des solutions adaptées à vos besoins, du site vitrine à
                 l&apos;application complexe
@@ -195,7 +195,7 @@ export const Home = () => {
                   </Card>
                 </AnimatedSection>
               ))}
-            </div>
+            </div>{" "}
             <div className="text-center">
               <Button
                 asChild
