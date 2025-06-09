@@ -264,7 +264,6 @@ export const Projects = () => {
       </div>
       {/* Hero Section */}
       <div id="intro">
-        {" "}
         <section className="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:25px_25px] sm:bg-[length:35px_35px] lg:bg-[length:50px_50px]"></div>
@@ -289,7 +288,7 @@ export const Projects = () => {
                 </Badge>
                 <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                   Mes Projets
-                </h1>{" "}
+                </h1>
                 <p className="hero-description text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                   Découvrez une sélection de mes réalisations, des applications
                   web modernes aux solutions mobiles innovantes
@@ -298,7 +297,7 @@ export const Projects = () => {
             </div>
           </div>
         </section>
-      </div>{" "}
+      </div>
       {/* Statistiques */}
       <AnimatedSection className="py-12 lg:py-16 bg-gray-50">
         <div ref={statsRef} className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -341,7 +340,7 @@ export const Projects = () => {
                 className="text-2xl sm:text-3xl font-bold text-orange-600"
                 data-count="2"
               >
-                {" "}
+
                 0
               </div>
               <div className="text-sm sm:text-base text-gray-600">
@@ -350,7 +349,7 @@ export const Projects = () => {
             </div>
           </div>
         </div>
-      </AnimatedSection>{" "}
+      </AnimatedSection>
       {/* Filtres et Recherche */}
       <div id="filters">
         <AnimatedSection className="py-8 lg:py-12">
@@ -366,7 +365,7 @@ export const Projects = () => {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-9 sm:pl-10 pr-4 py-2.5 sm:py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                 />
-              </div>{" "}
+              </div>
               {/* Filtres par catégorie */}
               <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4">
                 {categories.map((category) => (
@@ -376,11 +375,10 @@ export const Projects = () => {
                     variant={
                       selectedCategory === category.id ? "default" : "outline"
                     }
-                    className={`flex items-center gap-1.5 sm:gap-2 transition-all duration-300 text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5 ${
-                      selectedCategory === category.id
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                        : "hover:border-blue-300"
-                    }`}
+                    className={`flex items-center gap-1.5 sm:gap-2 transition-all duration-300 text-xs sm:text-sm px-3 py-2 sm:px-4 sm:py-2.5 ${selectedCategory === category.id
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                      : "hover:border-blue-300"
+                      }`}
                   >
                     <category.icon className="w-3 h-3 sm:w-4 sm:h-4" />
                     <span className="hidden sm:inline">{category.name}</span>
@@ -399,12 +397,11 @@ export const Projects = () => {
             </div>
           </div>
         </AnimatedSection>
-      </div>{" "}
+      </div>
       {/* Grille des projets */}
       <div id="projects">
         <AnimatedSection className="py-8 lg:py-12">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {" "}
             {filteredProjects.length > 0 ? (
               <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 projects-grid">
                 {filteredProjects.map((project, index) => (

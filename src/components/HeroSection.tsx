@@ -147,7 +147,7 @@ export const HeroSection = ({
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {" "}
+
           {/* Contenu textuel */}
           <div className="space-y-6 lg:space-y-8 order-2 lg:order-1">
             <div className="space-y-3 lg:space-y-4">
@@ -171,7 +171,7 @@ export const HeroSection = ({
               {description}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
-              {" "}
+
               <a
                 ref={ctaRef}
                 href={ctaLink}
@@ -190,7 +190,7 @@ export const HeroSection = ({
                 Voir mes projets
               </a>
             </div>
-          </div>{" "}
+          </div>
           {/* Image */}
           <div className="relative order-1 lg:order-2 mb-8 lg:mb-0">
             <div className="relative z-10">

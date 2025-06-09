@@ -289,7 +289,7 @@ export const Contact = () => {
                 </Badge>
               </div>
 
-              <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight pb-2">
                 Créons ensemble
                 <span className="block">quelque chose de génial</span>
               </h1>
@@ -302,7 +302,7 @@ export const Contact = () => {
             </div>
           </div>
         </section>
-      </div>{" "}
+      </div>
       {/* Contact Methods */}
       <div id="contact-info">
         <AnimatedSection className="py-16 bg-gray-50">
@@ -468,7 +468,7 @@ export const Contact = () => {
                     Ou contactez-moi directement :
                   </p>
                   <div className="flex justify-center">
-                    {" "}
+
                     <Button
                       asChild
                       variant="outline"
@@ -482,7 +482,7 @@ export const Contact = () => {
                   </div>
                 </div>
               </CardContent>
-            </Card>{" "}
+            </Card>
           </AnimatedSection>
 
           {/* Additional Info */}
@@ -495,7 +495,7 @@ export const Contact = () => {
                     <Globe className="w-5 h-5 mr-2" />
                     Retrouvez-moi sur
                   </CardTitle>
-                </CardHeader>{" "}
+                </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
                     {socialLinks.map((social, index) => (
