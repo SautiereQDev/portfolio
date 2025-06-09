@@ -6,6 +6,11 @@
       "school": "Université de La Rochelle, La Rochelle, 17000"
     },
     {
+      "title": "CQP IV - Moniteur de voile",
+      "date": "2025",
+      "school": "Ecole de voile des Glénans, Archipel des Glénans, 29900"
+    },
+    {
       "title": "Bacalauréat Général (mathématiques, physique-chimie)",
       "date": "2020-2023",
       "mention": "Assez bien",
@@ -17,18 +22,18 @@
     "CSS",
     "UI/UX",
     "Accessibility",
-    "Javascript",
     "Typescript",
     "React",
     "Node.js",
+    "NestJs",
+    "Vue.js",
     "PHP",
     "SQL",
-    "MongoDB"
+    "MongoDB",
+    "Git",
+    "Docker",
+    "Symfony",
+    "Next"
   ],
-  "interests": [
-    "Informatique",
-    "Course à pied",
-    "Cuisine",
-    "Voyages"
-  ]
+  "interests": ["Informatique", "Course à pied", "Voile", "Randonnée"]
 }

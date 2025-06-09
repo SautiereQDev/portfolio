@@ -1,12 +1,44 @@
+import { useRef, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { z } from "zod";
 import sanitizeHtml, { IOptions } from "sanitize-html";
 import { zodResolver } from "@hookform/resolvers/zod";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  Github,
+  Linkedin,
+  MessageSquare,
+  Clock,
+  Globe,
+  User,
+  HelpCircle,
+} from "lucide-react";
+import { Button } from "../components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { Badge } from "../components/ui/badge";
+import { AnimatedSection } from "../components/ui/animated-section";
+import Breadcrumb from "../components/ui/breadcrumb";
+import SectionNavigation from "../components/ui/SectionNavigation";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const sanitizeOptions: IOptions = {
-  allowedTags: [], // No HTML tags allowed
-  allowedAttributes: {}, // No HTML attributes allowed
-  disallowedTagsMode: "recursiveEscape", // Valid value for DisallowedTagsModes
+  allowedTags: [],
+  allowedAttributes: {},
+  disallowedTagsMode: "recursiveEscape",
 };
 
 const sanitizeInput = (input: string): string => {
@@ -24,7 +56,81 @@ const contactSchema = z.object({
 
 type ContactFormInputs = z.infer<typeof contactSchema>;
 
+const contactMethods = [
+  {
+    icon: Mail,
+    title: "Email",
+    value: "contact@quentinsautiere.com",
+    link: "mailto:contact@quentinsautiere.com",
+    description: "Réponse sous 24h",
+  },
+  {
+    icon: Phone,
+    title: "Téléphone",
+    value: "+33 6 51 54 69 48",
+    link: "tel:+33600000000",
+    description: "Lun-Ven 9h-18h",
+  },
+  {
+    icon: MapPin,
+    title: "Localisation",
+    value: "France",
+    link: "https://www.google.fr/maps/place/La+Rochelle/@46.1555459,-1.1832109,13z/data=!4m6!3m5!1s0x48015383c9253d75:0x405d39260ee9640!8m2!3d46.160329!4d-1.151139!16zL20vMHFiNDg?entry=ttu&g_ep=EgoyMDI1MDYwNC4wIKXMDSoASAFQAw%3D%3D",
+    description: "Travail à distance",
+  },
+];
+
+const socialLinks = [
+  {
+    icon: Github,
+    name: "GitHub",
+    url: "https://github.com/SautiereQDev",
+    color: "hover:text-gray-800",
+  },
+  {
+    icon: Linkedin,
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/quentin-sauti%C3%A8re/",
+    color: "hover:text-blue-600",
+  },
+];
+
+const sections = [
+  { id: "intro", title: "Introduction", icon: User },
+  { id: "contact-info", title: "Informations", icon: MessageSquare },
+  { id: "form", title: "Formulaire", icon: Send },
+  { id: "faq", title: "FAQ", icon: HelpCircle },
+];
+
+const faqs = [
+  {
+    question: "Quel est votre délai de réponse ?",
+    answer:
+      "Je réponds généralement sous 24h maximum. Pour les urgences, n&apos;hésitez pas à mentionner la priorité dans votre message.",
+  },
+  {
+    question: "Proposez-vous des consultations gratuites ?",
+    answer:
+      "Oui, je propose un premier appel de 30 minutes gratuit pour discuter de votre projet et voir comment je peux vous aider.",
+  },
+  {
+    question: "Travaillez-vous avec des équipes ?",
+    answer:
+      "Non, je travaille en freelance de manière indépendante. Je gère chaque projet de A à Z pour garantir une qualité optimale.",
+  },
+  {
+    question: "Quels sont vos tarifs ?",
+    answer:
+      "Mes tarifs varient selon la complexité du projet. Contactez-moi pour un devis personnalisé et détaillé.",
+  },
+];
+
 export const Contact = () => {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const contactCardsRef = useRef<HTMLDivElement>(null);
+
   const {
     register,
     handleSubmit,
@@ -33,6 +139,87 @@ export const Contact = () => {
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(contactSchema),
   });
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero animations
+      if (heroRef.current) {
+        const tl = gsap.timeline();
+
+        tl.from(".hero-title", {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        })
+          .from(
+            ".hero-subtitle",
+            {
+              y: 30,
+              opacity: 0,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            "-=0.6"
+          )
+          .from(
+            ".hero-badges",
+            {
+              y: 20,
+              opacity: 0,
+              duration: 0.6,
+              ease: "power3.out",
+            },
+            "-=0.4"
+          );
+      }
+
+      // Contact cards animation
+      if (contactCardsRef.current) {
+        gsap.from(".contact-card", {
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: contactCardsRef.current,
+            start: "top 80%",
+          },
+        });
+      }
+
+      // Form animations
+      if (formRef.current) {
+        gsap.from(".form-field", {
+          x: -30,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: formRef.current,
+            start: "top 80%",
+          },
+        });
+      }
+
+      // FAQ animations
+      gsap.from(".faq-item", {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".faq-section",
+          start: "top 80%",
+        },
+      });
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
     try {
@@ -53,116 +240,322 @@ export const Contact = () => {
       if (!response.ok) throw new Error("Erreur d'envoi");
 
       reset();
-      alert("Message envoyé avec succès");
+      setIsSubmitted(true);
+
+      // Animation de succès
+      gsap.to(".success-message", {
+        scale: 1.05,
+        duration: 0.3,
+        yoyo: true,
+        repeat: 1,
+        ease: "power2.inOut",
+      });
+
+      setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
-      alert(`Erreur lors de l'envoi du message ${error}`);
+      console.error("Erreur lors de l'envoi:", error);
     }
   };
-
   return (
-    <div className="relative flex size-full min-h-screen flex-col bg-white group\/design-root overflow-x-hidden font-[Manrope]">
-      <div className="layout-container flex h-full grow flex-col">
-        <div className="px-40 flex flex-1 justify-center py-5">
-          <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div className="flex flex-wrap justify-between gap-3 p-4">
-              <div className="flex min-w-72 flex-col gap-3">
-                <p className="text-[#111418] tracking-light text-[32px] font-bold leading-tight">
-                  Créons ensemble quelque chose de génial
-                </p>
-                <p className="text-[#637588] text-sm font-normal leading-normal">
-                  Remplissez le formulaire ci-dessous pour me contacter et
-                  discuter de votre projet, je vous répondrais au plus vite.
-                </p>
+    <div className="min-h-screen bg-white font-[Manrope]">
+      {/* Navigation par sections */}
+      <SectionNavigation sections={sections} />
+      {/* Breadcrumb */}
+      <div className="pt-4 pb-4">
+        <div className="container mx-auto px-4">
+          <Breadcrumb />
+        </div>
+      </div>
+      {/* Hero Section */}
+      <div id="intro">
+        <section
+          ref={heroRef}
+          className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20"
+        >
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
+          </div>
+
+          <div className="relative z-10 container mx-auto px-6 lg:px-8">
+            <div className="space-y-8 text-center">
+              <div className="hero-badges mb-6 flex justify-center gap-2">
+                <Badge className="border-0 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800">
+                  <MessageSquare className="mr-1 h-3 w-3" />
+                  Disponible
+                </Badge>
+                <Badge className="border-0 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800">
+                  <Clock className="mr-1 h-3 w-3" />
+                  Réponse 24h
+                </Badge>
               </div>
+
+              <h1 className="hero-title bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-6xl">
+                Créons ensemble
+                <span className="block">quelque chose de génial</span>
+              </h1>
+
+              <p className="hero-subtitle mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
+                Vous avez un projet en tête ? Discutons de vos idées et
+                donnons-leur vie ensemble. Je suis là pour transformer votre
+                vision en réalité digitale.
+              </p>
             </div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-                <label className="flex flex-col min-w-40 flex-1">
-                  <p className="text-[#111418] text-base font-medium leading-normal pb-2">
-                    Nom
-                  </p>
-                  <input
-                    {...register("name", {
-                      required: "Le nom est obligatoire",
-                    })}
-                    placeholder="Votre nom"
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
-                  />
-                  {errors.name && (
-                    <span className="text-red-500 text-sm">
-                      {errors.name.message}
-                    </span>
-                  )}
-                </label>
-              </div>
-              <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-                <label className="flex flex-col min-w-40 flex-1">
-                  <p className="text-[#111418] text-base font-medium leading-normal pb-2">
-                    Votre entreprise ou organisation
-                  </p>
-                  <input
-                    {...register("company")}
-                    placeholder="Votre entreprise ou organisation"
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
-                  />
-                </label>
-              </div>
-              <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-                <label className="flex flex-col min-w-40 flex-1">
-                  <p className="text-[#111418] text-base font-medium leading-normal pb-2">
-                    Email
-                  </p>
-                  <input
-                    {...register("email", { required: "L'email est requis" })}
-                    placeholder="Votre email"
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] h-14 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
-                  />
-                  {errors.email && (
-                    <span className="text-red-500 text-sm">
-                      {errors.email.message}
-                    </span>
-                  )}
-                </label>
-              </div>
-              <div className="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-                <label className="flex flex-col min-w-40 flex-1">
-                  <p className="text-[#111418] text-base font-medium leading-normal pb-2">
-                    Message
-                  </p>
-                  <textarea
-                    {...register("message", {
-                      required: "Le message est requis",
-                    })}
-                    placeholder="Votre message"
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#111418] focus:outline-0 focus:ring-0 border border-[#dce0e5] bg-white focus:border-[#dce0e5] min-h-36 placeholder:text-[#637588] p-[15px] text-base font-normal leading-normal"
-                  ></textarea>
-                  {errors.message && (
-                    <span className="text-red-500 text-sm">
-                      {errors.message.message}
-                    </span>
-                  )}
-                </label>
-              </div>
-              <a
-                href="mailto:contact@quentinsautiere.com"
-                className="flex max-w-[480px] flex-wrap items-end gap-4 px-6 text-[#1980e6]"
-              >
-                Ouvrir dans une mail app
-              </a>
-              <div className="flex px-4 py-3 justify-end">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-xl h-12 px-5 bg-[#1980e6] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#0f70c0] focus:outline-0 focus:ring-0 focus:border-[#1980e6]"
+          </div>
+        </section>
+      </div>
+      {/* Contact Methods */}
+      <div id="contact-info">
+        <AnimatedSection className="bg-gray-50 py-16">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="mb-12 text-center">
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+                Comment me contacter
+              </h2>
+              <p className="text-xl text-gray-600">
+                Plusieurs moyens de me joindre selon vos préférences
+              </p>
+            </div>
+
+            <div
+              ref={contactCardsRef}
+              className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3"
+            >
+              {contactMethods.map((method, index) => (
+                <Card
+                  key={index}
+                  className="contact-card group h-full border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
                 >
-                  <span className="truncate">
-                    {isSubmitting ? "Envoi..." : "Envoyer"}
-                  </span>
-                </button>
-              </div>
-            </form>
+                  <CardContent className="flex h-full flex-col justify-between p-6 text-center">
+                    <div>
+                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
+                        <method.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="mb-2 text-lg font-semibold text-gray-900">
+                        {method.title}
+                      </h3>
+                      <a
+                        href={method.link}
+                        className="mb-2 block font-medium text-blue-600 transition-colors duration-200 hover:text-blue-800"
+                      >
+                        {method.value}
+                      </a>
+                    </div>
+                    <p className="mt-auto text-sm text-gray-500">
+                      {method.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+      </div>
+      {/* Main Content */}
+      <div id="form" className="container mx-auto mt-12 px-6 pb-16 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-2">
+          {/* Contact Form */}
+          <AnimatedSection>
+            <Card className="border-gray-200 bg-white shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl font-bold text-gray-900">
+                  Envoyez-moi un message
+                </CardTitle>
+                <p className="text-gray-600">
+                  Remplissez le formulaire ci-dessous et je vous répondrai
+                  rapidement.
+                </p>
+              </CardHeader>
+              <CardContent>
+                {isSubmitted ? (
+                  <div className="success-message py-8 text-center">
+                    <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-500" />
+                    <h3 className="mb-2 text-xl font-semibold text-gray-900">
+                      Message envoyé avec succès !
+                    </h3>
+                    <p className="text-gray-600">
+                      Je vous répondrai dans les plus brefs délais.
+                    </p>
+                  </div>
+                ) : (
+                  <form
+                    ref={formRef}
+                    onSubmit={handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
+                    <div className="form-field">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Nom *
+                      </label>
+                      <Input
+                        {...register("name")}
+                        placeholder="Votre nom complet"
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                      />
+                      {errors.name && (
+                        <p className="mt-1 text-sm text-red-500">
+                          {errors.name.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="form-field">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Entreprise
+                      </label>
+                      <Input
+                        {...register("company")}
+                        placeholder="Votre entreprise ou organisation"
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+
+                    <div className="form-field">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Email *
+                      </label>
+                      <Input
+                        type="email"
+                        {...register("email")}
+                        placeholder="votre@email.com"
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                      />
+                      {errors.email && (
+                        <p className="mt-1 text-sm text-red-500">
+                          {errors.email.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="form-field">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Message *
+                      </label>
+                      <Textarea
+                        {...register("message")}
+                        placeholder="Décrivez votre projet, vos besoins ou posez-moi vos questions..."
+                        rows={6}
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+                      />
+                      {errors.message && (
+                        <p className="mt-1 text-sm text-red-500">
+                          {errors.message.message}
+                        </p>
+                      )}
+                    </div>
+
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full transform rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700"
+                    >
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center">
+                          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-b-2 border-white"></div>
+                          Envoi en cours...
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center">
+                          <Send className="mr-2 h-4 w-4" />
+                          Envoyer le message
+                        </div>
+                      )}
+                    </Button>
+                  </form>
+                )}
+
+                <div className="mt-6 border-t border-gray-200 pt-6">
+                  <p className="mb-4 text-center text-sm text-gray-500">
+                    Ou contactez-moi directement :
+                  </p>
+                  <div className="flex justify-center">
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="border-blue-200 text-blue-600 hover:bg-blue-50"
+                    >
+                      <a href="mailto:contact@quentinsautiere.com">
+                        <Mail className="mr-2 h-4 w-4" />
+                        Ouvrir l&apos;application mail
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedSection>
+
+          {/* Additional Info */}
+          <div className="space-y-8">
+            {/* Social Links */}
+            <AnimatedSection>
+              <Card className="border-gray-200 bg-white shadow-lg">
+                <CardHeader>
+                  <CardTitle className="flex items-center text-xl font-bold text-gray-900">
+                    <Globe className="mr-2 h-5 w-5" />
+                    Retrouvez-moi sur
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid grid-cols-2 gap-4">
+                    {socialLinks.map((social, index) => (
+                      <a
+                        key={index}
+                        href={social.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col items-center rounded-lg bg-gray-50 p-4 transition-all duration-300 hover:bg-gray-100"
+                      >
+                        <social.icon
+                          className={`h-6 w-6 text-gray-600 ${social.color} mb-2 transition-colors duration-300`}
+                        />
+                        <span className="text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-900">
+                          {social.name}
+                        </span>
+                      </a>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
           </div>
         </div>
+      </div>
+      {/* FAQ Section */}
+      <div id="faq">
+        <AnimatedSection className="faq-section bg-gray-50 py-16">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-12 text-center">
+                <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+                  Questions fréquentes
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Trouvez rapidement les réponses à vos questions
+                </p>
+              </div>
+
+              <Card className="border-gray-200 bg-white shadow-lg">
+                <CardContent className="p-8">
+                  <div className="space-y-6">
+                    {faqs.map((faq, index) => (
+                      <div key={index} className="faq-item">
+                        <h4 className="mb-3 text-lg font-semibold text-gray-900">
+                          {faq.question}
+                        </h4>
+                        <p className="leading-relaxed text-gray-600">
+                          {faq.answer}
+                        </p>
+                        {index < faqs.length - 1 && (
+                          <div className="mt-6 border-b border-gray-200" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </AnimatedSection>
       </div>
     </div>
   );

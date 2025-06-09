@@ -4,7 +4,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Manrope", "sans-serif"],
+        sans: [
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
+        body: ["Manrope", "system-ui", "sans-serif"],
         // mono: ["Roboto Mono", "monospace"],
         // serif: ["Merriweather", "serif"],
       },
