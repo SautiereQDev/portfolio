@@ -1,5 +1,5 @@
 import about from "../data/about.json";
-import TagItem from "./Items/TagItem.tsx";
+import TagItem from "./ui/TagItem.tsx";
 
 interface AboutSectionProps {
   sectionName: "Compétences" | "Passions";

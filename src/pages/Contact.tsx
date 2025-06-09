@@ -48,7 +48,7 @@ const sanitizeInput = (input: string): string => {
 const contactSchema = z.object({
   name: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
   company: z.string().optional(),
-  email: z.string().email("Format daposemail invalide"),
+  email: z.string().email("Format d'email invalide"),
   message: z
     .string()
     .min(10, "Le message doit contenir au moins 10 caractères"),
@@ -106,7 +106,7 @@ const faqs = [
   {
     question: "Quel est votre délai de réponse ?",
     answer:
-      "Je réponds généralement sous 24h maximum. Pour les urgences, naposhésitez pas à mentionner la priorité dans votre message.",
+      "Je réponds généralement sous 24h maximum. Pour les urgences, n&apos;hésitez pas à mentionner la priorité dans votre message.",
   },
   {
     question: "Proposez-vous des consultations gratuites ?",
@@ -237,7 +237,7 @@ export const Contact = () => {
         body: JSON.stringify(sanitizedData),
       });
 
-      if (!response.ok) throw new Error("Erreur daposenvoi");
+      if (!response.ok) throw new Error("Erreur d'envoi");
 
       reset();
       setIsSubmitted(true);
@@ -253,7 +253,7 @@ export const Contact = () => {
 
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (error) {
-      console.error("Erreur lors de laposenvoi:", error);
+      console.error("Erreur lors de l'envoi:", error);
     }
   };
   return (

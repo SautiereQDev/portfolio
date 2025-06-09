@@ -82,8 +82,8 @@ export const About = () => {
                 <CardContent>
                   <p className="text-lg text-gray-700 leading-relaxed text-center">
                     Étudiant en deuxième année de licence informatique à
-                    laposUniversité de La Rochelle, je suis passionné par les
-                    nouvelles technologies et l&apos;innovation. Japosaime relever des
+                    l&apos;Université de La Rochelle, je suis passionné par les
+                    nouvelles technologies et l&apos;innovation. J&apos;aime relever des
                     défis et mener mes projets avec rigueur et créativité. En
                     parallèle, je me dépasse également sur la piste en
                     compétition de demi-fond, où persévérance et performance

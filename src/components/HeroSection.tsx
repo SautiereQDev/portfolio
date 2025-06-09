@@ -27,64 +27,61 @@ export const HeroSection = ({
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-
   useEffect(() => {
-    const tl = gsap.timeline(); // Animation d&apos;entrée
+    const tl = gsap.timeline(); // Animation d&apos;entrée plus rapide
     tl.from(imageRef.current, {
       scale: 0.8,
       opacity: 0,
-      duration: 1,
-      ease: "power2.out",
+      duration: 0.6,
+      ease: "power3.out",
     })
       .fromTo(
         titleRef.current,
-        { y: 50, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" },
-        "-=0.5",
+        { y: 40, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" },
+        "-=0.4",
       )
       .fromTo(
         subtitleRef.current,
-        { y: 30, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" },
-        "-=0.6",
+        { y: 25, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out" },
+        "-=0.3",
       )
       .fromTo(
         descriptionRef.current,
-        { y: 30, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" },
-        "-=0.4",
+        { y: 25, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out" },
+        "-=0.2",
       )
       .fromTo(
         ctaRef.current,
         {
-          y: 30,
+          y: 25,
           autoAlpha: 0,
-          scale: 0.8,
-          rotation: -5,
+          scale: 0.9,
+          rotation: -3,
         },
         {
           y: 0,
           autoAlpha: 1,
           scale: 1,
           rotation: 0,
-          duration: 0.7,
-          ease: "back.out(1.7)",
+          duration: 0.5,
+          ease: "back.out(1.4)",
         },
-        "-=0.5",
-      );
-
-    // Animation parallax sur l&apos;image
+        "-=0.3",
+      );    // Animation parallax sur l&apos;image - plus fluide
     ScrollTrigger.create({
       trigger: heroRef.current,
       start: "top top",
       end: "bottom top",
-      scrub: 1,
+      scrub: 0.5,
       onUpdate: (self) => {
         if (imageRef.current) {
           gsap.to(imageRef.current, {
-            y: self.progress * 100,
-            duration: 0.3,
-            ease: "power2.out",
+            y: self.progress * 80,
+            duration: 0.1,
+            ease: "power1.out",
           });
         }
       },

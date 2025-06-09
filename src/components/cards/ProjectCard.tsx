@@ -1,4 +1,3 @@
-import { ProjectCardProps } from "./ProjectCard.types.ts";
 import {
   Card,
   CardContent,
@@ -13,6 +12,17 @@ import { ExternalLink, Github, CheckCircle } from "lucide-react";
 import { AnimatedSection } from "../ui/animated-section";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+
+interface ProjectCardProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+  visit_link?: string;
+  github_link: string;
+  key_points: string[];
+  technos: string[];
+}
+
 
 export const ProjectCard = ({
   title,
