@@ -30,16 +30,19 @@ export const SectionNavigation = ({
     const introTimer = setTimeout(() => {
       if (!hasInteracted && isVisible) {
         // Légère animation d'attention
-        const element = document.querySelector('[data-section-nav]');
+        const element = document.querySelector("[data-section-nav]");
         if (element) {
-          element.animate([
-            { transform: 'scale(1) translateY(-50%)', opacity: '1' },
-            { transform: 'scale(1.05) translateY(-50%)', opacity: '1' },
-            { transform: 'scale(1) translateY(-50%)', opacity: '1' }
-          ], {
-            duration: 800,
-            easing: 'ease-in-out'
-          });
+          element.animate(
+            [
+              { transform: "scale(1) translateY(-50%)", opacity: "1" },
+              { transform: "scale(1.05) translateY(-50%)", opacity: "1" },
+              { transform: "scale(1) translateY(-50%)", opacity: "1" },
+            ],
+            {
+              duration: 800,
+              easing: "ease-in-out",
+            }
+          );
         }
       }
     }, 2000);
@@ -85,13 +88,14 @@ export const SectionNavigation = ({
   if (!isVisible) return null;
 
   const activeIndex = sections.findIndex((s) => s.id === activeSection);
-  const progressPercentage = activeIndex >= 0 ? ((activeIndex + 1) / sections.length) * 100 : 0;
+  const progressPercentage =
+    activeIndex >= 0 ? ((activeIndex + 1) / sections.length) * 100 : 0;
   return (
     <div
       className={cn(
-        "fixed top-1/2 transform -translate-y-1/2 z-30 transition-all duration-500 ease-out",
+        "fixed top-1/2 z-30 -translate-y-1/2 transform transition-all duration-500 ease-out",
         position === "left" ? "left-4 lg:left-6" : "right-3 lg:right-4",
-        className,
+        className
       )}
       data-section-nav
     >
@@ -99,11 +103,15 @@ export const SectionNavigation = ({
         {/* Main Navigation Container */}
         <div
           className={cn(
-            "bg-white/95 backdrop-blur-xl rounded-2xl shadow-xl border border-gray-200/60 overflow-hidden transition-all duration-300 ease-out",
-            isExpanded ? "shadow-2xl shadow-blue-500/10" : "shadow-lg hover:shadow-xl",
+            "overflow-hidden rounded-2xl border border-gray-200/60 bg-white/95 shadow-xl backdrop-blur-xl transition-all duration-300 ease-out",
+            isExpanded
+              ? "shadow-2xl shadow-blue-500/10"
+              : "shadow-lg hover:shadow-xl",
             !isExpanded && "animate-pulse-subtle"
           )}
-        >          {/* Compact Toggle Button */}
+        >
+          {" "}
+          {/* Compact Toggle Button */}
           {!isExpanded && (
             <div className="group relative">
               <Button
@@ -113,43 +121,44 @@ export const SectionNavigation = ({
                   setIsExpanded(true);
                   setHasInteracted(true);
                 }}
-                className="w-14 h-14 p-0 flex items-center justify-center hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-300 relative overflow-hidden"
+                className="relative flex h-14 w-14 items-center justify-center overflow-hidden p-0 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Menu className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors duration-300 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <Menu className="relative z-10 h-5 w-5 text-gray-600 transition-colors duration-300 group-hover:text-blue-600" />
 
                 {/* Active section indicator - repositionné */}
-                <div className="absolute -right-1 -top-1 w-4 h-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-lg animate-pulse z-20">
-                  <div className="w-2 h-2 bg-white rounded-full" />
+                <div className="absolute -top-1 -right-1 z-20 flex h-4 w-4 animate-pulse items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg">
+                  <div className="h-2 w-2 rounded-full bg-white" />
                 </div>
               </Button>
 
               {/* Tooltip repositionné pour éviter le chevauchement */}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-30">
-                <div className="bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap">
+              <div className="pointer-events-none absolute top-full left-1/2 z-30 mt-2 -translate-x-1/2 transform opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white">
                   Navigation
                 </div>
-                <div className="w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-gray-900 mx-auto transform rotate-180"></div>
+                <div className="mx-auto h-0 w-0 rotate-180 transform border-r-4 border-b-4 border-l-4 border-transparent border-b-gray-900"></div>
               </div>
             </div>
           )}
-
           {/* Expanded Navigation */}
           {isExpanded && (
             <div className="w-64">
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-gray-200/50 bg-gradient-to-r from-blue-50/50 to-purple-50/50">
+              <div className="flex items-center justify-between border-b border-gray-200/50 bg-gradient-to-r from-blue-50/50 to-purple-50/50 p-4">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full" />
-                  <span className="text-sm font-semibold text-gray-700">Navigation</span>
+                  <div className="h-2 w-2 rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />
+                  <span className="text-sm font-semibold text-gray-700">
+                    Navigation
+                  </span>
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setIsExpanded(false)}
-                  className="w-8 h-8 p-0 hover:bg-red-50 hover:text-red-600 transition-all duration-200"
+                  className="h-8 w-8 p-0 transition-all duration-200 hover:bg-red-50 hover:text-red-600"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="h-4 w-4" />
                 </Button>
               </div>
 
@@ -164,41 +173,47 @@ export const SectionNavigation = ({
                       key={section.id}
                       onClick={() => scrollToSection(section.id)}
                       className={cn(
-                        "group w-full p-3 text-left flex items-center space-x-3 transition-all duration-200 relative overflow-hidden",
+                        "group relative flex w-full items-center space-x-3 overflow-hidden p-3 text-left transition-all duration-200",
                         isActive
                           ? "bg-gradient-to-r from-blue-50 to-purple-50 text-blue-700"
-                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
+                          : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                       )}
                     >
                       {/* Active indicator line */}
                       {isActive && (
-                        <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 to-purple-600" />
+                        <div className="absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-b from-blue-600 to-purple-600" />
                       )}
 
                       {/* Icon */}
                       {Icon && (
-                        <div className={cn(
-                          "w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200",
-                          isActive
-                            ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                            : "bg-gray-100 text-gray-500 group-hover:bg-gray-200"
-                        )}>
-                          <Icon className="w-4 h-4" />
+                        <div
+                          className={cn(
+                            "flex h-8 w-8 items-center justify-center rounded-lg transition-all duration-200",
+                            isActive
+                              ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
+                              : "bg-gray-100 text-gray-500 group-hover:bg-gray-200"
+                          )}
+                        >
+                          <Icon className="h-4 w-4" />
                         </div>
                       )}
 
                       {/* Text */}
-                      <div className="flex-1 min-w-0">
-                        <span className={cn(
-                          "text-sm font-medium truncate block",
-                          isActive ? "text-blue-700" : "text-gray-700"
-                        )}>
+                      <div className="min-w-0 flex-1">
+                        <span
+                          className={cn(
+                            "block truncate text-sm font-medium",
+                            isActive ? "text-blue-700" : "text-gray-700"
+                          )}
+                        >
                           {section.title}
                         </span>
-                        <div className={cn(
-                          "text-xs opacity-75 mt-0.5",
-                          isActive ? "text-blue-600" : "text-gray-500"
-                        )}>
+                        <div
+                          className={cn(
+                            "mt-0.5 text-xs opacity-75",
+                            isActive ? "text-blue-600" : "text-gray-500"
+                          )}
+                        >
                           Section {index + 1}
                         </div>
                       </div>
@@ -206,10 +221,10 @@ export const SectionNavigation = ({
                       {/* Status dot */}
                       <div
                         className={cn(
-                          "w-2 h-2 rounded-full transition-all duration-200",
+                          "h-2 w-2 rounded-full transition-all duration-200",
                           isActive
                             ? "bg-gradient-to-r from-blue-600 to-purple-600 shadow-sm"
-                            : "bg-gray-300 group-hover:bg-gray-400",
+                            : "bg-gray-300 group-hover:bg-gray-400"
                         )}
                       />
                     </button>
@@ -218,34 +233,37 @@ export const SectionNavigation = ({
               </div>
 
               {/* Progress Footer */}
-              <div className="p-4 border-t border-gray-200/50 bg-gray-50/50">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-medium text-gray-500">Progression</span>
+              <div className="border-t border-gray-200/50 bg-gray-50/50 p-4">
+                <div className="mb-2 flex items-center justify-between">
+                  <span className="text-xs font-medium text-gray-500">
+                    Progression
+                  </span>
                   <span className="text-xs font-semibold text-gray-700">
                     {activeIndex + 1}/{sections.length}
                   </span>
                 </div>
-                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="h-2 overflow-hidden rounded-full bg-gray-200">
                   <div
-                    className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-500 ease-out rounded-full"
+                    className="h-full rounded-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-500 ease-out"
                     style={{ width: `${progressPercentage}%` }}
                   />
                 </div>
               </div>
             </div>
           )}
-        </div>        {/* Floating progress indicator (visible when collapsed) - repositionné */}
+        </div>{" "}
+        {/* Floating progress indicator (visible when collapsed) - repositionné */}
         {!isExpanded && (
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2">
-            <div className="w-10 h-1.5 bg-gray-200 rounded-full overflow-hidden shadow-sm">
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 transform">
+            <div className="h-1.5 w-10 overflow-hidden rounded-full bg-gray-200 shadow-sm">
               <div
-                className="h-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-500 rounded-full"
+                className="h-full rounded-full bg-gradient-to-r from-blue-600 to-purple-600 transition-all duration-500"
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
             {/* Petit indicateur de progression */}
-            <div className="text-center mt-1">
-              <span className="text-xs text-gray-500 bg-white px-1 rounded shadow-sm">
+            <div className="mt-1 text-center">
+              <span className="rounded bg-white px-1 text-xs text-gray-500 shadow-sm">
                 {activeIndex + 1}/{sections.length}
               </span>
             </div>

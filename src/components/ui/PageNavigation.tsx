@@ -33,7 +33,7 @@ export const PageNavigation = ({
   ];
 
   const currentIndex = pages.findIndex(
-    (page) => page.path === router.location.pathname,
+    (page) => page.path === router.location.pathname
   );
   const previousPage = currentIndex > 0 ? pages[currentIndex - 1] : null;
   const nextPage =
@@ -53,8 +53,8 @@ export const PageNavigation = ({
   return (
     <div
       className={cn(
-        "fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 bg-white/90 backdrop-blur-lg rounded-full shadow-lg border border-gray-200/50 px-4 py-2 transition-all duration-300 font-body",
-        className,
+        "font-body fixed bottom-8 left-1/2 z-40 -translate-x-1/2 transform rounded-full border border-gray-200/50 bg-white/90 px-4 py-2 shadow-lg backdrop-blur-lg transition-all duration-300",
+        className
       )}
     >
       <div className="flex items-center space-x-4">
@@ -64,17 +64,17 @@ export const PageNavigation = ({
             asChild
             variant="ghost"
             size="sm"
-            className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            className="flex items-center space-x-2 text-gray-600 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600"
           >
             <Link to={previousPage.path}>
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="h-4 w-4" />
               {showLabels && (
                 <span className="hidden sm:inline">{previousPage.name}</span>
               )}
             </Link>
           </Button>
         ) : (
-          <div className="w-8 h-8" />
+          <div className="h-8 w-8" />
         )}
 
         {/* Indicateur de page actuelle */}
@@ -88,14 +88,14 @@ export const PageNavigation = ({
                 key={page.path}
                 to={page.path}
                 className={cn(
-                  "w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200",
+                  "flex h-8 w-8 items-center justify-center rounded-full transition-all duration-200",
                   isActive
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white scale-110"
-                    : "text-gray-400 hover:text-blue-600 hover:bg-blue-50",
+                    ? "scale-110 bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                    : "text-gray-400 hover:bg-blue-50 hover:text-blue-600"
                 )}
                 title={page.name}
               >
-                <Icon className="w-4 h-4" />
+                <Icon className="h-4 w-4" />
               </Link>
             );
           })}
@@ -107,17 +107,17 @@ export const PageNavigation = ({
             asChild
             variant="ghost"
             size="sm"
-            className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            className="flex items-center space-x-2 text-gray-600 transition-all duration-200 hover:bg-blue-50 hover:text-blue-600"
           >
             <Link to={nextPage.path}>
               {showLabels && (
                 <span className="hidden sm:inline">{nextPage.name}</span>
               )}
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="h-4 w-4" />
             </Link>
           </Button>
         ) : (
-          <div className="w-8 h-8" />
+          <div className="h-8 w-8" />
         )}
       </div>
     </div>

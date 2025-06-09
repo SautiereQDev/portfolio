@@ -160,7 +160,7 @@ export const Contact = () => {
               duration: 0.8,
               ease: "power3.out",
             },
-            "-=0.6",
+            "-=0.6"
           )
           .from(
             ".hero-badges",
@@ -170,7 +170,7 @@ export const Contact = () => {
               duration: 0.6,
               ease: "power3.out",
             },
-            "-=0.4",
+            "-=0.4"
           );
       }
 
@@ -270,31 +270,31 @@ export const Contact = () => {
       <div id="intro">
         <section
           ref={heroRef}
-          className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden"
+          className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20"
         >
           <div className="absolute inset-0 opacity-30">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
           </div>
 
-          <div className="container mx-auto px-6 lg:px-8 relative z-10">
-            <div className="text-center space-y-8">
-              <div className="hero-badges flex justify-center gap-2 mb-6">
-                <Badge className="bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0">
-                  <MessageSquare className="w-3 h-3 mr-1" />
+          <div className="relative z-10 container mx-auto px-6 lg:px-8">
+            <div className="space-y-8 text-center">
+              <div className="hero-badges mb-6 flex justify-center gap-2">
+                <Badge className="border-0 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800">
+                  <MessageSquare className="mr-1 h-3 w-3" />
                   Disponible
                 </Badge>
-                <Badge className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 border-0">
-                  <Clock className="w-3 h-3 mr-1" />
+                <Badge className="border-0 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800">
+                  <Clock className="mr-1 h-3 w-3" />
                   Réponse 24h
                 </Badge>
               </div>
 
-              <h1 className="hero-title text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight">
+              <h1 className="hero-title bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-6xl">
                 Créons ensemble
                 <span className="block">quelque chose de génial</span>
               </h1>
 
-              <p className="hero-subtitle text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="hero-subtitle mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
                 Vous avez un projet en tête ? Discutons de vos idées et
                 donnons-leur vie ensemble. Je suis là pour transformer votre
                 vision en réalité digitale.
@@ -305,10 +305,10 @@ export const Contact = () => {
       </div>
       {/* Contact Methods */}
       <div id="contact-info">
-        <AnimatedSection className="py-16 bg-gray-50">
+        <AnimatedSection className="bg-gray-50 py-16">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <div className="mb-12 text-center">
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
                 Comment me contacter
               </h2>
               <p className="text-xl text-gray-600">
@@ -318,29 +318,29 @@ export const Contact = () => {
 
             <div
               ref={contactCardsRef}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+              className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3"
             >
               {contactMethods.map((method, index) => (
                 <Card
                   key={index}
-                  className="contact-card bg-white border-gray-200 hover:shadow-lg transition-all duration-300 group h-full"
+                  className="contact-card group h-full border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
                 >
-                  <CardContent className="p-6 text-center h-full flex flex-col justify-between">
+                  <CardContent className="flex h-full flex-col justify-between p-6 text-center">
                     <div>
-                      <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <method.icon className="w-6 h-6 text-white" />
+                      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
+                        <method.icon className="h-6 w-6 text-white" />
                       </div>
-                      <h3 className="text-gray-900 font-semibold text-lg mb-2">
+                      <h3 className="mb-2 text-lg font-semibold text-gray-900">
                         {method.title}
                       </h3>
                       <a
                         href={method.link}
-                        className="text-blue-600 hover:text-blue-800 transition-colors duration-200 block mb-2 font-medium"
+                        className="mb-2 block font-medium text-blue-600 transition-colors duration-200 hover:text-blue-800"
                       >
                         {method.value}
                       </a>
                     </div>
-                    <p className="text-gray-500 text-sm mt-auto">
+                    <p className="mt-auto text-sm text-gray-500">
                       {method.description}
                     </p>
                   </CardContent>
@@ -351,11 +351,11 @@ export const Contact = () => {
         </AnimatedSection>
       </div>
       {/* Main Content */}
-      <div id="form" className="container mx-auto px-6 lg:px-8 pb-16 mt-12">
-        <div className="grid lg:grid-cols-2 gap-12">
+      <div id="form" className="container mx-auto mt-12 px-6 pb-16 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Form */}
           <AnimatedSection>
-            <Card className="bg-white border-gray-200 shadow-lg">
+            <Card className="border-gray-200 bg-white shadow-lg">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-gray-900">
                   Envoyez-moi un message
@@ -367,9 +367,9 @@ export const Contact = () => {
               </CardHeader>
               <CardContent>
                 {isSubmitted ? (
-                  <div className="success-message text-center py-8">
-                    <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <div className="success-message py-8 text-center">
+                    <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-500" />
+                    <h3 className="mb-2 text-xl font-semibold text-gray-900">
                       Message envoyé avec succès !
                     </h3>
                     <p className="text-gray-600">
@@ -383,61 +383,61 @@ export const Contact = () => {
                     className="space-y-6"
                   >
                     <div className="form-field">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
                         Nom *
                       </label>
                       <Input
                         {...register("name")}
                         placeholder="Votre nom complet"
-                        className="border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                       />
                       {errors.name && (
-                        <p className="text-red-500 text-sm mt-1">
+                        <p className="mt-1 text-sm text-red-500">
                           {errors.name.message}
                         </p>
                       )}
                     </div>
 
                     <div className="form-field">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
                         Entreprise
                       </label>
                       <Input
                         {...register("company")}
                         placeholder="Votre entreprise ou organisation"
-                        className="border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                       />
                     </div>
 
                     <div className="form-field">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
                         Email *
                       </label>
                       <Input
                         type="email"
                         {...register("email")}
                         placeholder="votre@email.com"
-                        className="border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                       />
                       {errors.email && (
-                        <p className="text-red-500 text-sm mt-1">
+                        <p className="mt-1 text-sm text-red-500">
                           {errors.email.message}
                         </p>
                       )}
                     </div>
 
                     <div className="form-field">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
                         Message *
                       </label>
                       <Textarea
                         {...register("message")}
                         placeholder="Décrivez votre projet, vos besoins ou posez-moi vos questions..."
                         rows={6}
-                        className="border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
                       />
                       {errors.message && (
-                        <p className="text-red-500 text-sm mt-1">
+                        <p className="mt-1 text-sm text-red-500">
                           {errors.message.message}
                         </p>
                       )}
@@ -446,16 +446,16 @@ export const Contact = () => {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 rounded-xl transition-all duration-300 transform hover:scale-105"
+                      className="w-full transform rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700"
                     >
                       {isSubmitting ? (
                         <div className="flex items-center justify-center">
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-b-2 border-white"></div>
                           Envoi en cours...
                         </div>
                       ) : (
                         <div className="flex items-center justify-center">
-                          <Send className="w-4 h-4 mr-2" />
+                          <Send className="mr-2 h-4 w-4" />
                           Envoyer le message
                         </div>
                       )}
@@ -463,19 +463,18 @@ export const Contact = () => {
                   </form>
                 )}
 
-                <div className="mt-6 pt-6 border-t border-gray-200">
-                  <p className="text-gray-500 text-sm text-center mb-4">
+                <div className="mt-6 border-t border-gray-200 pt-6">
+                  <p className="mb-4 text-center text-sm text-gray-500">
                     Ou contactez-moi directement :
                   </p>
                   <div className="flex justify-center">
-
                     <Button
                       asChild
                       variant="outline"
                       className="border-blue-200 text-blue-600 hover:bg-blue-50"
                     >
                       <a href="mailto:contact@quentinsautiere.com">
-                        <Mail className="w-4 h-4 mr-2" />
+                        <Mail className="mr-2 h-4 w-4" />
                         Ouvrir l&apos;application mail
                       </a>
                     </Button>
@@ -489,10 +488,10 @@ export const Contact = () => {
           <div className="space-y-8">
             {/* Social Links */}
             <AnimatedSection>
-              <Card className="bg-white border-gray-200 shadow-lg">
+              <Card className="border-gray-200 bg-white shadow-lg">
                 <CardHeader>
-                  <CardTitle className="text-xl font-bold text-gray-900 flex items-center">
-                    <Globe className="w-5 h-5 mr-2" />
+                  <CardTitle className="flex items-center text-xl font-bold text-gray-900">
+                    <Globe className="mr-2 h-5 w-5" />
                     Retrouvez-moi sur
                   </CardTitle>
                 </CardHeader>
@@ -504,12 +503,12 @@ export const Contact = () => {
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex flex-col items-center p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-all duration-300 group"
+                        className="group flex flex-col items-center rounded-lg bg-gray-50 p-4 transition-all duration-300 hover:bg-gray-100"
                       >
                         <social.icon
-                          className={`w-6 h-6 text-gray-600 ${social.color} transition-colors duration-300 mb-2`}
+                          className={`h-6 w-6 text-gray-600 ${social.color} mb-2 transition-colors duration-300`}
                         />
-                        <span className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors duration-300">
+                        <span className="text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-900">
                           {social.name}
                         </span>
                       </a>
@@ -523,11 +522,11 @@ export const Contact = () => {
       </div>
       {/* FAQ Section */}
       <div id="faq">
-        <AnimatedSection className="faq-section py-16 bg-gray-50">
+        <AnimatedSection className="faq-section bg-gray-50 py-16">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-12 text-center">
+                <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
                   Questions fréquentes
                 </h2>
                 <p className="text-xl text-gray-600">
@@ -535,19 +534,19 @@ export const Contact = () => {
                 </p>
               </div>
 
-              <Card className="bg-white border-gray-200 shadow-lg">
+              <Card className="border-gray-200 bg-white shadow-lg">
                 <CardContent className="p-8">
                   <div className="space-y-6">
                     {faqs.map((faq, index) => (
                       <div key={index} className="faq-item">
-                        <h4 className="text-gray-900 font-semibold text-lg mb-3">
+                        <h4 className="mb-3 text-lg font-semibold text-gray-900">
                           {faq.question}
                         </h4>
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="leading-relaxed text-gray-600">
                           {faq.answer}
                         </p>
                         {index < faqs.length - 1 && (
-                          <div className="border-b border-gray-200 mt-6" />
+                          <div className="mt-6 border-b border-gray-200" />
                         )}
                       </div>
                     ))}

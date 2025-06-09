@@ -61,7 +61,7 @@ export const Footer = () => {
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
 
     if (footerRef.current) {
@@ -74,24 +74,24 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="bg-gradient-to-br from-gray-900 to-gray-800 text-white font-[Manrope]"
+      className="bg-gradient-to-br from-gray-900 to-gray-800 font-[Manrope] text-white"
     >
-      <div className="container mx-auto px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-4 gap-12">
+      <div className="container mx-auto px-6 py-16 lg:px-8">
+        <div className="grid gap-12 md:grid-cols-4">
           {/* Logo et description */}
-          <div className="md:col-span-2 space-y-6">
+          <div className="space-y-6 md:col-span-2">
             <div>
-              <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              <h3 className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-2xl font-bold text-transparent">
                 Quentin Sautière
               </h3>
-              <p className="text-gray-300 mt-2">
+              <p className="mt-2 text-gray-300">
                 Développeur Full-Stack & Designer
               </p>
             </div>
-            <p className="text-gray-400 leading-relaxed max-w-md">
-              Passionné par la création d&apos;expériences digitales exceptionnelles.
-              Je transforme vos idées en solutions techniques innovantes et
-              performantes.
+            <p className="max-w-md leading-relaxed text-gray-400">
+              Passionné par la création d&apos;expériences digitales
+              exceptionnelles. Je transforme vos idées en solutions techniques
+              innovantes et performantes.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -100,10 +100,10 @@ export const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 bg-gray-800 rounded-lg text-gray-400 transition-all duration-300 hover:bg-gray-700 ${social.color} hover:scale-110`}
+                  className={`rounded-lg bg-gray-800 p-3 text-gray-400 transition-all duration-300 hover:bg-gray-700 ${social.color} hover:scale-110`}
                   aria-label={social.name}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="h-5 w-5" />
                 </a>
               ))}
             </div>
@@ -117,7 +117,7 @@ export const Footer = () => {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className="text-gray-400 hover:text-white transition-colors duration-500 hover:translate-x-1 transform inline-block"
+                    className="inline-block transform text-gray-400 transition-colors duration-500 hover:translate-x-1 hover:text-white"
                   >
                     {link.name}
                   </Link>
@@ -134,7 +134,7 @@ export const Footer = () => {
                 <li key={link.name}>
                   <a
                     href={link.url}
-                    className="text-gray-400 hover:text-white transition-colors duration-500 hover:translate-x-1 transform inline-block"
+                    className="inline-block transform text-gray-400 transition-colors duration-500 hover:translate-x-1 hover:text-white"
                   >
                     {link.name}
                   </a>
@@ -145,14 +145,14 @@ export const Footer = () => {
         </div>
 
         {/* Ligne de séparation */}
-        <div className="border-t border-gray-700 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm">
+        <div className="mt-12 border-t border-gray-700 pt-8">
+          <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
+            <p className="text-sm text-gray-400">
               &copy; {new Date().getFullYear()} Quentin Sautière. Tous droits
               réservés.
             </p>
-            <p className="text-gray-400 text-sm flex items-center gap-1">
-              Fait avec le <Heart className="w-4 h-4 text-red-500" /> depuis La
+            <p className="flex items-center gap-1 text-sm text-gray-400">
+              Fait avec le <Heart className="h-4 w-4 text-red-500" /> depuis La
               Rochelle
             </p>
           </div>

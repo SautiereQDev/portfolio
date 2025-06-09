@@ -27,7 +27,7 @@ export const About = () => {
     { id: "interests", title: "Passions", icon: Heart },
   ];
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-body">
+    <div className="font-body min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <SEO page="about" />
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
@@ -42,19 +42,19 @@ export const About = () => {
       <div id="intro">
         <AnimatedSection className="relative overflow-hidden py-12">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+          <div className="relative z-10 container mx-auto px-4">
+            <div className="mx-auto max-w-4xl text-center">
               <div className="mb-8">
                 <img
                   src={banner}
                   alt="À propos"
-                  className="w-64 mx-auto mb-8 drop-shadow-2xl"
+                  className="mx-auto mb-8 w-64 drop-shadow-2xl"
                 />
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6 leading-tight">
+              <h1 className="mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-6xl">
                 Développeur web et logiciel
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 md:text-xl">
                 Développeur et concepteur Web depuis plus de cinq ans. Je suis
                 un amoureux de la création de sites web esthétiques et
                 fonctionnels et je contribue au développement de sociétés grâce
@@ -69,25 +69,25 @@ export const About = () => {
       <div id="profile">
         <AnimatedSection className="py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-                <CardHeader className="text-center pb-8">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <User className="w-8 h-8 text-white" />
+            <div className="mx-auto max-w-4xl">
+              <Card className="border-0 bg-white/80 p-8 shadow-2xl backdrop-blur-sm">
+                <CardHeader className="pb-8 text-center">
+                  <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500">
+                    <User className="h-8 w-8 text-white" />
                   </div>
-                  <CardTitle className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <CardTitle className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
                     À propos de moi
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-lg text-gray-700 leading-relaxed text-center">
+                  <p className="text-center text-lg leading-relaxed text-gray-700">
                     Étudiant en deuxième année de licence informatique à
                     l&apos;Université de La Rochelle, je suis passionné par les
-                    nouvelles technologies et l&apos;innovation. J&apos;aime relever des
-                    défis et mener mes projets avec rigueur et créativité. En
-                    parallèle, je me dépasse également sur la piste en
-                    compétition de demi-fond, où persévérance et performance
-                    sont mes maîtres-mots.
+                    nouvelles technologies et l&apos;innovation. J&apos;aime
+                    relever des défis et mener mes projets avec rigueur et
+                    créativité. En parallèle, je me dépasse également sur la
+                    piste en compétition de demi-fond, où persévérance et
+                    performance sont mes maîtres-mots.
                   </p>
                 </CardContent>
               </Card>
@@ -98,14 +98,14 @@ export const About = () => {
 
       {/* Éducation */}
       <div id="education">
-        <AnimatedSection className="py-20 bg-white/50">
+        <AnimatedSection className="bg-white/50 py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <GraduationCap className="w-8 h-8 text-white" />
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-12 text-center">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-indigo-500 to-blue-500">
+                  <GraduationCap className="h-8 w-8 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
                   Formation
                 </h2>
               </div>
@@ -113,34 +113,33 @@ export const About = () => {
                 {about.education.map((item, index) => (
                   <Card
                     key={index}
-                    className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 group hover:scale-[1.02]"
+                    className="group border-0 bg-white/80 p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                   >
-
                     <div className="flex items-start gap-4">
                       {/* Logos conditionnels selon la formation */}
                       {item.title === "Licence Informatique" ? (
                         <img
                           src="/logo_lr_univ.png"
                           alt="Université de La Rochelle"
-                          className="w-12 h-12 object-contain rounded-full"
+                          className="h-12 w-12 rounded-full object-contain"
                         />
                       ) : item.title === "CQP IV - Moniteur de voile" ? (
                         <img
                           src="/glenans.png"
                           alt="École de voile des Glénans"
-                          className="w-12 h-12 object-contain rounded-full border border-gray-400"
+                          className="h-12 w-12 rounded-full border border-gray-400 object-contain"
                         />
                       ) : (
-                        <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                          <GraduationCap className="w-6 h-6 text-white" />
+                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
+                          <GraduationCap className="h-6 w-6 text-white" />
                         </div>
                       )}
                       <div className="flex-grow">
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                        <h3 className="mb-2 text-xl font-semibold text-gray-800">
                           {item.title}
                         </h3>
-                        <p className="text-gray-600 mb-1">{item.date}</p>
-                        <p className="text-gray-600 mb-2">{item.school}</p>
+                        <p className="mb-1 text-gray-600">{item.date}</p>
+                        <p className="mb-2 text-gray-600">{item.school}</p>
                         {item.mention && (
                           <Badge
                             variant="secondary"
@@ -163,23 +162,23 @@ export const About = () => {
       <div id="skills">
         <AnimatedSection className="py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Star className="w-8 h-8 text-white" />
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-12 text-center">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500">
+                  <Star className="h-8 w-8 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
                   Compétences
                 </h2>
               </div>
 
-              <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-                <div className="flex flex-wrap gap-3 justify-center">
+              <Card className="border-0 bg-white/80 p-8 shadow-2xl backdrop-blur-sm">
+                <div className="flex flex-wrap justify-center gap-3">
                   {about.skills.map((skill, index) => (
                     <Badge
                       key={index}
                       variant="outline"
-                      className="px-4 py-2 text-lg font-medium border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 cursor-default hover:scale-105"
+                      className="cursor-default border-2 border-blue-200 px-4 py-2 text-lg font-medium transition-all duration-300 hover:scale-105 hover:border-blue-400 hover:bg-blue-50"
                     >
                       {skill}
                     </Badge>
@@ -193,24 +192,24 @@ export const About = () => {
 
       {/* Passions */}
       <div id="interests">
-        <AnimatedSection className="py-20 bg-white/50">
+        <AnimatedSection className="bg-white/50 py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-12">
-                <div className="w-16 h-16 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Heart className="w-8 h-8 text-white" />
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-12 text-center">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-pink-500 to-red-500">
+                  <Heart className="h-8 w-8 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <h2 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent">
                   Passions
                 </h2>
               </div>
 
-              <Card className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm">
-                <div className="flex flex-wrap gap-4 justify-center">
+              <Card className="border-0 bg-white/80 p-8 shadow-2xl backdrop-blur-sm">
+                <div className="flex flex-wrap justify-center gap-4">
                   {about.interests.map((interest, index) => (
                     <Badge
                       key={index}
-                      className="px-6 py-3 text-lg font-medium bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white border-0 transition-all duration-300 cursor-default hover:scale-105"
+                      className="cursor-default border-0 bg-gradient-to-r from-pink-500 to-red-500 px-6 py-3 text-lg font-medium text-white transition-all duration-300 hover:scale-105 hover:from-pink-600 hover:to-red-600"
                     >
                       {interest}
                     </Badge>

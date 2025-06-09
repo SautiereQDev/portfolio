@@ -86,7 +86,8 @@ export const Home = () => {
       description:
         "Améliorez votre visibilité en ligne avec une stratégie SEO efficace : mots-clés, optimisation on-page et plus encore.",
     },
-  ]; return (
+  ];
+  return (
     <div className="min-h-screen bg-white font-[Manrope]">
       <Seo page="home" />
       {/* Navigation par sections */}
@@ -100,11 +101,10 @@ export const Home = () => {
 
       {/* Hero Section */}
       <div id="hero">
-
         <HeroSection
-          title="Salut, moi c&apos;est Quentin&nbsp;!" // espace insécable pour éviter la coupure du nom
+          title="Salut, moi c'est Quentin&nbsp;!" // espace insécable pour éviter la coupure du nom
           subtitle="Développeur Full-Stack & Designer"
-          description="Développeur Web full-stack avec plus de 5 ans d&apos;expérience personnelle. Que vous ayez besoin d&apos;un site web simple, d&apos;une application web sur mesure ou d&apos;une solution e-commerce complète, je suis là pour concrétiser vos idées."
+          description="Développeur Web full-stack avec plus de 5 ans d'expérience personnelle. Que vous ayez besoin d'un site web simple, d'une application web sur mesure ou d'une solution e-commerce complète, je suis là pour concrétiser vos idées."
           ctaText="Voir mes offres"
           ctaLink="/services"
           imageUrl={homeBanner}
@@ -113,41 +113,42 @@ export const Home = () => {
 
       {/* Features Section */}
       <div id="features">
-        <AnimatedSection className="py-24 bg-gray-50">
+        <AnimatedSection className="bg-gray-50 py-24">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
                 Ce que je fais de mieux
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-xl text-gray-600">
                 Des solutions techniques modernes pour transformer vos idées en
                 réalité digitale
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (<AnimatedSection
-                key={feature.title}
-                animation="slideUp"
-                delay={index * 0.1}
-                className="h-full"
-              >
-                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white group">
-                  <CardHeader className="text-center pb-4">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <feature.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <CardTitle className="text-xl font-bold text-gray-900">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center">
-                    <CardDescription className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                  </CardContent>
-                </Card>
-              </AnimatedSection>
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {features.map((feature, index) => (
+                <AnimatedSection
+                  key={feature.title}
+                  animation="slideUp"
+                  delay={index * 0.1}
+                  className="h-full"
+                >
+                  <Card className="group h-full border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <CardHeader className="pb-4 text-center">
+                      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 transition-transform duration-300 group-hover:scale-110">
+                        <feature.icon className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-xl font-bold text-gray-900">
+                        {feature.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="text-center">
+                      <CardDescription className="leading-relaxed text-gray-600">
+                        {feature.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
               ))}
             </div>
           </div>
@@ -158,19 +159,19 @@ export const Home = () => {
       <div id="services">
         <AnimatedSection className="py-24">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <Badge className="mb-4 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800 border-0">
+            <div className="mb-16 text-center">
+              <Badge className="mb-4 border-0 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800">
                 Services
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
                 Les services que je propose
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-xl text-gray-600">
                 Des solutions adaptées à vos besoins, du site vitrine à
                 l&apos;application complexe
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
                 <AnimatedSection
                   key={service.title}
@@ -178,17 +179,17 @@ export const Home = () => {
                   delay={index * 0.1}
                   className="h-full"
                 >
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white group">
-                    <CardHeader className="text-center pb-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                        <service.icon className="w-8 h-8 text-white" />
+                  <Card className="group h-full border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+                    <CardHeader className="pb-4 text-center">
+                      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 transition-transform duration-300 group-hover:scale-110">
+                        <service.icon className="h-8 w-8 text-white" />
                       </div>
                       <CardTitle className="text-xl font-bold text-gray-900">
                         {service.title}
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="text-center">
-                      <CardDescription className="text-gray-600 leading-relaxed">
+                      <CardDescription className="leading-relaxed text-gray-600">
                         {service.description}
                       </CardDescription>
                     </CardContent>
@@ -200,7 +201,7 @@ export const Home = () => {
               <Button
                 asChild
                 size="lg"
-                className="relative overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 group"
+                className="group relative transform overflow-hidden bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl"
               >
                 <Link
                   to="/services"
@@ -209,9 +210,9 @@ export const Home = () => {
                   <span className="relative z-10">
                     Découvrir tous mes services
                   </span>
-                  <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  <ArrowRight className="relative z-10 h-4 w-4 transform transition-transform duration-300 group-hover:translate-x-1" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                  <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
                 </Link>
               </Button>
             </div>
@@ -220,16 +221,16 @@ export const Home = () => {
       </div>
 
       {/* CTA Section */}
-      <AnimatedSection className="py-24 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="container mx-auto px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+      <AnimatedSection className="bg-gradient-to-r from-blue-600 to-purple-600 py-24">
+        <div className="container mx-auto px-6 text-center lg:px-8">
+          <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
             Prêt à donner vie à votre projet ?
           </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+          <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
             Discutons de votre projet et voyons comment je peux vous aider à
             atteindre vos objectifs
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
             <Button
               asChild
               size="lg"

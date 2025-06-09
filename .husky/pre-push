@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Hook exécuté avant un push
+# Validation complète du projet
+echo "🔍 Validation du projet avant push..."
+
+# Vérifier les types TypeScript
+echo "📝 Vérification des types TypeScript..."
+npm run type-check
+
+# Linter tout le projet
+echo "🔧 Linting du projet..."
+npm run lint
+
+# Vérifier le formatage
+echo "💅 Vérification du formatage..."
+npm run format:check
+
+# Build pour s'assurer que tout compile
+echo "🏗️ Test de compilation..."
+npm run build
+
+echo "✅ Toutes les vérifications sont passées ! Push autorisé."

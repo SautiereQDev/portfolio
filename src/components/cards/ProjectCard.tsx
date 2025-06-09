@@ -23,7 +23,6 @@ interface ProjectCardProps {
   technos: string[];
 }
 
-
 export const ProjectCard = ({
   title,
   description,
@@ -86,10 +85,9 @@ export const ProjectCard = ({
 
   return (
     <AnimatedSection animation="slideUp" className="w-full">
-
       <Card
         ref={cardRef}
-        className="group overflow-hidden border-0 bg-gradient-to-br from-white to-gray-50/50 transition-all duration-300 hover:border-primary/20"
+        className="group hover:border-primary/20 overflow-hidden border-0 bg-gradient-to-br from-white to-gray-50/50 transition-all duration-300"
       >
         {/* Image avec overlay gradient */}
         <div className="relative overflow-hidden rounded-t-lg">
@@ -106,20 +104,19 @@ export const ProjectCard = ({
 
           {/* Badges flottants */}
           <div className="absolute top-4 right-4 flex gap-2">
-
             {visit_link && (
               <Badge variant="secondary" className="bg-white/90 text-gray-900">
                 Live
               </Badge>
             )}
-            <Badge variant="outline" className="bg-white/90 border-white/50">
+            <Badge variant="outline" className="border-white/50 bg-white/90">
               {technos[0]}
             </Badge>
           </div>
         </div>
 
         <CardHeader className="pb-4">
-          <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+          <CardTitle className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-xl font-bold text-transparent">
             {title}
           </CardTitle>
           <CardDescription className="text-sm leading-relaxed text-gray-600">
@@ -130,7 +127,7 @@ export const ProjectCard = ({
         <CardContent className="space-y-6">
           {/* Points clés avec icônes */}
           <div className="space-y-3">
-            <h4 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
+            <h4 className="flex items-center gap-2 text-sm font-semibold text-gray-900">
               <CheckCircle className="h-4 w-4 text-emerald-500" />
               Points clés
             </h4>
@@ -141,7 +138,7 @@ export const ProjectCard = ({
                   className="flex items-start gap-3 text-sm text-gray-600"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex-shrink-0" />
+                  <div className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500" />
                   <span className="leading-relaxed">{point}</span>
                 </li>
               ))}
@@ -158,7 +155,7 @@ export const ProjectCard = ({
                 <Badge
                   key={tech}
                   variant="secondary"
-                  className="bg-gradient-to-r from-blue-50 to-purple-50 text-gray-700 border border-blue-100 hover:border-blue-200 transition-colors duration-200"
+                  className="border border-blue-100 bg-gradient-to-r from-blue-50 to-purple-50 text-gray-700 transition-colors duration-200 hover:border-blue-200"
                   style={{ animationDelay: `${index * 0.05}s` }}
                 >
                   {tech}
@@ -177,7 +174,7 @@ export const ProjectCard = ({
           {visit_link ? (
             <Button
               asChild
-              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+              className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl"
             >
               <a
                 href={visit_link}
@@ -190,8 +187,8 @@ export const ProjectCard = ({
               </a>
             </Button>
           ) : (
-            <Button disabled className="flex-1 opacity-50 cursor-not-allowed">
-              <ExternalLink className="h-4 w-4 mr-2" />
+            <Button disabled className="flex-1 cursor-not-allowed opacity-50">
+              <ExternalLink className="mr-2 h-4 w-4" />
               Visiter
             </Button>
           )}
@@ -199,7 +196,7 @@ export const ProjectCard = ({
           <Button
             asChild
             variant="outline"
-            className="flex-1 border-gray-200 hover:bg-gray-50 transition-all duration-300 hover:border-gray-300"
+            className="flex-1 border-gray-200 transition-all duration-300 hover:border-gray-300 hover:bg-gray-50"
           >
             <a
               href={github_link}

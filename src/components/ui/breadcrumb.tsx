@@ -49,20 +49,20 @@ export const Breadcrumb = ({ className, showHome = true }: BreadcrumbProps) => {
           return (
             <li key={item.path} className="flex items-center">
               {index > 0 && (
-                <ChevronRight className="w-4 h-4 text-gray-400 mx-2" />
+                <ChevronRight className="mx-2 h-4 w-4 text-gray-400" />
               )}
 
               {isLast ? (
-                <span className="flex items-center space-x-1 text-gray-900 font-medium">
-                  {Icon && <Icon className="w-4 h-4" />}
+                <span className="flex items-center space-x-1 font-medium text-gray-900">
+                  {Icon && <Icon className="h-4 w-4" />}
                   <span>{item.name}</span>
                 </span>
               ) : (
                 <Link
                   to={item.path}
-                  className="flex items-center space-x-1 text-gray-500 hover:text-blue-600 transition-colors duration-200"
+                  className="flex items-center space-x-1 text-gray-500 transition-colors duration-200 hover:text-blue-600"
                 >
-                  {Icon && <Icon className="w-4 h-4" />}
+                  {Icon && <Icon className="h-4 w-4" />}
                   <span>{item.name}</span>
                 </Link>
               )}

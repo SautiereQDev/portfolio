@@ -108,7 +108,7 @@ export const Service = () => {
             start: "top 80%",
             once: true,
           },
-        },
+        }
       );
     });
 
@@ -128,12 +128,12 @@ export const Service = () => {
             start: "top 85%",
             once: true,
           },
-        },
+        }
       );
     });
   }, []);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-body">
+    <div className="font-body min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
       {/* Breadcrumb */}
@@ -146,19 +146,19 @@ export const Service = () => {
       <div id="intro">
         <AnimatedSection className="relative overflow-hidden py-20">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
-          <div className="container mx-auto px-4 relative z-10 ">
-            <div className="max-w-4xl mx-auto text-center ">
-              <div className="mb-8 ">
+          <div className="relative z-10 container mx-auto px-4">
+            <div className="mx-auto max-w-4xl text-center">
+              <div className="mb-8">
                 <img
                   src={banner}
                   alt="Services"
-                  className="w-64 mx-auto mb-8 drop-shadow-2xl"
+                  className="mx-auto mb-8 w-64 drop-shadow-2xl"
                 />
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+              <h1 className="mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
                 Développement Web
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+              <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 md:text-xl">
                 Je suis spécialisé dans le développement Web full-stack, qui
                 comprend à la fois le travail front-end et back-end. Je peux
                 vous aider avec tout, des simples pages de destination aux
@@ -173,9 +173,9 @@ export const Service = () => {
       <div id="pricing">
         <AnimatedSection className="py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+            <div className="mx-auto max-w-6xl">
+              <div className="mb-16 text-center">
+                <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
                   Mes Offres
                 </h2>
                 <p className="text-lg text-gray-600">
@@ -183,32 +183,32 @@ export const Service = () => {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
                 {/* Site Vitrine */}
                 <Card
                   data-service-card
-                  className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm hover:scale-105 transition-all duration-300 group"
+                  className="group border-0 bg-white/80 p-8 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
                 >
-                  <CardHeader className="text-center pb-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <Globe className="w-8 h-8 text-white" />
+                  <CardHeader className="pb-6 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-transform duration-300 group-hover:scale-110">
+                      <Globe className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="text-2xl font-bold text-gray-800 mb-2">
+                    <CardTitle className="mb-2 text-2xl font-bold text-gray-800">
                       Site Vitrine
                     </CardTitle>
                     <div className="text-center">
-                      <span className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-4xl font-bold text-transparent">
                         700€
                       </span>
-                      <span className="text-gray-600 text-lg">/site</span>
+                      <span className="text-lg text-gray-600">/site</span>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
                       {serviceDetails.simple.map((feature, index) => (
                         <div key={index} className="flex items-center gap-3">
-                          <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <Check className="w-3 h-3 text-green-600" />
+                          <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+                            <Check className="h-3 w-3 text-green-600" />
                           </div>
                           <span className="text-gray-700">{feature}</span>
                         </div>
@@ -220,42 +220,42 @@ export const Service = () => {
                 {/* Site Complexe */}
                 <Card
                   data-service-card
-                  className="p-8 shadow-2xl border-0 bg-white/80 backdrop-blur-sm hover:scale-105 transition-all duration-300 group relative overflow-hidden"
+                  className="group relative overflow-hidden border-0 bg-white/80 p-8 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
                 >
                   <div className="absolute top-4 right-4">
                     <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
-                      <Star className="w-3 h-3 mr-1" />
+                      <Star className="mr-1 h-3 w-3" />
                       Populaire
                     </Badge>
                   </div>
-                  <CardHeader className="text-center pb-6">
-                    <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                      <Database className="w-8 h-8 text-white" />
+                  <CardHeader className="pb-6 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 transition-transform duration-300 group-hover:scale-110">
+                      <Database className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="text-2xl font-bold text-gray-800 mb-2">
+                    <CardTitle className="mb-2 text-2xl font-bold text-gray-800">
                       Site Web Complexe
                     </CardTitle>
                     <div className="text-center">
-                      <span className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                      <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-4xl font-bold text-transparent">
                         +2000€
                       </span>
-                      <span className="text-gray-600 text-lg">/site</span>
+                      <span className="text-lg text-gray-600">/site</span>
                     </div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-3">
-                      <div className="flex items-center gap-3 p-2 bg-blue-50 rounded-lg">
-                        <div className="w-5 h-5 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                          <Star className="w-3 h-3 text-blue-600" />
+                      <div className="flex items-center gap-3 rounded-lg bg-blue-50 p-2">
+                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
+                          <Star className="h-3 w-3 text-blue-600" />
                         </div>
-                        <span className="text-blue-700 font-medium">
+                        <span className="font-medium text-blue-700">
                           Inclut toutes les fonctionnalités du plan précédent
                         </span>
                       </div>
                       {serviceDetails.complex.map((feature, index) => (
                         <div key={index} className="flex items-center gap-3">
-                          <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                            <Check className="w-3 h-3 text-green-600" />
+                          <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+                            <Check className="h-3 w-3 text-green-600" />
                           </div>
                           <span className="text-gray-700">{feature}</span>
                         </div>
@@ -271,11 +271,11 @@ export const Service = () => {
 
       {/* Process Section */}
       <div id="process">
-        <AnimatedSection className="py-20 bg-white/50">
+        <AnimatedSection className="bg-white/50 py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-16 text-center">
+                <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
                   Comment ça marche
                 </h2>
                 <p className="text-lg text-gray-600">
@@ -288,19 +288,19 @@ export const Service = () => {
                   <div
                     key={index}
                     data-process-step
-                    className="flex items-start gap-6 group"
+                    className="group flex items-start gap-6"
                   >
                     <div className="flex flex-col items-center">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <step.icon className="w-6 h-6 text-white" />
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
+                        <step.icon className="h-6 w-6 text-white" />
                       </div>
                       {index < processSteps.length - 1 && (
-                        <div className="w-0.5 h-16 bg-gradient-to-b from-blue-300 to-purple-300 mt-4" />
+                        <div className="mt-4 h-16 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300" />
                       )}
                     </div>
                     <div className="flex-grow">
-                      <Card className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm">
-                        <div className="flex justify-between items-start mb-3">
+                      <Card className="border-0 bg-white/80 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
+                        <div className="mb-3 flex items-start justify-between">
                           <h3 className="text-xl font-semibold text-gray-800">
                             {step.title}
                           </h3>
@@ -326,9 +326,9 @@ export const Service = () => {
       <div id="additional">
         <AnimatedSection className="py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+            <div className="mx-auto max-w-4xl">
+              <div className="mb-16 text-center">
+                <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
                   Services Additionnels
                 </h2>
                 <p className="text-lg text-gray-600">
@@ -336,21 +336,21 @@ export const Service = () => {
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid gap-8 md:grid-cols-2">
                 {additionalServices.map((service, index) => (
                   <Card
                     key={index}
-                    className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm group hover:scale-105"
+                    className="group border-0 bg-white/80 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        <service.icon className="w-6 h-6 text-white" />
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
+                        <service.icon className="h-6 w-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                        <h3 className="mb-2 text-xl font-semibold text-gray-800">
                           {service.title}
                         </h3>
-                        <p className="text-gray-600 leading-relaxed">
+                        <p className="leading-relaxed text-gray-600">
                           {service.description}
                         </p>
                       </div>
@@ -365,24 +365,24 @@ export const Service = () => {
 
       {/* CTA Section */}
       <div id="contact">
-        <AnimatedSection className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+        <AnimatedSection className="bg-gradient-to-r from-blue-600 to-purple-600 py-20 text-white">
           <div className="container mx-auto px-4 text-center">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <div className="mx-auto max-w-3xl">
+              <h2 className="mb-6 text-3xl font-bold md:text-4xl">
                 Prêt à donner vie à votre projet ?
               </h2>
-              <p className="text-xl mb-8 text-blue-100">
-                Contactez-moi dès aujourd&apos;hui pour discuter de vos besoins et
-                obtenir un devis personnalisé.
+              <p className="mb-8 text-xl text-blue-100">
+                Contactez-moi dès aujourd&apos;hui pour discuter de vos besoins
+                et obtenir un devis personnalisé.
               </p>
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-6 rounded-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                className="rounded-xl bg-white px-8 py-6 text-lg font-semibold text-blue-600 shadow-xl transition-all duration-300 hover:bg-gray-100 hover:shadow-2xl"
               >
                 <Link to="/contact" className="inline-flex items-center gap-2">
                   Me contacter
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="h-5 w-5" />
                 </Link>
               </Button>
             </div>
