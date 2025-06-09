@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ChevronDown } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,12 +22,12 @@ export const HeroSection = ({
   ctaLink,
   imageUrl,
 }: HeroSectionProps) => {
-  const heroRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null); const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+  const chevronRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const tl = gsap.timeline(); // Animation d&apos;entrée plus rapide
     tl.from(imageRef.current, {
@@ -70,7 +71,17 @@ export const HeroSection = ({
           ease: "back.out(1.4)",
         },
         "-=0.3",
-      );    // Animation parallax sur l&apos;image - plus fluide
+      );    // Animation d'apparition du chevron - simple et élégante
+    tl.fromTo(chevronRef.current, {
+      y: 10,
+      opacity: 0,
+    }, {
+      y: 0,
+      opacity: 0.8, // Opacité légèrement augmentée pour plus de visibilité
+      duration: 1.2,
+      ease: "power2.out",
+      delay: 1.5, // Apparaît après que tout le contenu soit visible
+    });// Animation parallax sur l&apos;image - plus fluide
     ScrollTrigger.create({
       trigger: heroRef.current,
       start: "top top",
@@ -161,10 +172,45 @@ export const HeroSection = ({
               />
             </div>
             {/* Éléments décoratifs */}
-            <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-            <div className="absolute -bottom-4 -right-2 sm:-bottom-8 sm:-right-4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div className="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>            <div className="absolute -bottom-4 -right-2 sm:-bottom-8 sm:-right-4 w-32 h-32 sm:w-48 sm:h-48 lg:w-72 lg:h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
           </div>
         </div>
+      </div>      {/* Chevron animé pour inviter au scroll - version discrète */}
+      <div
+        ref={chevronRef}
+        className="absolute bottom-16 sm:bottom-20 lg:bottom-24 left-1/2 transform -translate-x-1/2 z-50"
+        style={{ opacity: 0 }}
+      >
+        <button
+          onClick={() => {
+            const nextSection = document.getElementById('features');
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }} className="group flex flex-col items-center cursor-pointer transition-all duration-300 hover:scale-105 hover:space-y-3 space-y-1"
+          aria-label="Défiler vers le bas"
+        >
+          {/* Texte d'indication - avec effet hover plus impactant */}
+          <span className="text-xs text-gray-500 opacity-80 group-hover:opacity-100 group-hover:text-blue-600 group-hover:font-medium transition-all duration-300 font-normal group-hover:scale-105">
+            Voir plus
+          </span>
+
+          {/* Chevron animé - avec effets hover impactants et centrage amélioré */}
+          <div className="relative flex items-center justify-center w-10 h-10">
+            {/* Cercle de fond qui apparaît au hover - mieux centré */}
+            <div className="absolute inset-0 rounded-full bg-blue-500/0 group-hover:bg-blue-500/10 border-2 border-transparent group-hover:border-blue-300/30 transition-all duration-300 group-hover:scale-110"></div>
+
+            {/* Effet de pulsation au hover - mieux centré */}
+            <div className="absolute inset-0 rounded-full bg-blue-400/0 group-hover:bg-blue-400/20 transition-all duration-300 group-hover:animate-ping"></div>            {/* Le chevron avec des effets améliorés - parfaitement centré */}            <ChevronDown
+              className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-all duration-300 drop-shadow-sm group-hover:drop-shadow-lg group-hover:scale-125 relative z-10 group-hover:animate-bounce"
+              style={{
+                animation: 'chevron-float 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                animationDelay: '2s',
+                willChange: 'transform, opacity'
+              }}
+            />
+          </div>
+        </button>
       </div>
     </section>
   );
