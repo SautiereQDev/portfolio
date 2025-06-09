@@ -1,0 +1,43 @@
+{
+    "pages": {
+        "home": {
+            "title": "Quentin Sautière - Développeur Full-Stack | Création de sites web et applications",
+            "description": "Développeur Full-Stack spécialisé en React, Node.js et TypeScript. Création de sites web, applications mobiles et solutions sur mesure. Plus de 5 ans d'expérience. Basé à La Rochelle, France.",
+            "keywords": "développeur full-stack, développeur web, React, Node.js, TypeScript, création site web, application mobile, La Rochelle, portfolio développeur, freelance",
+            "canonical": "https://quentinsautiere.com"
+        },
+        "about": {
+            "title": "À propos - Quentin Sautière | Étudiant en informatique et développeur passionné",
+            "description": "Découvrez mon parcours : étudiant en licence informatique à l'Université de La Rochelle, développeur full-stack avec 5 ans d'expérience, passionné de technologies et de course à pied.",
+            "keywords": "à propos, Quentin Sautière, étudiant informatique, Université La Rochelle, parcours développeur, compétences, formation, expérience",
+            "canonical": "https://quentinsautiere.com/about"
+        },
+        "projects": {
+            "title": "Projets - Portfolio de Quentin Sautière | Réalisations web et applications",
+            "description": "Découvrez mes projets de développement : sites web modernes, applications React, solutions full-stack. Exemples concrets de mon expertise en développement web.",
+            "keywords": "projets développeur, portfolio web, applications React, sites web, réalisations, développement full-stack, exemples projets",
+            "canonical": "https://quentinsautiere.com/projects"
+        },
+        "services": {
+            "title": "Services - Développement web sur mesure | Quentin Sautière",
+            "description": "Services de développement web : création de sites internet, applications mobiles, solutions e-commerce. Tarifs transparents et développement sur mesure pour votre projet.",
+            "keywords": "services développement web, création site internet, application mobile, e-commerce, tarifs développeur, devis web, freelance",
+            "canonical": "https://quentinsautiere.com/services"
+        },
+        "contact": {
+            "title": "Contact - Quentin Sautière | Développeur disponible pour vos projets",
+            "description": "Contactez-moi pour discuter de votre projet web. Développeur full-stack disponible pour créer votre site internet ou application. Réponse rapide garantie.",
+            "keywords": "contact développeur, devis site web, projet développement, freelance disponible, créer site internet, développeur La Rochelle",
+            "canonical": "https://quentinsautiere.com/contact"
+        }
+    },
+    "global": {
+        "siteName": "Quentin Sautière - Portfolio",
+        "author": "Quentin Sautière",
+        "twitterHandle": "@QuentinSautiere",
+        "defaultImage": "https://quentinsautiere.com/assets/images/profile_picture.png",
+        "baseUrl": "https://quentinsautiere.com",
+        "locale": "fr_FR",
+        "type": "website"
+    }
+}

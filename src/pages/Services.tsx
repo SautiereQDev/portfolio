@@ -63,7 +63,7 @@ const processSteps = [
     icon: Rocket,
     title: "Lancement du site",
     duration: "Instantané",
-    description: "Mise en ligne et formation à l'utilisation",
+    description: "Mise en ligne et formation à laposutilisation",
   },
 ];
 
@@ -72,13 +72,13 @@ const additionalServices = [
     icon: Wrench,
     title: "Maintenance & support",
     description:
-      "J'assure la maintenance et le support de votre site 1 an après la livraison, le service est renouvelable.",
+      "Japosassure la maintenance et le support de votre site 1 an après la livraison, le service est renouvelable.",
   },
   {
     icon: Search,
     title: "Consulting",
     description:
-      "Si vous n'êtes pas sûr du type de site dont vous avez besoin, je peux également vous aider à le déterminer.",
+      "Si vous naposêtes pas sûr du type de site dont vous avez besoin, je peux également vous aider à le déterminer.",
   },
 ];
 
@@ -372,7 +372,7 @@ export const Service = () => {
                 Prêt à donner vie à votre projet ?
               </h2>
               <p className="text-xl mb-8 text-blue-100">
-                Contactez-moi dès aujourd'hui pour discuter de vos besoins et
+                Contactez-moi dès aujourdaposhui pour discuter de vos besoins et
                 obtenir un devis personnalisé.
               </p>
               <Button

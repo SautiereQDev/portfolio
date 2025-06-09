@@ -89,7 +89,7 @@ export const Footer = () => {
               </p>
             </div>
             <p className="text-gray-400 leading-relaxed max-w-md">
-              Passionné par la création d'expériences digitales exceptionnelles.
+              Passionné par la création d&apos;expériences digitales exceptionnelles.
               Je transforme vos idées en solutions techniques innovantes et
               performantes.
             </p>

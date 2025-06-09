@@ -1,6 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { User, GraduationCap, Star, Heart } from "lucide-react";
+import SEO from "../components/SEO";
 import {
   Card,
   CardContent,
@@ -25,9 +26,9 @@ export const About = () => {
     { id: "skills", title: "Compétences", icon: Star },
     { id: "interests", title: "Passions", icon: Heart },
   ];
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-body">
+      <SEO page="about" />
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
       {/* Breadcrumb */}
@@ -81,8 +82,8 @@ export const About = () => {
                 <CardContent>
                   <p className="text-lg text-gray-700 leading-relaxed text-center">
                     Étudiant en deuxième année de licence informatique à
-                    l'Université de La Rochelle, je suis passionné par les
-                    nouvelles technologies et l'innovation. J'aime relever des
+                    laposUniversité de La Rochelle, je suis passionné par les
+                    nouvelles technologies et l&apos;innovation. Japosaime relever des
                     défis et mener mes projets avec rigueur et créativité. En
                     parallèle, je me dépasse également sur la piste en
                     compétition de demi-fond, où persévérance et performance

@@ -1,5 +1,6 @@
 import { HeroSection } from "../components/HeroSection";
 import { AnimatedSection } from "../components/ui/animated-section";
+import SEO from "../components/SEO";
 import {
   Card,
   CardContent,
@@ -85,9 +86,9 @@ export const Home = () => {
       description:
         "Améliorez votre visibilité en ligne avec une stratégie SEO efficace : mots-clés, optimisation on-page et plus encore.",
     },
-  ];
-  return (
+  ]; return (
     <div className="min-h-screen bg-white font-[Manrope]">
+      <SEO page="home" />
       {/* Navigation par sections */}
       <SectionNavigation sections={sections} />
       {/* Breadcrumb */}
@@ -101,9 +102,9 @@ export const Home = () => {
       <div id="hero">
 
         <HeroSection
-          title="Salut, moi c'est Quentin&nbsp;!" // espace insécable pour éviter la coupure du nom
+          title="Salut, moi caposest Quentin&nbsp;!" // espace insécable pour éviter la coupure du nom
           subtitle="Développeur Full-Stack & Designer"
-          description="Développeur Web full-stack avec plus de 5 ans d'expérience personnelle. Que vous ayez besoin d'un site web simple, d'une application web sur mesure ou d'une solution e-commerce complète, je suis là pour concrétiser vos idées."
+          description="Développeur Web full-stack avec plus de 5 ans daposexpérience personnelle. Que vous ayez besoin daposun site web simple, daposune application web sur mesure ou daposune solution e-commerce complète, je suis là pour concrétiser vos idées."
           ctaText="Voir mes offres"
           ctaLink="/services"
           imageUrl={homeBanner}

@@ -26,7 +26,7 @@ export const NavBar = () => {
   const progressRef = useRef<HTMLDivElement>(null);
 
   const navigationItems = [
-    { name: "Accueil", path: "/", icon: Home, description: "Page d'accueil" },
+    { name: "Accueil", path: "/", icon: Home, description: "Page d&apos;accueil" },
     { name: "À propos", path: "/about", icon: User, description: "Mon profil" },
     {
       name: "Services",
@@ -62,7 +62,7 @@ export const NavBar = () => {
   };
 
   useEffect(() => {
-    // Animation d'entrée de la navbar
+    // Animation d&apos;entrée de la navbar
     const tl = gsap.timeline();
 
     tl.from(navRef.current, {
@@ -179,8 +179,8 @@ export const NavBar = () => {
                     key={item.path}
                     to={item.path}
                     className={`group relative flex items-center space-x-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-105 ${isActive
-                        ? "text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg"
-                        : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                      ? "text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                       }`}
                   >
                     <Icon
@@ -249,8 +249,8 @@ export const NavBar = () => {
                       to={item.path}
                       onClick={() => setIsMenuOpen(false)}
                       className={`flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 ${isActive
-                          ? "text-white bg-gradient-to-r from-blue-600 to-purple-600"
-                          : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
+                        ? "text-white bg-gradient-to-r from-blue-600 to-purple-600"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
                         }`}
                     >
                       <Icon className="w-5 h-5" />

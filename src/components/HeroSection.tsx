@@ -29,7 +29,7 @@ export const HeroSection = ({
   const imageRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const tl = gsap.timeline(); // Animation d'entrée
+    const tl = gsap.timeline(); // Animation d&apos;entrée
     tl.from(imageRef.current, {
       scale: 0.8,
       opacity: 0,
@@ -73,7 +73,7 @@ export const HeroSection = ({
         "-=0.5",
       );
 
-    // Animation parallax sur l'image
+    // Animation parallax sur l&apos;image
     ScrollTrigger.create({
       trigger: heroRef.current,
       start: "top top",

@@ -79,11 +79,11 @@ export const Projects = () => {
   useEffect(() => {
     let tl: gsap.core.Timeline | null = null;
 
-    // Animation d'entrée du hero
+    // Animation daposentrée du hero
     if (heroRef.current) {
       tl = gsap.timeline();
 
-      // Animation de l'image avec les blobs
+      // Animation de laposimage avec les blobs
       tl.fromTo(
         ".hero-image",
         { scale: 0.8, opacity: 0 },
@@ -159,7 +159,7 @@ export const Projects = () => {
       };
 
       if (selectedCategory === "divers") {
-        // Pour la catégorie "divers", on filtre les projets qui n'ont AUCUNE des technologies des autres catégories
+        // Pour la catégorie "divers", on filtre les projets qui naposont AUCUNE des technologies des autres catégories
         const allOtherTechnos = [
           ...categoryTechnos.web,
           ...categoryTechnos.mobile,
