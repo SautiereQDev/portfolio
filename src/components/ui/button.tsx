@@ -28,7 +28,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface ButtonProps
@@ -42,12 +42,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, children, ...props }, ref) => {
     // Si asChild est true, on rend le premier enfant avec les props du bouton
     if (asChild && React.Children.count(children) === 1) {
-      const child = React.Children.only(children) as React.ReactElement<any>;
+      const child = React.Children.only(children) as React.ReactElement<
+        React.ComponentProps<"button">
+      >;
       return React.cloneElement(child, {
         ...props,
         className: cn(
           buttonVariants({ variant, size, className }),
-          child.props?.className,
+          child.props?.className
         ),
         ref,
       });
@@ -63,7 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {children}
       </button>
     );
-  },
+  }
 );
 Button.displayName = "Button";
 
