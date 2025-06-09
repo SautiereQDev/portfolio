@@ -47,7 +47,7 @@ export const About = () => {
                 <img
                   src={banner}
                   alt="À propos"
-                  className="w-64 mx-auto mb-8 drop-shadow-2xl"
+                  className="w-64 mx-auto mb-8 drop-shadow-2xl animate-float"
                 />
               </div>
               <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
@@ -109,9 +109,9 @@ export const About = () => {
                 </h2>
               </div>{" "}
               <div className="space-y-6">
-                {about.education.map((item) => (
+                {about.education.map((item, index) => (
                   <Card
-                    key={item.title}
+                    key={index}
                     className="p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-0 bg-white/80 group hover:scale-[1.02]"
                   >
                     {" "}

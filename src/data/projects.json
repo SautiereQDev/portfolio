@@ -55,7 +55,13 @@
       "Formulaire de contact",
       "Templates Handlebars"
     ],
-    "technos": ["NestJs", "TypeScript", "Handlebars", "Nodemailer", "Docker"]
+    "technos": [
+      "NestJs",
+      "TypeScript",
+      "Handlebars",
+      "Nodemailer",
+      "Docker"
+    ]
   },
   {
     "title": "Portfolio",
@@ -105,7 +111,11 @@
     "imageUrl": "https://cdn.quentinsautiere.com/portfolio/patate-mag/0.png",
     "visit_link": "https://quentinsautiere.com/patate-mag",
     "github_link": "https://github.com/SautiereQDev/patate_mag",
-    "key_points": ["Design responsive", "Blog", "SEO optimisé"],
+    "key_points": [
+      "Design responsive",
+      "Blog",
+      "SEO optimisé"
+    ],
     "technos": [
       "React",
       "Tailwindcss",
@@ -128,6 +138,10 @@
       "Algorithme de backtracking",
       "Programme shell"
     ],
-    "technos": ["C", "CMake", "Algorithme de backtracking"]
+    "technos": [
+      "C",
+      "CMake",
+      "Algorithme de backtracking"
+    ]
   }
 ]

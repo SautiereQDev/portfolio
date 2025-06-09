@@ -27,106 +27,68 @@ export const HeroSection = ({
   const descriptionRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLAnchorElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
+
   useEffect(() => {
-    // Détection mobile pour ajuster les animations
-    const isMobile = window.innerWidth < 768;
-    const animationDuration = isMobile ? 0.4 : 0.8;
-
-    // Animation d'entrée déclenchée par le scroll
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: "top 80%", // Démarre quand la section est visible à 80%
-        end: "top 20%",
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    // Initialiser les éléments cachés
-    gsap.set(
-      [
-        titleRef.current,
-        subtitleRef.current,
-        descriptionRef.current,
-        ctaRef.current,
-      ],
-      {
-        autoAlpha: 0,
-        y: isMobile ? 30 : 50,
-      },
-    );
-    gsap.set(imageRef.current, {
-      autoAlpha: 0,
+    const tl = gsap.timeline(); // Animation d'entrée
+    tl.from(imageRef.current, {
       scale: 0.8,
-    });
-
-    // Animation séquentielle optimisée pour mobile
-    tl.to(imageRef.current, {
-      scale: 1,
-      autoAlpha: 1,
-      duration: animationDuration,
+      opacity: 0,
+      duration: 1,
       ease: "power2.out",
     })
-      .to(
+      .fromTo(
         titleRef.current,
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: animationDuration,
-          ease: "power2.out",
-        },
-        `-=${animationDuration * 0.7}`,
+        { y: 50, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" },
+        "-=0.5",
       )
-      .to(
+      .fromTo(
         subtitleRef.current,
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: animationDuration,
-          ease: "power2.out",
-        },
-        `-=${animationDuration * 0.6}`,
+        { y: 30, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" },
+        "-=0.6",
       )
-      .to(
+      .fromTo(
         descriptionRef.current,
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: animationDuration,
-          ease: "power2.out",
-        },
-        `-=${animationDuration * 0.5}`,
+        { y: 30, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.8, ease: "power2.out" },
+        "-=0.4",
       )
-      .to(
+      .fromTo(
         ctaRef.current,
+        {
+          y: 30,
+          autoAlpha: 0,
+          scale: 0.8,
+          rotation: -5,
+        },
         {
           y: 0,
           autoAlpha: 1,
           scale: 1,
-          duration: animationDuration,
-          ease: isMobile ? "power2.out" : "back.out(1.7)",
+          rotation: 0,
+          duration: 0.7,
+          ease: "back.out(1.7)",
         },
-        `-=${animationDuration * 0.4}`,
+        "-=0.5",
       );
 
-    // Animation parallax désactivée sur mobile pour les performances
-    if (!isMobile) {
-      ScrollTrigger.create({
-        trigger: heroRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1,
-        onUpdate: (self) => {
-          if (imageRef.current) {
-            gsap.to(imageRef.current, {
-              y: self.progress * 50, // Réduit l'effet parallax
-              duration: 0.3,
-              ease: "power2.out",
-            });
-          }
-        },
-      });
-    }
+    // Animation parallax sur l'image
+    ScrollTrigger.create({
+      trigger: heroRef.current,
+      start: "top top",
+      end: "bottom top",
+      scrub: 1,
+      onUpdate: (self) => {
+        if (imageRef.current) {
+          gsap.to(imageRef.current, {
+            y: self.progress * 100,
+            duration: 0.3,
+            ease: "power2.out",
+          });
+        }
+      },
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
@@ -146,9 +108,7 @@ export const HeroSection = ({
       <div className="absolute inset-0 bg-white/60"></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {" "}
-          {/* Contenu textuel */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">          {/* Contenu textuel */}
           <div className="space-y-6 lg:space-y-8 order-2 lg:order-1">
             <div className="space-y-3 lg:space-y-4">
               <h1
@@ -170,19 +130,17 @@ export const HeroSection = ({
             >
               {description}
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">
-              {" "}
-              <a
-                ref={ctaRef}
-                href={ctaLink}
-                className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden transform-gpu"
-              >
-                <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
-                  {ctaText}
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
-              </a>
+            <div className="flex flex-col sm:flex-row gap-3 lg:gap-4">              <a
+              ref={ctaRef}
+              href={ctaLink}
+              className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 overflow-hidden transform-gpu"
+            >
+              <span className="relative z-10 transition-transform duration-300 group-hover:scale-105">
+                {ctaText}
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm"></div>
+            </a>
               <a
                 href="/projects"
                 className="inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-semibold text-gray-800 bg-white border-2 border-gray-300 rounded-xl hover:border-gray-400 hover:bg-gray-50 transition-all duration-300 hover:shadow-md"
@@ -190,8 +148,7 @@ export const HeroSection = ({
                 Voir mes projets
               </a>
             </div>
-          </div>{" "}
-          {/* Image */}
+          </div>          {/* Image */}
           <div className="relative order-1 lg:order-2 mb-8 lg:mb-0">
             <div className="relative z-10">
               <img
