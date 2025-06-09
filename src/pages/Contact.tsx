@@ -138,87 +138,164 @@ export const Contact = () => {
     reset,
   } = useForm<ContactFormInputs>({
     resolver: zodResolver(contactSchema),
-  });
+  }); useEffect(() => {
+    // Timer pour s'assurer que les animations se déclenchent après le chargement complet
+    const initTimer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        // Hero animations
+        if (heroRef.current) {
+          const tl = gsap.timeline();
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Hero animations
-      if (heroRef.current) {
-        const tl = gsap.timeline();
+          tl.from(".hero-title", {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out",
+          })
+            .from(
+              ".hero-subtitle",
+              {
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+              },
+              "-=0.6",
+            )
+            .from(
+              ".hero-badges",
+              {
+                y: 20,
+                opacity: 0,
+                duration: 0.6,
+                ease: "power3.out",
+              },
+              "-=0.4",
+            );
+        }
 
-        tl.from(".hero-title", {
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-        })
-          .from(
-            ".hero-subtitle",
-            {
+        // Contact cards animation - avec vérification si visible
+        if (contactCardsRef.current) {
+          const isInViewport = (element: Element) => {
+            const rect = element.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom >= 0;
+          };
+
+          // Si la section est déjà visible (refresh de page), animer immédiatement
+          if (isInViewport(contactCardsRef.current)) {
+            gsap.fromTo(".contact-card",
+              {
+                y: 30,
+                opacity: 0,
+              },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power3.out",
+                delay: 0.2,
+              }
+            );
+          } else {
+            // Sinon, utiliser ScrollTrigger
+            gsap.from(".contact-card", {
               y: 30,
               opacity: 0,
-              duration: 0.8,
+              duration: 0.6,
+              stagger: 0.1,
               ease: "power3.out",
-            },
-            "-=0.6",
-          )
-          .from(
-            ".hero-badges",
-            {
-              y: 20,
+              scrollTrigger: {
+                trigger: contactCardsRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+        }
+
+        // Form animations - avec même logique
+        if (formRef.current) {
+          const isInViewport = (element: Element) => {
+            const rect = element.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom >= 0;
+          };
+
+          if (isInViewport(formRef.current)) {
+            gsap.fromTo(".form-field",
+              {
+                x: -30,
+                opacity: 0,
+              },
+              {
+                x: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power3.out",
+                delay: 0.4,
+              }
+            );
+          } else {
+            gsap.from(".form-field", {
+              x: -30,
               opacity: 0,
               duration: 0.6,
+              stagger: 0.1,
               ease: "power3.out",
-            },
-            "-=0.4",
-          );
-      }
+              scrollTrigger: {
+                trigger: formRef.current,
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+        }
 
-      // Contact cards animation
-      if (contactCardsRef.current) {
-        gsap.from(".contact-card", {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: contactCardsRef.current,
-            start: "top 80%",
-          },
-        });
-      }
+        // FAQ animations - avec même logique
+        const faqSection = document.querySelector(".faq-section");
+        if (faqSection) {
+          const isInViewport = (element: Element) => {
+            const rect = element.getBoundingClientRect();
+            return rect.top < window.innerHeight && rect.bottom >= 0;
+          };
 
-      // Form animations
-      if (formRef.current) {
-        gsap.from(".form-field", {
-          x: -30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: formRef.current,
-            start: "top 80%",
-          },
-        });
-      }
-
-      // FAQ animations
-      gsap.from(".faq-item", {
-        y: 20,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".faq-section",
-          start: "top 80%",
-        },
+          if (isInViewport(faqSection)) {
+            gsap.fromTo(".faq-item",
+              {
+                y: 20,
+                opacity: 0,
+              },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.5,
+                stagger: 0.1,
+                ease: "power3.out",
+                delay: 0.6,
+              }
+            );
+          } else {
+            gsap.from(".faq-item", {
+              y: 20,
+              opacity: 0,
+              duration: 0.5,
+              stagger: 0.1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: ".faq-section",
+                start: "top 80%",
+                toggleActions: "play none none reverse",
+              },
+            });
+          }
+        }
       });
-    });
 
-    return () => ctx.revert();
+      return () => ctx.revert();
+    }, 100); // Petit délai pour s'assurer que le DOM est complètement rendu
+
+    return () => clearTimeout(initTimer);
   }, []);
 
   const onSubmit: SubmitHandler<ContactFormInputs> = async (data) => {
