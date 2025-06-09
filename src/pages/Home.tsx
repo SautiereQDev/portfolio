@@ -11,7 +11,7 @@ import {
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/section-navigation";
+import SectionNavigation from "../components/ui/SectionNavigation";
 import {
   ArrowRight,
   Code,
@@ -126,29 +126,28 @@ export const Home = () => {
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
-                <AnimatedSection
-                  key={feature.title}
-                  animation="slideUp"
-                  delay={index * 0.1}
-                  className="h-full"
-                >
-                  <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white">
-                    <CardHeader className="text-center pb-4">
-                      <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
-                        <feature.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <CardTitle className="text-xl font-bold text-gray-900">
-                        {feature.title}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-center">
-                      <CardDescription className="text-gray-600 leading-relaxed">
-                        {feature.description}
-                      </CardDescription>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>
+              {features.map((feature, index) => (<AnimatedSection
+                key={feature.title}
+                animation="slideUp"
+                delay={index * 0.1}
+                className="h-full"
+              >
+                <Card className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 bg-white group">
+                  <CardHeader className="text-center pb-4">
+                    <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <feature.icon className="w-8 h-8 text-white" />
+                    </div>
+                    <CardTitle className="text-xl font-bold text-gray-900">
+                      {feature.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-center">
+                    <CardDescription className="text-gray-600 leading-relaxed">
+                      {feature.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
               ))}
             </div>
           </div>
@@ -164,7 +163,7 @@ export const Home = () => {
                 Services
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Mes offres de service
+                Les services que je propose
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Des solutions adaptées à vos besoins, du site vitrine à

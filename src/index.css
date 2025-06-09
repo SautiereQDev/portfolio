@@ -51,8 +51,26 @@ textarea,
   }
 }
 
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.15);
+  }
+}
+
 .animate-blob {
   animation: blob 7s infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
 }
 
 .animation-delay-2000 {

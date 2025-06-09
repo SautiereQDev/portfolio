@@ -11,7 +11,7 @@ import {
 import { Badge } from "../components/ui/badge";
 import { AnimatedSection } from "../components/ui/animated-section";
 import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/section-navigation";
+import SectionNavigation from "../components/ui/SectionNavigation";
 import banner from "../assets/images/about_banner.svg";
 import about from "../data/about.json";
 

@@ -28,7 +28,7 @@ import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { AnimatedSection } from "../components/ui/animated-section";
 import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/section-navigation";
+import SectionNavigation from "../components/ui/SectionNavigation";
 import banner from "../assets/images/services_banner.svg";
 import serviceDetails from "../data/servicesDetails.json";
 

@@ -53,7 +53,7 @@ export const PageNavigation = ({
   return (
     <div
       className={cn(
-        "fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 bg-white/90 backdrop-blur-lg rounded-full shadow-lg border border-gray-200/50 px-4 py-2 transition-all duration-300",
+        "fixed bottom-8 left-1/2 transform -translate-x-1/2 z-40 bg-white/90 backdrop-blur-lg rounded-full shadow-lg border border-gray-200/50 px-4 py-2 transition-all duration-300 font-body",
         className,
       )}
     >

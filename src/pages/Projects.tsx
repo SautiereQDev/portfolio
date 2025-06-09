@@ -4,7 +4,7 @@ import { AnimatedSection } from "../components/ui/animated-section";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/section-navigation";
+import SectionNavigation from "../components/ui/SectionNavigation.tsx";
 import {
   Search,
   Code,

@@ -31,7 +31,7 @@ import { Textarea } from "../components/ui/textarea";
 import { Badge } from "../components/ui/badge";
 import { AnimatedSection } from "../components/ui/animated-section";
 import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/section-navigation";
+import SectionNavigation from "../components/ui/SectionNavigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
