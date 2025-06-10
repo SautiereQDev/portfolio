@@ -185,7 +185,10 @@ export const Service = () => {
                   <CardContent>
                     <div className="space-y-3">
                       {serviceDetails.simple.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-3">
+                        <div
+                          key={feature + index}
+                          className="flex items-center gap-3"
+                        >
                           <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
                             <Check className="h-3 w-3 text-green-600" />
                           </div>
@@ -232,7 +235,10 @@ export const Service = () => {
                         </span>
                       </div>
                       {serviceDetails.complex.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-3">
+                        <div
+                          key={feature + index}
+                          className="flex items-center gap-3"
+                        >
                           <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
                             <Check className="h-3 w-3 text-green-600" />
                           </div>
@@ -265,7 +271,7 @@ export const Service = () => {
               <div className="space-y-8">
                 {processSteps.map((step, index) => (
                   <div
-                    key={index}
+                    key={step.title + index}
                     data-process-step
                     className="group flex items-start gap-6"
                   >
@@ -318,7 +324,7 @@ export const Service = () => {
               <div className="grid gap-8 md:grid-cols-2">
                 {additionalServices.map((service, index) => (
                   <Card
-                    key={index}
+                    key={service.title + index}
                     className="group border-0 bg-white/80 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl"
                   >
                     <div className="flex items-start gap-4">

@@ -72,6 +72,34 @@ export const Projects = () => {
   useEffect(() => {
     let tl: gsap.core.Timeline | null = null;
 
+    // Function to animate counters
+    const animateCounters = (counters: NodeListOf<Element>) => {
+      counters.forEach((counter) => {
+        const target = parseInt(counter.getAttribute("data-count") ?? "0");
+        gsap.to(counter, {
+          innerHTML: target,
+          duration: 2,
+          ease: "power2.out",
+          snap: { innerHTML: 1 },
+        });
+      });
+    };
+
+    // Function to handle intersection observer entry
+    const handleIntersection = (entry: IntersectionObserverEntry) => {
+      if (entry.isIntersecting) {
+        const counters = entry.target.querySelectorAll("[data-count]");
+        animateCounters(counters);
+      }
+    };
+
+    // Function to handle intersection observer entries
+    const handleIntersectionEntries = (
+      entries: IntersectionObserverEntry[]
+    ) => {
+      entries.forEach(handleIntersection);
+    };
+
     // Animation daposentrée du hero
     if (heroRef.current) {
       tl = gsap.timeline();
@@ -108,27 +136,9 @@ export const Projects = () => {
     // Animation des statistiques
     let observer: IntersectionObserver | null = null;
     if (statsRef.current) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const counters = entry.target.querySelectorAll("[data-count]");
-              counters.forEach((counter) => {
-                const target = parseInt(
-                  counter.getAttribute("data-count") ?? "0"
-                );
-                gsap.to(counter, {
-                  innerHTML: target,
-                  duration: 2,
-                  ease: "power2.out",
-                  snap: { innerHTML: 1 },
-                });
-              });
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
+      observer = new IntersectionObserver(handleIntersectionEntries, {
+        threshold: 0.5,
+      });
 
       observer.observe(statsRef.current);
     }
@@ -318,7 +328,7 @@ export const Projects = () => {
             {filteredProjects.length > 0 ? (
               <div
                 className="projects-grid grid gap-12 lg:grid-cols-2"
-                key={`projects-${selectedCategory}-${searchTerm}-${filteredProjects.length}-${Date.now()}`}
+                key={`projects-${selectedCategory}-${searchTerm}-${filteredProjects.length}`}
               >
                 {filteredProjects.map((project, index) => (
                   <div

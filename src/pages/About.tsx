@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { User, GraduationCap, Star, Heart } from "lucide-react";
-import SEO from "../components/SEO";
+import Seo from "../components/SEO";
 import {
   Card,
   CardContent,
@@ -19,7 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 export const About = () => {
   return (
     <div className="font-body min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      <SEO page="about" />
+      <Seo page="about" />
 
       {/* Hero Section */}
       <div id="intro">
@@ -95,28 +95,38 @@ export const About = () => {
               <div className="space-y-6">
                 {about.education.map((item, index) => (
                   <Card
-                    key={index}
+                    key={item.title + index}
                     className="group border-0 bg-white/80 p-6 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                   >
                     <div className="flex items-start gap-4">
                       {/* Logos conditionnels selon la formation */}
-                      {item.title === "Licence Informatique" ? (
-                        <OptimizedImage
-                          src="/logo_lr_univ.webp"
-                          alt="Université de La Rochelle"
-                          className="h-12 w-12 rounded-full object-contain"
-                        />
-                      ) : item.title === "CQP IV - Moniteur de voile" ? (
-                        <OptimizedImage
-                          src="/glenans.webp"
-                          alt="École de voile des Glénans"
-                          className="h-12 w-12 rounded-full border border-gray-400 object-contain"
-                        />
-                      ) : (
-                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
-                          <GraduationCap className="h-6 w-6 text-white" />
-                        </div>
-                      )}
+                      {(() => {
+                        if (item.title === "Licence Informatique") {
+                          return (
+                            <OptimizedImage
+                              src="/logo_lr_univ.webp"
+                              alt="Université de La Rochelle"
+                              className="h-12 w-12 rounded-full object-contain"
+                            />
+                          );
+                        } else if (
+                          item.title === "CQP IV - Moniteur de voile"
+                        ) {
+                          return (
+                            <OptimizedImage
+                              src="/glenans.webp"
+                              alt="École de voile des Glénans"
+                              className="h-12 w-12 rounded-full border border-gray-400 object-contain"
+                            />
+                          );
+                        } else {
+                          return (
+                            <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
+                              <GraduationCap className="h-6 w-6 text-white" />
+                            </div>
+                          );
+                        }
+                      })()}
                       <div className="flex-grow">
                         <h3 className="mb-2 text-xl font-semibold text-gray-800">
                           {item.title}
@@ -159,7 +169,7 @@ export const About = () => {
                 <div className="flex flex-wrap justify-center gap-3">
                   {about.skills.map((skill, index) => (
                     <Badge
-                      key={index}
+                      key={skill + index}
                       variant="outline"
                       className="cursor-default border-2 border-blue-200 px-4 py-2 text-lg font-medium transition-all duration-300 hover:scale-105 hover:border-blue-400 hover:bg-blue-50"
                     >
@@ -191,7 +201,7 @@ export const About = () => {
                 <div className="flex flex-wrap justify-center gap-4">
                   {about.interests.map((interest, index) => (
                     <Badge
-                      key={index}
+                      key={interest + index}
                       className="cursor-default border-0 bg-gradient-to-r from-pink-500 to-red-500 px-6 py-3 text-lg font-medium text-white transition-all duration-300 hover:scale-105 hover:from-pink-600 hover:to-red-600"
                     >
                       {interest}
