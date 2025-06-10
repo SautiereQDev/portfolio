@@ -34,40 +34,48 @@ export const useHeroAnimations = ({
   chevronRef,
   isAtTop,
 }: HeroAnimationRefs) => {
-  // Initial entrance animations
   useEffect(() => {
+    // Initialize title for typewriter effect with smooth reveal
+    if (titleRef.current) {
+      gsap.set(titleRef.current, {
+        autoAlpha: 1,
+        y: 0,
+        transform: "translateY(0px)",
+      });
+    }
+
     const tl = gsap.timeline();
 
-    // Image entrance animation
+    // Image entrance animation with enhanced effect
     tl.from(imageRef.current, {
-      scale: 0.8,
+      scale: 0.7,
       opacity: 0,
+      rotation: -5,
       duration: ANIMATION_DURATIONS.NORMAL,
       ease: ANIMATION_EASES.POWER3_OUT,
     })
-      // Title animation
-      .fromTo(
+      // Title container reveal (sans contenu, préparé pour typewriter)
+      .to(
         titleRef.current,
-        { y: 40, autoAlpha: 0 },
         {
+          opacity: 1,
           y: 0,
-          autoAlpha: 1,
-          duration: ANIMATION_DURATIONS.FAST,
-          ease: ANIMATION_EASES.POWER3_OUT,
+          duration: 0.3,
+          ease: ANIMATION_EASES.POWER2_OUT,
         },
-        "-=0.4"
+        0.8
       )
-      // Subtitle animation
+      // Subtitle animation (synchronized avec fin du typewriter)
       .fromTo(
         subtitleRef.current,
         { y: 25, autoAlpha: 0 },
         {
           y: 0,
           autoAlpha: 1,
-          duration: 0.4,
+          duration: 0.5,
           ease: ANIMATION_EASES.POWER3_OUT,
         },
-        "-=0.3"
+        "+=1.5" // Start après que le typewriter ait un bon progrès
       )
       // Description animation
       .fromTo(

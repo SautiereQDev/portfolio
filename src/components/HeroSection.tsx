@@ -1,7 +1,9 @@
 import { useRef, memo, useCallback } from "react";
 import { ChevronDown } from "lucide-react";
+import { gsap } from "gsap";
 import { useScrollThreshold } from "../hooks/useScrollThreshold";
 import { useHeroAnimations } from "../hooks/useHeroAnimations";
+import { useTypewriterEffect } from "../hooks/useTypewriterEffect";
 import { useScrollNavigation } from "../hooks/useScrollNavigation";
 import { OptimizedIllustration } from "./ui/OptimizedIllustration";
 import { SCROLL_THRESHOLDS } from "../constants";
@@ -33,6 +35,38 @@ export const HeroSection = memo<HeroSectionProps>(
     // Custom hooks
     const { isAtTop } = useScrollThreshold(SCROLL_THRESHOLDS.HERO_TOP);
     const { navigateToSection } = useScrollNavigation();
+
+    // Effet typewriter amélioré sur le titre
+    useTypewriterEffect(titleRef, {
+      text: title,
+      speed: 0.04, // Vitesse optimisée
+      delay: 1.0, // Délai initial
+      cursorBlinkSpeed: 0.6,
+      naturalTyping: true, // Variations naturelles de vitesse
+      pauseOnPunctuation: 0.4, // Pause sur la ponctuation
+      pauseOnSpace: 0.12, // Pause sur les espaces
+      revealEffect: true, // Effet de révélation des caractères
+      soundEnabled: false, // Désactivé par défaut (peut être activé pour les tests)
+      onCharacterTyped: (char, _index) => {
+        // Feedback subtil pour certains caractères spéciaux
+        if (char === "!" || char === "?") {
+          // Micro-animation sur les exclamations/questions
+        }
+      },
+      onComplete: () => {
+        // Animation terminée - déclenche d'autres effets
+        if (titleRef.current) {
+          // Petit effet de "satisfaction" à la fin
+          gsap.to(titleRef.current, {
+            scale: 1.02,
+            duration: 0.2,
+            yoyo: true,
+            repeat: 1,
+            ease: "power2.inOut",
+          });
+        }
+      },
+    });
 
     // GSAP animations setup - moved to custom hook
     useHeroAnimations({
@@ -69,12 +103,25 @@ export const HeroSection = memo<HeroSectionProps>(
             {/* Text Content */}
             <div className="order-2 space-y-6 lg:order-1 lg:space-y-8">
               <div className="space-y-3 lg:space-y-4">
-                <h1
-                  ref={titleRef}
-                  className="text-3xl leading-tight font-extrabold break-words text-gray-900 drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl"
-                >
-                  {title}
-                </h1>
+                <div className="relative inline-block max-w-full">
+                  <h1
+                    ref={titleRef}
+                    className="translate-y-4 transform text-3xl leading-tight font-extrabold text-gray-900 opacity-0 drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl"
+                    style={{
+                      transition:
+                        "opacity 0.3s ease-out, transform 0.3s ease-out",
+                      whiteSpace: "nowrap",
+                      wordBreak: "keep-all",
+                      position: "relative",
+                      display: "inline",
+                      lineHeight: "1.1",
+                      maxWidth: "100%",
+                      overflow: "visible",
+                    }}
+                  >
+                    {/* Le titre sera rempli par l'effet typewriter amélioré */}
+                  </h1>
+                </div>
                 <p
                   ref={subtitleRef}
                   className="text-lg font-bold text-black drop-shadow-md sm:text-xl md:text-2xl"
