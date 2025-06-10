@@ -1,5 +1,4 @@
 import { memo, ReactNode } from "react";
-import { Footer } from "./Footer";
 import { SectionNavigation } from "./ui/SectionNavigation";
 import { ErrorBoundary } from "./ErrorBoundary";
 import type { BaseComponentProps, SectionLink } from "../types";
@@ -48,9 +47,6 @@ export const Layout = memo<LayoutProps>(
               {children}
             </ErrorBoundary>
           </main>
-
-          {/* Footer */}
-          <Footer />
 
           {/* Section Navigation */}
           {showSectionNav && sections.length > 0 && (
