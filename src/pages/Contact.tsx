@@ -14,9 +14,8 @@ import {
   MessageSquare,
   Clock,
   Globe,
-  ExternalLink,
-  Code,
 } from "lucide-react";
+import { LinkedInIconModern, GitHubIcon } from "../components/ui/icons";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -77,13 +76,13 @@ const contactMethods = [
 
 const socialLinks = [
   {
-    icon: Code,
+    icon: GitHubIcon,
     name: "GitHub",
     url: "https://github.com/SautiereQDev",
     color: "hover:text-gray-800",
   },
   {
-    icon: ExternalLink,
+    icon: LinkedInIconModern,
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/quentin-sauti%C3%A8re/",
     color: "hover:text-blue-600",
