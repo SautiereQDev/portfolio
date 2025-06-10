@@ -21,7 +21,6 @@ import {
   Search,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
-import homeBanner from "../assets/images/home_banner.svg";
 
 export const Home = () => {
   const features = [
@@ -88,7 +87,7 @@ export const Home = () => {
           description="Développeur Web full-stack avec plus de 5 ans d'expérience personnelle. Que vous ayez besoin d'un site web simple, d'une application web sur mesure ou d'une solution e-commerce complète, je suis là pour concrétiser vos idées."
           ctaText="Voir mes offres"
           ctaLink="/services"
-          imageUrl={homeBanner}
+          illustrationName="home"
         />
       </div>
 

@@ -10,6 +10,7 @@ import {
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { AnimatedSection } from "../components/ui/animated-section";
+import { OptimizedImage } from "../components/ui/OptimizedImage";
 import banner from "../assets/images/about_banner.svg";
 import about from "../data/about.json";
 
@@ -100,14 +101,14 @@ export const About = () => {
                     <div className="flex items-start gap-4">
                       {/* Logos conditionnels selon la formation */}
                       {item.title === "Licence Informatique" ? (
-                        <img
-                          src="/logo_lr_univ.png"
+                        <OptimizedImage
+                          src="/logo_lr_univ.webp"
                           alt="Université de La Rochelle"
                           className="h-12 w-12 rounded-full object-contain"
                         />
                       ) : item.title === "CQP IV - Moniteur de voile" ? (
-                        <img
-                          src="/glenans.png"
+                        <OptimizedImage
+                          src="/glenans.webp"
                           alt="École de voile des Glénans"
                           className="h-12 w-12 rounded-full border border-gray-400 object-contain"
                         />

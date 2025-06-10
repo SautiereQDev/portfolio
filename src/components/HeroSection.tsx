@@ -3,6 +3,7 @@ import { ChevronDown } from "lucide-react";
 import { useScrollThreshold } from "../hooks/useScrollThreshold";
 import { useHeroAnimations } from "../hooks/useHeroAnimations";
 import { useScrollNavigation } from "../hooks/useScrollNavigation";
+import { OptimizedIllustration } from "./ui/OptimizedIllustration";
 import { SCROLL_THRESHOLDS } from "../constants";
 import type { HeroSectionProps } from "../types";
 
@@ -11,7 +12,15 @@ import type { HeroSectionProps } from "../types";
  * Features parallax animations, scroll-triggered effects, and responsive design
  */
 export const HeroSection = memo<HeroSectionProps>(
-  ({ title, subtitle, description, ctaText, ctaLink, imageUrl }) => {
+  ({
+    title,
+    subtitle,
+    description,
+    ctaText,
+    ctaLink,
+    imageUrl,
+    illustrationName,
+  }) => {
     // Refs for DOM elements
     const heroRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -103,12 +112,20 @@ export const HeroSection = memo<HeroSectionProps>(
             {/* Hero Image */}
             <div className="relative order-1 mb-8 lg:order-2 lg:mb-0">
               <div className="relative z-10">
-                <img
-                  ref={imageRef}
-                  src={imageUrl}
-                  alt="Hero illustration"
-                  className="mx-auto h-auto w-full max-w-sm object-contain sm:max-w-md lg:max-w-lg"
-                />
+                {illustrationName ? (
+                  <OptimizedIllustration
+                    name={illustrationName}
+                    alt="Hero illustration"
+                    className="mx-auto h-auto w-full max-w-sm object-contain sm:max-w-md lg:max-w-lg"
+                  />
+                ) : (
+                  <img
+                    ref={imageRef}
+                    src={imageUrl}
+                    alt="Hero illustration"
+                    className="mx-auto h-auto w-full max-w-sm object-contain sm:max-w-md lg:max-w-lg"
+                  />
+                )}
               </div>
               {/* Decorative Elements */}
               <div className="animate-blob absolute -top-2 -left-2 h-32 w-32 rounded-full bg-blue-200 opacity-70 mix-blend-multiply blur-xl filter sm:-top-4 sm:-left-4 sm:h-48 sm:w-48 lg:h-72 lg:w-72"></div>

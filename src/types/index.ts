@@ -56,7 +56,8 @@ export interface HeroSectionProps {
   description: string;
   ctaText: string;
   ctaLink: string;
-  imageUrl: string;
+  imageUrl?: string;
+  illustrationName?: "about" | "home" | "projects" | "services";
 }
 
 // Error boundary types
