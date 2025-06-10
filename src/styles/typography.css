@@ -1,0 +1,24 @@
+/* Typography styles */
+
+/* Configuration typographique pour Manrope */
+.font-body {
+  font-family: "Manrope", system-ui, sans-serif;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Classe pour les paragraphes avec Manrope */
+.text-content {
+  font-family: "Manrope", system-ui, sans-serif;
+  font-feature-settings:
+    "kern" 1,
+    "liga" 1,
+    "calt" 1;
+  letter-spacing: -0.005em;
+  line-height: 1.6;
+}
