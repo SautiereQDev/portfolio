@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback, memo, useRef } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Lightbulb, ArrowRight } from "lucide-react";
 import { Button } from "./button";
 import { cn } from "../../lib/utils";
 import { useSectionNavigation } from "../../hooks/useSectionNavigation";
+import { useFirstVisit } from "../../hooks/useFirstVisit";
 import type { SectionLink, BaseComponentProps } from "../../types";
 
 interface SectionNavigationProps extends BaseComponentProps {
@@ -32,23 +33,41 @@ export const SectionNavigation = memo<SectionNavigationProps>(
       progressPercentage,
     } = useSectionNavigation(sections);
 
+    const { showIntro, dismissIntro } = useFirstVisit({
+      autoDismissDelay: 15000, // 15 secondes pour laisser le temps de lire
+      storageKey: "portfolio_section_nav_intro",
+    });
+
     // Handlers
     const handleToggleExpanded = useCallback(() => {
       setIsExpanded((prev) => !prev);
       setHasInteracted(true);
-    }, []);
+      // Fermer l'intro si elle est visible
+      if (showIntro) {
+        dismissIntro();
+      }
+    }, [showIntro, dismissIntro]);
 
     const handleCloseExpanded = useCallback(() => {
       setIsExpanded(false);
     }, []);
+
+    const handleDismissIntro = useCallback(() => {
+      dismissIntro();
+      setHasInteracted(true);
+    }, [dismissIntro]);
 
     const handleSectionClick = useCallback(
       (sectionId: string) => {
         navigateToSection(sectionId);
         setIsExpanded(false);
         setHasInteracted(true);
+        // Fermer l'intro lors de la navigation
+        if (showIntro) {
+          dismissIntro();
+        }
       },
-      [navigateToSection]
+      [navigateToSection, showIntro, dismissIntro]
     );
 
     // Attention animation for first-time users
@@ -87,6 +106,14 @@ export const SectionNavigation = memo<SectionNavigationProps>(
         data-section-nav
       >
         <div className="relative">
+          {/* First Visit Intro */}
+          {showIntro && (
+            <FirstVisitIntro
+              onDismiss={handleDismissIntro}
+              position={position}
+            />
+          )}
+
           {/* Main Navigation Container */}
           <div
             className={cn(
@@ -94,12 +121,19 @@ export const SectionNavigation = memo<SectionNavigationProps>(
               isExpanded
                 ? "shadow-2xl shadow-blue-500/10"
                 : "shadow-lg hover:shadow-xl",
-              !isExpanded && "animate-pulse-subtle"
+              !isExpanded && "animate-pulse-subtle",
+              // Ajouter une pulsation plus visible si l'intro est affichée
+              showIntro &&
+                !isExpanded &&
+                "ring-2 ring-blue-500/30 ring-offset-2"
             )}
           >
             {/* Compact Toggle Button */}
             {!isExpanded && (
-              <CompactToggleButton onClick={handleToggleExpanded} />
+              <CompactToggleButton
+                onClick={handleToggleExpanded}
+                showBadge={showIntro}
+              />
             )}
 
             {/* Expanded Navigation */}
@@ -129,33 +163,130 @@ export const SectionNavigation = memo<SectionNavigationProps>(
 );
 
 /**
+ * First Visit Intro Component
+ * Affiche un encadré informatif pour les nouveaux utilisateurs
+ */
+interface FirstVisitIntroProps {
+  onDismiss: () => void;
+  position: "left" | "right";
+}
+
+const FirstVisitIntro = memo<FirstVisitIntroProps>(
+  ({ onDismiss, position }) => (
+    <div
+      className={cn(
+        "animate-in fade-in slide-in-from-right-4 absolute z-40 w-72 duration-500",
+        position === "left" ? "top-0 left-20" : "top-0 right-20"
+      )}
+    >
+      <div className="rounded-xl border border-blue-200 bg-gradient-to-br from-blue-50 to-purple-50 p-4 shadow-xl backdrop-blur-sm">
+        {/* Header avec icône */}
+        <div className="mb-3 flex items-start justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600">
+              <Lightbulb className="h-4 w-4 text-white" />
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-gray-800">
+                Bienvenue ! 👋
+              </h3>
+              <p className="text-xs text-gray-600">Première visite</p>
+            </div>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onDismiss}
+            className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
+          >
+            <X className="h-3 w-3" />
+          </Button>
+        </div>
+
+        {/* Contenu */}
+        <div className="space-y-3">
+          <p className="text-sm text-gray-700">
+            Utilisez cette navigation pour explorer les différentes sections de
+            la page.
+          </p>
+
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2 text-xs text-gray-600">
+              <div className="h-2 w-2 rounded-full bg-blue-500" />
+              <span>Cliquez sur l&apos;icône menu pour naviguer</span>
+            </div>
+            <div className="flex items-center space-x-2 text-xs text-gray-600">
+              <div className="h-2 w-2 rounded-full bg-purple-500" />
+              <span>Suivez votre progression en temps réel</span>
+            </div>
+          </div>
+
+          <Button
+            onClick={onDismiss}
+            size="sm"
+            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+          >
+            Compris !
+            <ArrowRight className="ml-1 h-3 w-3" />
+          </Button>
+        </div>
+
+        {/* Flèche pointant vers la navigation */}
+        <div
+          className={cn(
+            "absolute top-4 h-0 w-0",
+            position === "left"
+              ? "-right-2 border-t-8 border-r-0 border-b-8 border-l-8 border-transparent border-l-blue-200"
+              : "-left-2 border-t-8 border-r-8 border-b-8 border-l-0 border-transparent border-r-blue-200"
+          )}
+        />
+      </div>
+    </div>
+  )
+);
+
+/**
  * Compact Toggle Button Component
  */
 interface CompactToggleButtonProps {
   onClick: () => void;
+  showBadge?: boolean;
 }
 
-const CompactToggleButton = memo<CompactToggleButtonProps>(({ onClick }) => (
-  <div className="group relative">
-    <Button
-      variant="ghost"
-      size="sm"
-      onClick={onClick}
-      className="relative flex h-14 w-14 items-center justify-center overflow-hidden p-0 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50"
-    >
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <Menu className="relative z-10 h-5 w-5 text-gray-600 transition-colors duration-300 group-hover:text-blue-600" />
-    </Button>
+const CompactToggleButton = memo<CompactToggleButtonProps>(
+  ({ onClick, showBadge = false }) => (
+    <div className="group relative">
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={onClick}
+        className={cn(
+          "relative flex h-14 w-14 items-center justify-center overflow-hidden p-0 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50",
+          showBadge && "ring-2 ring-blue-500/50 ring-offset-1"
+        )}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <Menu className="relative z-10 h-5 w-5 text-gray-600 transition-colors duration-300 group-hover:text-blue-600" />
 
-    {/* Tooltip repositionné pour éviter le chevauchement */}
-    <div className="pointer-events-none absolute top-full left-1/2 z-30 mt-2 -translate-x-1/2 transform opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-      <div className="rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white">
-        Navigation
+        {/* Badge pour indiquer la première visite */}
+        {showBadge && (
+          <div className="absolute -top-1 -right-1 h-3 w-3">
+            <div className="h-full w-full animate-pulse rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />
+            <div className="absolute inset-0 animate-ping rounded-full bg-gradient-to-r from-blue-600 to-purple-600" />
+          </div>
+        )}
+      </Button>
+
+      {/* Tooltip repositionné pour éviter le chevauchement */}
+      <div className="pointer-events-none absolute top-full left-1/2 z-30 mt-2 -translate-x-1/2 transform opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <div className="rounded bg-gray-900 px-2 py-1 text-xs whitespace-nowrap text-white">
+          Navigation
+        </div>
+        <div className="mx-auto h-0 w-0 rotate-180 transform border-r-4 border-b-4 border-l-4 border-transparent border-b-gray-900"></div>
       </div>
-      <div className="mx-auto h-0 w-0 rotate-180 transform border-r-4 border-b-4 border-l-4 border-transparent border-b-gray-900"></div>
     </div>
-  </div>
-));
+  )
+);
 
 /**
  * Expanded Navigation Component
@@ -314,6 +445,7 @@ const ProgressIndicator = memo<ProgressIndicatorProps>(
 );
 
 // Display names for dev tools
+FirstVisitIntro.displayName = "FirstVisitIntro";
 CompactToggleButton.displayName = "CompactToggleButton";
 ExpandedNavigation.displayName = "ExpandedNavigation";
 ProgressIndicator.displayName = "ProgressIndicator";
