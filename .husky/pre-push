@@ -1,6 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 # Hook exécuté avant un push
 # Validation complète du projet
 echo "🔍 Validation du projet avant push..."
