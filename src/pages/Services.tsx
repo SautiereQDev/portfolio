@@ -14,9 +14,6 @@ import {
   Check,
   Star,
   ArrowRight,
-  Briefcase,
-  Settings,
-  Target,
 } from "lucide-react";
 import {
   Card,
@@ -27,8 +24,6 @@ import {
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { AnimatedSection } from "../components/ui/animated-section";
-import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation";
 import banner from "../assets/images/services_banner.svg";
 import serviceDetails from "../data/servicesDetails.json";
 
@@ -83,14 +78,6 @@ const additionalServices = [
 ];
 
 export const Service = () => {
-  const sections = [
-    { id: "intro", title: "Introduction", icon: Briefcase },
-    { id: "pricing", title: "Tarifs", icon: Target },
-    { id: "process", title: "Processus", icon: Settings },
-    { id: "additional", title: "Services supplémentaires", icon: Wrench },
-    { id: "contact", title: "Contact", icon: ArrowRight },
-  ];
-
   useEffect(() => {
     // Animation pour les cartes de services
     const cards = document.querySelectorAll("[data-service-card]");
@@ -134,14 +121,6 @@ export const Service = () => {
   }, []);
   return (
     <div className="font-body min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
-        </div>
-      </div>
       {/* Hero Section */}
       <div id="intro">
         <AnimatedSection className="relative overflow-hidden py-20">

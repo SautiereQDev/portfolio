@@ -10,8 +10,6 @@ import {
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
-import Breadcrumb from "../components/ui/breadcrumb";
-import { SectionNavigation } from "../components/ui/SectionNavigation";
 import {
   ArrowRight,
   Code,
@@ -21,20 +19,11 @@ import {
   Monitor,
   Database,
   Search,
-  House,
-  Star,
-  Briefcase,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import homeBanner from "../assets/images/home_banner.svg";
 
 export const Home = () => {
-  const sections = [
-    { id: "hero", title: "Accueil", icon: House },
-    { id: "features", title: "Compétences", icon: Star },
-    { id: "services", title: "Services", icon: Briefcase },
-  ];
-
   const features = [
     {
       icon: Code,
@@ -90,14 +79,6 @@ export const Home = () => {
   return (
     <div className="min-h-screen bg-white font-[Manrope]">
       <Seo page="home" />
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
-        </div>
-      </div>
 
       {/* Hero Section */}
       <div id="hero">

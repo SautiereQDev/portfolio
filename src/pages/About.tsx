@@ -10,33 +10,15 @@ import {
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { AnimatedSection } from "../components/ui/animated-section";
-import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation";
 import banner from "../assets/images/about_banner.svg";
 import about from "../data/about.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const About = () => {
-  const sections = [
-    { id: "intro", title: "Introduction", icon: User },
-    { id: "stats", title: "Statistiques", icon: Star },
-    { id: "profile", title: "Profil", icon: User },
-    { id: "education", title: "Formation", icon: GraduationCap },
-    { id: "skills", title: "Compétences", icon: Star },
-    { id: "interests", title: "Passions", icon: Heart },
-  ];
   return (
     <div className="font-body min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
       <SEO page="about" />
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
-        </div>
-      </div>
 
       {/* Hero Section */}
       <div id="intro">

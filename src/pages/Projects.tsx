@@ -3,18 +3,7 @@ import { ProjectCard } from "../components/cards/ProjectCard.tsx";
 import { AnimatedSection } from "../components/ui/animated-section";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
-import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation.tsx";
-import {
-  Search,
-  Code,
-  Smartphone,
-  Globe,
-  Database,
-  FolderOpen,
-  Filter,
-  Grid,
-} from "lucide-react";
+import { Search, Code, Smartphone, Globe, Database } from "lucide-react";
 import { gsap } from "gsap";
 import banner from "../assets/images/project_banner.svg";
 import projects from "../data/projects.json";
@@ -26,11 +15,6 @@ export const Projects = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
-  const sections = [
-    { id: "intro", title: "Introduction", icon: FolderOpen },
-    { id: "filters", title: "Filtres", icon: Filter },
-    { id: "projects", title: "Projets", icon: Grid },
-  ];
   const categories = [
     { id: "all", name: "Tous", icon: Globe, count: projects.length },
     {
@@ -60,7 +44,7 @@ export const Projects = () => {
     {
       id: "divers",
       name: "Divers",
-      icon: FolderOpen,
+      icon: Globe,
       count: projects.filter(
         (p) =>
           !p.technos.some((t) =>
@@ -208,14 +192,6 @@ export const Projects = () => {
   }, [selectedCategory, searchTerm]);
   return (
     <div className="min-h-screen bg-white font-[Manrope]">
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
-        </div>
-      </div>
       {/* Hero Section */}
       <div id="intro">
         <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 sm:py-20 lg:py-24">

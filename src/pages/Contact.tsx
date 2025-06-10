@@ -16,8 +16,6 @@ import {
   MessageSquare,
   Clock,
   Globe,
-  User,
-  HelpCircle,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
@@ -30,8 +28,6 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Badge } from "../components/ui/badge";
 import { AnimatedSection } from "../components/ui/animated-section";
-import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,13 +89,6 @@ const socialLinks = [
     url: "https://www.linkedin.com/in/quentin-sauti%C3%A8re/",
     color: "hover:text-blue-600",
   },
-];
-
-const sections = [
-  { id: "intro", title: "Introduction", icon: User },
-  { id: "contact-info", title: "Informations", icon: MessageSquare },
-  { id: "form", title: "Formulaire", icon: Send },
-  { id: "faq", title: "FAQ", icon: HelpCircle },
 ];
 
 const faqs = [
@@ -258,14 +247,6 @@ export const Contact = () => {
   };
   return (
     <div className="min-h-screen bg-white font-[Manrope]">
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
-        </div>
-      </div>
       {/* Hero Section */}
       <div id="intro">
         <section
