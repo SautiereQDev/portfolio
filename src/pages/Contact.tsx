@@ -11,11 +11,11 @@ import {
   MapPin,
   Send,
   CheckCircle,
-  Github,
-  Linkedin,
   MessageSquare,
   Clock,
   Globe,
+  ExternalLink,
+  Code,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import {
@@ -27,7 +27,6 @@ import {
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Badge } from "../components/ui/badge";
-import { AnimatedSection } from "../components/ui/animated-section";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -78,13 +77,13 @@ const contactMethods = [
 
 const socialLinks = [
   {
-    icon: Github,
+    icon: Code,
     name: "GitHub",
     url: "https://github.com/SautiereQDev",
     color: "hover:text-gray-800",
   },
   {
-    icon: Linkedin,
+    icon: ExternalLink,
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/quentin-sauti%C3%A8re/",
     color: "hover:text-blue-600",
@@ -118,7 +117,6 @@ export const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const contactCardsRef = useRef<HTMLDivElement>(null);
 
   const {
     register,
@@ -161,21 +159,6 @@ export const Contact = () => {
             },
             "-=0.4"
           );
-      }
-
-      // Contact cards animation
-      if (contactCardsRef.current) {
-        gsap.from(".contact-card", {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: contactCardsRef.current,
-            start: "top 80%",
-          },
-        });
       }
 
       // Form animations
@@ -271,7 +254,7 @@ export const Contact = () => {
               </div>
 
               <h1 className="hero-title bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-6xl">
-                Créons ensemble
+                Créons ensemble{" "}
                 <span className="block">quelque chose de génial</span>
               </h1>
 
@@ -286,7 +269,7 @@ export const Contact = () => {
       </div>
       {/* Contact Methods */}
       <div id="contact-info">
-        <AnimatedSection className="bg-gray-50 py-16">
+        <div className="bg-gray-50 py-16">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
@@ -297,14 +280,11 @@ export const Contact = () => {
               </p>
             </div>
 
-            <div
-              ref={contactCardsRef}
-              className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3"
-            >
-              {contactMethods.map((method, index) => (
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
+              {contactMethods.map((method) => (
                 <Card
-                  key={method.title + index}
-                  className="contact-card group h-full border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
+                  key={method.title}
+                  className="group h-full border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
                 >
                   <CardContent className="flex h-full flex-col justify-between p-6 text-center">
                     <div>
@@ -329,13 +309,13 @@ export const Contact = () => {
               ))}
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
       {/* Main Content */}
       <div id="form" className="container mx-auto mt-12 px-6 pb-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Form */}
-          <AnimatedSection>
+          <div>
             <Card className="border-gray-200 bg-white shadow-lg">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-gray-900">
@@ -479,12 +459,12 @@ export const Contact = () => {
                 </div>
               </CardContent>
             </Card>
-          </AnimatedSection>
+          </div>
 
           {/* Additional Info */}
           <div className="space-y-8">
             {/* Social Links */}
-            <AnimatedSection>
+            <div>
               <Card className="border-gray-200 bg-white shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center text-xl font-bold text-gray-900">
@@ -494,9 +474,9 @@ export const Contact = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
-                    {socialLinks.map((social, index) => (
+                    {socialLinks.map((social) => (
                       <a
-                        key={index}
+                        key={social.name}
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -513,13 +493,13 @@ export const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
-            </AnimatedSection>
+            </div>
           </div>
         </div>
       </div>
       {/* FAQ Section */}
       <div id="faq">
-        <AnimatedSection className="faq-section bg-gray-50 py-16">
+        <div className="faq-section bg-gray-50 py-16">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="mx-auto max-w-4xl">
               <div className="mb-12 text-center">
@@ -552,7 +532,7 @@ export const Contact = () => {
               </Card>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </div>
   );
