@@ -5,11 +5,6 @@ import { createRouter, RouterProvider } from "@tanstack/react-router";
 
 import { routeTree } from "./routeTree.gen";
 
-// Utilitaires de débogage en développement
-if (import.meta.env.DEV) {
-  import("./utils/debugFirstVisit");
-}
-
 const router = createRouter({ routeTree });
 
 declare module "@tanstack/react-router" {
