@@ -138,7 +138,7 @@ export const HeroSection = memo<HeroSectionProps>(
         {isAtTop && (
           <div
             ref={chevronRef}
-            className="absolute bottom-16 left-1/2 z-50 hidden -translate-x-1/2 transform sm:bottom-20 md:block lg:bottom-24"
+            className="absolute bottom-8 left-1/2 z-50 hidden -translate-x-1/2 transform sm:bottom-12 md:block lg:bottom-16"
           >
             <button
               onClick={handleScrollToNext}

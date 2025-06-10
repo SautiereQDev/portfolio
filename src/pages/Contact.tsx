@@ -92,8 +92,7 @@ const socialLinks = [
 const faqs = [
   {
     question: "Quel est votre délai de réponse ?",
-    answer:
-      "Je réponds généralement sous 24h maximum. Pour les urgences, n&apos;hésitez pas à mentionner la priorité dans votre message.",
+    answer: "Je réponds généralement dans les 24 heures.",
   },
   {
     question: "Proposez-vous des consultations gratuites ?",
