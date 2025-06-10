@@ -134,11 +134,11 @@ export const HeroSection = memo<HeroSectionProps>(
           </div>
         </div>
 
-        {/* Animated Chevron - only shown when at top */}
+        {/* Animated Chevron - only shown when at top and hidden on mobile */}
         {isAtTop && (
           <div
             ref={chevronRef}
-            className="absolute bottom-16 left-1/2 z-50 -translate-x-1/2 transform sm:bottom-20 lg:bottom-24"
+            className="absolute bottom-16 left-1/2 z-50 hidden -translate-x-1/2 transform sm:bottom-20 md:block lg:bottom-24"
           >
             <button
               onClick={handleScrollToNext}
