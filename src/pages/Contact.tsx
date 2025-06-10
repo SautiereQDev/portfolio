@@ -303,7 +303,7 @@ export const Contact = () => {
             >
               {contactMethods.map((method, index) => (
                 <Card
-                  key={index}
+                  key={method.title + index}
                   className="contact-card group h-full border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
                 >
                   <CardContent className="flex h-full flex-col justify-between p-6 text-center">
@@ -364,10 +364,14 @@ export const Contact = () => {
                     className="space-y-6"
                   >
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-name"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Nom *
                       </label>
                       <Input
+                        id="contact-name"
                         {...register("name")}
                         placeholder="Votre nom complet"
                         className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
@@ -380,10 +384,14 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-company"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Entreprise
                       </label>
                       <Input
+                        id="contact-company"
                         {...register("company")}
                         placeholder="Votre entreprise ou organisation"
                         className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
@@ -391,10 +399,14 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-email"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Email *
                       </label>
                       <Input
+                        id="contact-email"
                         type="email"
                         {...register("email")}
                         placeholder="votre@email.com"
@@ -408,10 +420,14 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-message"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Message *
                       </label>
                       <Textarea
+                        id="contact-message"
                         {...register("message")}
                         placeholder="Décrivez votre projet, vos besoins ou posez-moi vos questions..."
                         rows={6}
@@ -519,7 +535,7 @@ export const Contact = () => {
                 <CardContent className="p-8">
                   <div className="space-y-6">
                     {faqs.map((faq, index) => (
-                      <div key={index} className="faq-item">
+                      <div key={faq.question + index} className="faq-item">
                         <h4 className="mb-3 text-lg font-semibold text-gray-900">
                           {faq.question}
                         </h4>
