@@ -11,7 +11,7 @@ import {
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation";
+import { SectionNavigation } from "../components/ui/SectionNavigation";
 import {
   ArrowRight,
   Code,
