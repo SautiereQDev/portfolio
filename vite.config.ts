@@ -16,7 +16,7 @@ export default defineConfig({
         svgoConfig: {
           plugins: [
             {
-              name: 'preset-default',
+              name: "preset-default",
               params: {
                 overrides: {
                   removeViewBox: false, // Garder viewBox pour la responsivité
@@ -24,17 +24,17 @@ export default defineConfig({
                 },
               },
             },
-            'removeDimensions', // Supprimer width/height fixes
+            "removeDimensions", // Supprimer width/height fixes
           ],
         },
       },
     }),
   ],
   base: "/",
-  assetsInclude: ['**/*.webp'],
+  assetsInclude: ["**/*.webp"],
   server: {
     fs: {
-      allow: ['..']
-    }
-  }
+      allow: [".."],
+    },
+  },
 });

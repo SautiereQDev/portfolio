@@ -236,8 +236,8 @@ const FirstVisitIntro = memo<FirstVisitIntroProps>(
           className={cn(
             "absolute top-4 h-0 w-0",
             position === "left"
-              ? "-right-2 border-t-8 border-r-0 border-b-8 border-l-8 border-transparent border-l-blue-200"
-              : "-left-2 border-t-8 border-r-8 border-b-8 border-l-0 border-transparent border-r-blue-200"
+              ? "-left-2 border-t-8 border-r-8 border-b-8 border-l-0 border-transparent border-r-blue-200"
+              : "-right-2 border-t-8 border-r-0 border-b-8 border-l-8 border-transparent border-l-blue-200"
           )}
         />
       </div>
