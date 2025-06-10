@@ -102,10 +102,10 @@ export const SectionNavigation = memo<SectionNavigationProps>(
           {/* Main Navigation Container */}
           <div
             className={cn(
-              "overflow-hidden rounded-2xl border border-gray-200/60 bg-white/95 shadow-xl backdrop-blur-xl transition-all duration-300 ease-out",
+              "overflow-hidden rounded-2xl border border-gray-200/60 bg-white/95 backdrop-blur-xl transition-all duration-300 ease-out",
               isExpanded
-                ? "shadow-2xl shadow-blue-500/10"
-                : "shadow-lg hover:shadow-xl",
+                ? "shadow-[0_25px_50px_-12px_rgba(59,130,246,0.4)] shadow-blue-500/40"
+                : "shadow-[0_20px_25px_-5px_rgba(0,0,0,0.2),0_10px_10px_-5px_rgba(0,0,0,0.1)] hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.35)] hover:shadow-blue-500/30",
               !isExpanded && "animate-pulse-subtle"
             )}
           >
@@ -155,8 +155,9 @@ const CompactToggleButton = memo<CompactToggleButtonProps>(
         size="sm"
         onClick={onClick}
         className={cn(
-          "relative flex h-14 w-14 items-center justify-center overflow-hidden p-0 transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50",
-          showIntro && "animate-pulse-intro"
+          "relative flex h-16 w-16 items-center justify-center overflow-hidden p-0 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.2),0_4px_6px_-2px_rgba(0,0,0,0.1)] transition-all duration-300 hover:scale-105 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:shadow-[0_20px_25px_-5px_rgba(59,130,246,0.25)]",
+          showIntro &&
+            "animate-pulse-intro shadow-[0_20px_25px_-5px_rgba(34,197,94,0.35)]"
         )}
       >
         {/* First visit background animation */}
@@ -169,10 +170,10 @@ const CompactToggleButton = memo<CompactToggleButtonProps>(
 
         {/* Green badge for first visit */}
         {showIntro && (
-          <div className="absolute -top-1 -right-1 z-20">
+          <div className="absolute -top-2 -right-2 z-20">
             <div className="relative">
-              <div className="animate-bounce-gentle h-3 w-3 rounded-full bg-green-500 shadow-lg" />
-              <div className="absolute inset-0 h-3 w-3 animate-ping rounded-full bg-green-400" />
+              <div className="animate-bounce-gentle h-4 w-4 rounded-full bg-green-500 shadow-[0_8px_16px_rgba(34,197,94,0.6)] shadow-green-500/80" />
+              <div className="absolute inset-0 h-4 w-4 animate-ping rounded-full bg-green-400 shadow-[0_4px_8px_rgba(34,197,94,0.5)]" />
             </div>
           </div>
         )}
