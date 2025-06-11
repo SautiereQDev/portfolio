@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -10,6 +10,8 @@ interface AnimatedSectionProps {
   animation?: "fadeIn" | "slideUp" | "slideInLeft" | "slideInRight" | "scale";
   delay?: number;
   duration?: number;
+  threshold?: number;
+  once?: boolean;
 }
 
 export const AnimatedSection = ({
@@ -17,37 +19,38 @@ export const AnimatedSection = ({
   className = "",
   animation = "fadeIn",
   delay = 0,
-  duration = 1,
+  duration = 0.8,
+  threshold = 0.3,
+  once = true,
 }: AnimatedSectionProps) => {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const element = sectionRef.current;
     if (!element) return;
 
-    // Animation initiale
+    // Définir l'état initial en fonction de l'animation
+    let initialX = 0;
+    if (animation === "slideInLeft") {
+      initialX = -30;
+    } else if (animation === "slideInRight") {
+      initialX = 30;
+    }
+
     const initialState = {
       opacity: 0,
-      y: animation === "slideUp" ? 50 : 0,
-      x:
-        animation === "slideInLeft"
-          ? -50
-          : animation === "slideInRight"
-            ? 50
-            : 0,
-      scale: animation === "scale" ? 0.8 : 1,
+      y: animation === "slideUp" ? 30 : 0,
+      x: initialX,
+      scale: animation === "scale" ? 0.95 : 1,
     };
 
+    // Appliquer l'état initial immédiatement
     gsap.set(element, initialState);
 
-    // Animation au scroll
+    // Créer l'animation avec ScrollTrigger
     const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: element,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      },
+      paused: true,
     });
 
     tl.to(element, {
@@ -60,10 +63,41 @@ export const AnimatedSection = ({
       ease: "power2.out",
     });
 
+    // Configuration du ScrollTrigger
+    const trigger = ScrollTrigger.create({
+      trigger: element,
+      start: `top ${80 + threshold * 20}%`,
+      onEnter: () => {
+        if (!isVisible || !once) {
+          setIsVisible(true);
+          tl.play();
+        }
+      },
+      onEnterBack: () => {
+        if (!once && !isVisible) {
+          setIsVisible(true);
+          tl.play();
+        }
+      },
+      onLeave: () => {
+        if (!once) {
+          setIsVisible(false);
+          tl.reverse();
+        }
+      },
+      onLeaveBack: () => {
+        if (!once) {
+          setIsVisible(false);
+          tl.reverse();
+        }
+      },
+    });
+
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      trigger.kill();
+      tl.kill();
     };
-  }, [animation, delay, duration]);
+  }, [animation, delay, duration, threshold, once, isVisible]);
 
   return (
     <div ref={sectionRef} className={className}>

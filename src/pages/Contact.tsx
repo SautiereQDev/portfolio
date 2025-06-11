@@ -11,14 +11,11 @@ import {
   MapPin,
   Send,
   CheckCircle,
-  Github,
-  Linkedin,
   MessageSquare,
   Clock,
   Globe,
-  User,
-  HelpCircle,
 } from "lucide-react";
+import { LinkedInIconModern, GitHubIcon } from "../components/ui/icons";
 import { Button } from "../components/ui/button";
 import {
   Card,
@@ -29,9 +26,6 @@ import {
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Badge } from "../components/ui/badge";
-import { AnimatedSection } from "../components/ui/animated-section";
-import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,31 +76,23 @@ const contactMethods = [
 
 const socialLinks = [
   {
-    icon: Github,
+    icon: GitHubIcon,
     name: "GitHub",
     url: "https://github.com/SautiereQDev",
     color: "hover:text-gray-800",
   },
   {
-    icon: Linkedin,
+    icon: LinkedInIconModern,
     name: "LinkedIn",
     url: "https://www.linkedin.com/in/quentin-sauti%C3%A8re/",
     color: "hover:text-blue-600",
   },
 ];
 
-const sections = [
-  { id: "intro", title: "Introduction", icon: User },
-  { id: "contact-info", title: "Informations", icon: MessageSquare },
-  { id: "form", title: "Formulaire", icon: Send },
-  { id: "faq", title: "FAQ", icon: HelpCircle },
-];
-
 const faqs = [
   {
     question: "Quel est votre délai de réponse ?",
-    answer:
-      "Je réponds généralement sous 24h maximum. Pour les urgences, n&apos;hésitez pas à mentionner la priorité dans votre message.",
+    answer: "Je réponds généralement dans les 24 heures.",
   },
   {
     question: "Proposez-vous des consultations gratuites ?",
@@ -129,7 +115,6 @@ export const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const contactCardsRef = useRef<HTMLDivElement>(null);
 
   const {
     register,
@@ -172,21 +157,6 @@ export const Contact = () => {
             },
             "-=0.4"
           );
-      }
-
-      // Contact cards animation
-      if (contactCardsRef.current) {
-        gsap.from(".contact-card", {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: contactCardsRef.current,
-            start: "top 80%",
-          },
-        });
       }
 
       // Form animations
@@ -258,14 +228,6 @@ export const Contact = () => {
   };
   return (
     <div className="min-h-screen bg-white font-[Manrope]">
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
-        </div>
-      </div>
       {/* Hero Section */}
       <div id="intro">
         <section
@@ -290,14 +252,14 @@ export const Contact = () => {
               </div>
 
               <h1 className="hero-title bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-6xl">
-                Créons ensemble
+                Créons ensemble{" "}
                 <span className="block">quelque chose de génial</span>
               </h1>
 
               <p className="hero-subtitle mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
-                Vous avez un projet en tête ? Discutons de vos idées et
-                donnons-leur vie ensemble. Je suis là pour transformer votre
-                vision en réalité digitale.
+                Vous avez un projet en tête ? Discutons de votre idée et
+                donnons-lui vie ensemble. Je suis là pour transformer votre
+                vision en réalité.
               </p>
             </div>
           </div>
@@ -305,25 +267,22 @@ export const Contact = () => {
       </div>
       {/* Contact Methods */}
       <div id="contact-info">
-        <AnimatedSection className="bg-gray-50 py-16">
+        <div className="bg-gray-50 py-16">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="mb-12 text-center">
               <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
                 Comment me contacter
               </h2>
               <p className="text-xl text-gray-600">
-                Plusieurs moyens de me joindre selon vos préférences
+                Tout les moyens de me contacter pour discuter de votre projet
               </p>
             </div>
 
-            <div
-              ref={contactCardsRef}
-              className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3"
-            >
-              {contactMethods.map((method, index) => (
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
+              {contactMethods.map((method) => (
                 <Card
-                  key={index}
-                  className="contact-card group h-full border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
+                  key={method.title}
+                  className="group h-full border-gray-200 bg-white transition-all duration-300 hover:shadow-lg"
                 >
                   <CardContent className="flex h-full flex-col justify-between p-6 text-center">
                     <div>
@@ -348,13 +307,13 @@ export const Contact = () => {
               ))}
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
       {/* Main Content */}
       <div id="form" className="container mx-auto mt-12 px-6 pb-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
           {/* Contact Form */}
-          <AnimatedSection>
+          <div>
             <Card className="border-gray-200 bg-white shadow-lg">
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-gray-900">
@@ -383,10 +342,14 @@ export const Contact = () => {
                     className="space-y-6"
                   >
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-name"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Nom *
                       </label>
                       <Input
+                        id="contact-name"
                         {...register("name")}
                         placeholder="Votre nom complet"
                         className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
@@ -399,10 +362,14 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-company"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Entreprise
                       </label>
                       <Input
+                        id="contact-company"
                         {...register("company")}
                         placeholder="Votre entreprise ou organisation"
                         className="border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
@@ -410,10 +377,14 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-email"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Email *
                       </label>
                       <Input
+                        id="contact-email"
                         type="email"
                         {...register("email")}
                         placeholder="votre@email.com"
@@ -427,10 +398,14 @@ export const Contact = () => {
                     </div>
 
                     <div className="form-field">
-                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                      <label
+                        htmlFor="contact-message"
+                        className="mb-2 block text-sm font-medium text-gray-700"
+                      >
                         Message *
                       </label>
                       <Textarea
+                        id="contact-message"
                         {...register("message")}
                         placeholder="Décrivez votre projet, vos besoins ou posez-moi vos questions..."
                         rows={6}
@@ -482,12 +457,12 @@ export const Contact = () => {
                 </div>
               </CardContent>
             </Card>
-          </AnimatedSection>
+          </div>
 
           {/* Additional Info */}
           <div className="space-y-8">
             {/* Social Links */}
-            <AnimatedSection>
+            <div>
               <Card className="border-gray-200 bg-white shadow-lg">
                 <CardHeader>
                   <CardTitle className="flex items-center text-xl font-bold text-gray-900">
@@ -497,9 +472,9 @@ export const Contact = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
-                    {socialLinks.map((social, index) => (
+                    {socialLinks.map((social) => (
                       <a
-                        key={index}
+                        key={social.name}
                         href={social.url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -516,13 +491,13 @@ export const Contact = () => {
                   </div>
                 </CardContent>
               </Card>
-            </AnimatedSection>
+            </div>
           </div>
         </div>
       </div>
       {/* FAQ Section */}
       <div id="faq">
-        <AnimatedSection className="faq-section bg-gray-50 py-16">
+        <div className="faq-section bg-gray-50 py-16">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="mx-auto max-w-4xl">
               <div className="mb-12 text-center">
@@ -538,7 +513,7 @@ export const Contact = () => {
                 <CardContent className="p-8">
                   <div className="space-y-6">
                     {faqs.map((faq, index) => (
-                      <div key={index} className="faq-item">
+                      <div key={faq.question + index} className="faq-item">
                         <h4 className="mb-3 text-lg font-semibold text-gray-900">
                           {faq.question}
                         </h4>
@@ -555,7 +530,7 @@ export const Contact = () => {
               </Card>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </div>
   );

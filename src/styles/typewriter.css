@@ -1,0 +1,197 @@
+/* Typewriter effect styles */
+
+/* Enhanced Typewriter effect styles */
+/* Increased specificity to avoid reliance on !important */
+.typewriter-container .typewriter-cursor {
+  display: inline;
+  color: #3b82f6;
+  /* Blue-500 */
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  animation: enhanced-cursor-blink 1.2s infinite;
+  text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+  transform-origin: bottom;
+  white-space: nowrap;
+  vertical-align: baseline;
+  line-height: inherit;
+  width: auto;
+  height: auto;
+  float: none;
+  clear: none;
+  overflow: visible;
+  min-width: 0;
+  max-width: none;
+  box-sizing: content-box;
+}
+
+@keyframes enhanced-cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+    text-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+    transform: scaleY(0.8) scaleX(0.9);
+    text-shadow: 0 0 4px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.typewriter-text {
+  overflow: visible;
+  white-space: pre;
+  /* Préserve les espaces */
+  display: inline;
+  position: relative;
+  word-break: keep-all;
+  /* Évite les coupures de mots */
+  line-height: inherit;
+  /* Conserve la hauteur de ligne du parent */
+  margin: 0;
+  padding: 0;
+}
+
+/* Container pour le typewriter effect */
+.typewriter-container {
+  display: inline;
+  position: relative;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  line-height: inherit;
+}
+
+/* Wrapper inline pour texte + curseur */
+.typewriter-inline-wrapper {
+  display: inline !important;
+  white-space: nowrap !important;
+  position: relative;
+  vertical-align: baseline !important;
+  overflow: visible !important;
+  max-width: 100%;
+  line-height: inherit !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  clear: none !important;
+}
+
+/* Character reveal animation for natural typing with micro-bounce */
+.typewriter-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: char-reveal-bounce 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)
+    forwards;
+}
+
+@keyframes char-reveal-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.7) rotateZ(-2deg);
+  }
+
+  60% {
+    opacity: 0.9;
+    transform: translateY(-3px) scale(1.1) rotateZ(1deg);
+  }
+
+  80% {
+    opacity: 1;
+    transform: translateY(1px) scale(0.98) rotateZ(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateZ(0deg);
+  }
+}
+
+/* Advanced cursor with gradient and pulse effect */
+.typewriter-cursor-enhanced {
+  display: inline-block;
+  width: 3px;
+  height: 1.1em;
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  margin-left: 3px;
+  position: relative;
+  top: 0.1em;
+  animation: cursor-pulse-enhanced 1.3s infinite;
+  border-radius: 2px;
+  box-shadow:
+    0 0 12px rgba(59, 130, 246, 0.5),
+    0 0 24px rgba(59, 130, 246, 0.2);
+}
+
+@keyframes cursor-pulse-enhanced {
+  0%,
+  45% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1);
+    box-shadow:
+      0 0 12px rgba(59, 130, 246, 0.5),
+      0 0 24px rgba(59, 130, 246, 0.2);
+  }
+
+  50%,
+  100% {
+    opacity: 0.2;
+    transform: scaleY(0.7) scaleX(0.8);
+    box-shadow:
+      0 0 6px rgba(59, 130, 246, 0.2),
+      0 0 12px rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* Enhanced typewriter cursor with dynamic glow */
+.typewriter-cursor-glow {
+  text-shadow:
+    0 0 8px rgba(59, 130, 246, 0.6),
+    0 0 16px rgba(59, 130, 246, 0.3),
+    0 0 24px rgba(147, 51, 234, 0.2);
+  animation: cursor-glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cursor-glow-pulse {
+  0%,
+  100% {
+    text-shadow:
+      0 0 8px rgba(59, 130, 246, 0.6),
+      0 0 16px rgba(59, 130, 246, 0.3),
+      0 0 24px rgba(147, 51, 234, 0.2);
+  }
+
+  50% {
+    text-shadow:
+      0 0 12px rgba(59, 130, 246, 0.8),
+      0 0 24px rgba(147, 51, 234, 0.4),
+      0 0 36px rgba(236, 72, 153, 0.3);
+  }
+}
+
+/* Typing progress indicator (subtle) */
+.typewriter-progress {
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 1px;
+  opacity: 0.6;
+  animation: progress-glow 2s ease-in-out infinite;
+}
+
+@keyframes progress-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  }
+}

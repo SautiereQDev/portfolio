@@ -1,6 +1,3 @@
-import { useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from "@tanstack/react-router";
 import {
   Code,
@@ -14,26 +11,23 @@ import {
   Check,
   Star,
   ArrowRight,
-  Briefcase,
-  Settings,
-  Target,
 } from "lucide-react";
+import Seo from "../components/SEO";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
-import { AnimatedSection } from "../components/ui/animated-section";
-import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation";
+import { OptimizedImage } from "../components/ui/OptimizedImage";
+import { useScrollAnimations } from "../hooks/useScrollAnimations";
 import banner from "../assets/images/services_banner.svg";
 import serviceDetails from "../data/servicesDetails.json";
 
-gsap.registerPlugin(ScrollTrigger);
-
+// Data structures for better maintainability
 const processSteps = [
   {
     icon: Calendar,
@@ -82,118 +76,70 @@ const additionalServices = [
   },
 ];
 
+/**
+ * Services Page - Version refactorisée avec animations CSS fiables
+ */
 export const Service = () => {
-  const sections = [
-    { id: "intro", title: "Introduction", icon: Briefcase },
-    { id: "pricing", title: "Tarifs", icon: Target },
-    { id: "process", title: "Processus", icon: Settings },
-    { id: "additional", title: "Services supplémentaires", icon: Wrench },
-    { id: "contact", title: "Contact", icon: ArrowRight },
-  ];
+  // Hook d'animations simples et fiables
+  useScrollAnimations({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
-  useEffect(() => {
-    // Animation pour les cartes de services
-    const cards = document.querySelectorAll("[data-service-card]");
-    cards.forEach((card, index) => {
-      gsap.fromTo(
-        card,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          delay: index * 0.2,
-          scrollTrigger: {
-            trigger: card,
-            start: "top 80%",
-            once: true,
-          },
-        }
-      );
-    });
-
-    // Animation pour les étapes du processus
-    const steps = document.querySelectorAll("[data-process-step]");
-    steps.forEach((step, index) => {
-      gsap.fromTo(
-        step,
-        { x: -30, opacity: 0 },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.5,
-          delay: index * 0.1,
-          scrollTrigger: {
-            trigger: step,
-            start: "top 85%",
-            once: true,
-          },
-        }
-      );
-    });
-  }, []);
   return (
-    <div className="font-body min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
+    <div className="min-h-screen bg-white font-[Manrope]">
+      <Seo page="services" />
+
+      {/* Hero Section - Animations CSS fiables */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-24 lg:py-32">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5" />
+        <div className="relative z-10 container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="hero-title mb-8">
+              <OptimizedImage
+                src={banner}
+                alt="Services"
+                className="mx-auto mb-8 w-64 drop-shadow-2xl"
+              />
+            </div>
+            <h1 className="hero-subtitle mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-6xl">
+              Développement Web
+            </h1>
+            <p className="hero-description mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 md:text-xl">
+              Je suis spécialisé dans le développement Web full-stack, qui
+              comprend à la fois le travail front-end et back-end. Je peux vous
+              aider à toutes les échelles, du simple site vitrine à une
+              applications Web complexe.
+            </p>
+          </div>
         </div>
       </div>
-      {/* Hero Section */}
-      <div id="intro">
-        <AnimatedSection className="relative overflow-hidden py-20">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10" />
-          <div className="relative z-10 container mx-auto px-4">
-            <div className="mx-auto max-w-4xl text-center">
-              <div className="mb-8">
-                <img
-                  src={banner}
-                  alt="Services"
-                  className="mx-auto mb-8 w-64 drop-shadow-2xl"
-                />
-              </div>
-              <h1 className="mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
-                Développement Web
-              </h1>
-              <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 md:text-xl">
-                Je suis spécialisé dans le développement Web full-stack, qui
-                comprend à la fois le travail front-end et back-end. Je peux
-                vous aider avec tout, des simples pages de destination aux
-                applications Web complexes.
+
+      {/* Services Pricing Section - Enhanced design */}
+      <div id="services" className="services-section bg-gray-50 py-24">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="animate-on-scroll mb-16 text-center">
+              <Badge className="mb-4 border-0 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800">
+                Offres
+              </Badge>
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+                Mes Services
+              </h2>
+              <p className="mx-auto max-w-2xl text-xl text-gray-600">
+                Des solutions adaptées à vos besoins et votre budget
               </p>
             </div>
-          </div>
-        </AnimatedSection>
-      </div>
 
-      {/* Services Pricing */}
-      <div id="pricing">
-        <AnimatedSection className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-6xl">
-              <div className="mb-16 text-center">
-                <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
-                  Mes Offres
-                </h2>
-                <p className="text-lg text-gray-600">
-                  Des solutions adaptées à vos besoins et votre budget
-                </p>
-              </div>
-
-              <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-                {/* Site Vitrine */}
-                <Card
-                  data-service-card
-                  className="group border-0 bg-white/80 p-8 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
-                >
+            <div className="grid gap-8 md:grid-cols-2 lg:mx-auto lg:max-w-5xl">
+              {/* Site Vitrine - Enhanced card */}
+              <div className="animate-on-scroll service-card h-full">
+                <Card className="group h-full border-0 bg-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
                   <CardHeader className="pb-6 text-center">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 transition-transform duration-300 group-hover:scale-110">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 transition-transform duration-300 group-hover:scale-110">
                       <Globe className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="mb-2 text-2xl font-bold text-gray-800">
+                    <CardTitle className="mb-2 text-2xl font-bold text-gray-900">
                       Site Vitrine
                     </CardTitle>
                     <div className="text-center">
@@ -203,61 +149,67 @@ export const Service = () => {
                       <span className="text-lg text-gray-600">/site</span>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
+                  <CardContent className="px-6 pb-6">
+                    <div className="space-y-4">
                       {serviceDetails.simple.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-3">
-                          <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+                        <div
+                          key={feature + index}
+                          className="flex items-start gap-3"
+                        >
+                          <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
                             <Check className="h-3 w-3 text-green-600" />
                           </div>
-                          <span className="text-gray-700">{feature}</span>
+                          <CardDescription className="leading-relaxed text-gray-700">
+                            {feature}
+                          </CardDescription>
                         </div>
                       ))}
                     </div>
                   </CardContent>
                 </Card>
+              </div>
 
-                {/* Site Complexe */}
-                <Card
-                  data-service-card
-                  className="group relative overflow-hidden border-0 bg-white/80 p-8 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105"
-                >
-                  <div className="absolute top-4 right-4">
-                    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white">
+              {/* Site Complexe - Enhanced card with popular badge */}
+              <div className="animate-on-scroll service-card h-full delay-200">
+                <Card className="group relative h-full border-0 bg-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 transform">
+                    <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg">
                       <Star className="mr-1 h-3 w-3" />
                       Populaire
                     </Badge>
                   </div>
-                  <CardHeader className="pb-6 text-center">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-pink-500 transition-transform duration-300 group-hover:scale-110">
+                  <CardHeader className="pt-8 pb-6 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 transition-transform duration-300 group-hover:scale-110">
                       <Database className="h-8 w-8 text-white" />
                     </div>
-                    <CardTitle className="mb-2 text-2xl font-bold text-gray-800">
-                      Site Web Complexe
+                    <CardTitle className="mb-2 text-2xl font-bold text-gray-900">
+                      Site Complexe
                     </CardTitle>
                     <div className="text-center">
                       <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-4xl font-bold text-transparent">
-                        +2000€
+                        1500€
                       </span>
                       <span className="text-lg text-gray-600">/site</span>
                     </div>
+                    <div className="mt-2">
+                      <CardDescription className="font-medium text-gray-600">
+                        Idéal pour les entreprises
+                      </CardDescription>
+                    </div>
                   </CardHeader>
-                  <CardContent>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3 rounded-lg bg-blue-50 p-2">
-                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-blue-100">
-                          <Star className="h-3 w-3 text-blue-600" />
-                        </div>
-                        <span className="font-medium text-blue-700">
-                          Inclut toutes les fonctionnalités du plan précédent
-                        </span>
-                      </div>
+                  <CardContent className="px-6 pb-6">
+                    <div className="space-y-4">
                       {serviceDetails.complex.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-3">
-                          <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
+                        <div
+                          key={feature + index}
+                          className="flex items-start gap-3"
+                        >
+                          <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-green-100">
                             <Check className="h-3 w-3 text-green-600" />
                           </div>
-                          <span className="text-gray-700">{feature}</span>
+                          <CardDescription className="leading-relaxed text-gray-700">
+                            {feature}
+                          </CardDescription>
                         </div>
                       ))}
                     </div>
@@ -266,128 +218,149 @@ export const Service = () => {
               </div>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
 
-      {/* Process Section */}
-      <div id="process">
-        <AnimatedSection className="bg-white/50 py-20">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-4xl">
-              <div className="mb-16 text-center">
-                <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
-                  Comment ça marche
-                </h2>
-                <p className="text-lg text-gray-600">
-                  Un processus éprouvé pour votre réussite
-                </p>
-              </div>
+      {/* Process Section - Enhanced timeline */}
+      <div id="process" className="process-section bg-white py-24">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className="animate-on-scroll mb-16 text-center">
+              <Badge className="mb-4 border-0 bg-gradient-to-r from-green-100 to-emerald-100 text-green-800">
+                Processus
+              </Badge>
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+                Comment ça marche
+              </h2>
+              <p className="mx-auto max-w-2xl text-xl text-gray-600">
+                Un processus éprouvé pour votre réussite
+              </p>
+            </div>
 
-              <div className="space-y-8">
-                {processSteps.map((step, index) => (
-                  <div
-                    key={index}
-                    data-process-step
-                    className="group flex items-start gap-6"
-                  >
-                    <div className="flex flex-col items-center">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
-                        <step.icon className="h-6 w-6 text-white" />
-                      </div>
-                      {index < processSteps.length - 1 && (
-                        <div className="mt-4 h-16 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300" />
-                      )}
+            <div className="space-y-8">
+              {processSteps.map((step, index) => (
+                <div
+                  key={step.title + index}
+                  className={`process-step animate-on-scroll delay-${Math.min(index * 100, 500)} group flex items-start gap-6`}
+                >
+                  <div className="flex flex-col items-center">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 transition-transform duration-300 group-hover:scale-110">
+                      <step.icon className="h-6 w-6 text-white" />
                     </div>
-                    <div className="flex-grow">
-                      <Card className="border-0 bg-white/80 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:shadow-xl">
+                    {index < processSteps.length - 1 && (
+                      <div className="mt-4 h-16 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300" />
+                    )}
+                  </div>
+                  <div className="flex-grow">
+                    <Card className="border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-xl">
+                      <CardContent className="p-6">
                         <div className="mb-3 flex items-start justify-between">
-                          <h3 className="text-xl font-semibold text-gray-800">
+                          <CardTitle className="text-xl font-bold text-gray-900">
                             {step.title}
-                          </h3>
+                          </CardTitle>
                           <Badge
                             variant="outline"
-                            className="text-sm font-medium"
+                            className="border-blue-200 text-sm font-medium text-blue-700"
                           >
                             {step.duration}
                           </Badge>
                         </div>
-                        <p className="text-gray-600">{step.description}</p>
-                      </Card>
-                    </div>
+                        <CardDescription className="leading-relaxed text-gray-600">
+                          {step.description}
+                        </CardDescription>
+                      </CardContent>
+                    </Card>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
 
-      {/* Additional Services */}
-      <div id="additional">
-        <AnimatedSection className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-4xl">
-              <div className="mb-16 text-center">
-                <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-3xl font-bold text-transparent md:text-4xl">
-                  Services Additionnels
-                </h2>
-                <p className="text-lg text-gray-600">
-                  Pour un accompagnement complet
-                </p>
-              </div>
-
-              <div className="grid gap-8 md:grid-cols-2">
-                {additionalServices.map((service, index) => (
-                  <Card
-                    key={index}
-                    className="group border-0 bg-white/80 p-6 shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                  >
-                    <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500 transition-transform duration-300 group-hover:scale-110">
-                        <service.icon className="h-6 w-6 text-white" />
-                      </div>
-                      <div>
-                        <h3 className="mb-2 text-xl font-semibold text-gray-800">
-                          {service.title}
-                        </h3>
-                        <p className="leading-relaxed text-gray-600">
-                          {service.description}
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </AnimatedSection>
-      </div>
-
-      {/* CTA Section */}
-      <div id="contact">
-        <AnimatedSection className="bg-gradient-to-r from-blue-600 to-purple-600 py-20 text-white">
-          <div className="container mx-auto px-4 text-center">
-            <div className="mx-auto max-w-3xl">
-              <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-                Prêt à donner vie à votre projet ?
+      {/* Additional Services Section - Enhanced grid */}
+      <div
+        id="additional"
+        className="additional-services-section bg-gray-50 py-24"
+      >
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className="animate-on-scroll mb-16 text-center">
+              <Badge className="mb-4 border-0 bg-gradient-to-r from-indigo-100 to-purple-100 text-indigo-800">
+                Services Additionnels
+              </Badge>
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl">
+                Pour un accompagnement complet
               </h2>
-              <p className="mb-8 text-xl text-blue-100">
-                Contactez-moi dès aujourd&apos;hui pour discuter de vos besoins
-                et obtenir un devis personnalisé.
+              <p className="mx-auto max-w-2xl text-xl text-gray-600">
+                Des services complémentaires pour optimiser votre projet
               </p>
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              {additionalServices.map((service, index) => (
+                <div
+                  key={service.title + index}
+                  className={`additional-service animate-on-scroll delay-${Math.min(index * 150, 300)} h-full`}
+                >
+                  <Card className="group h-full border-0 bg-white shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+                    <CardContent className="p-6">
+                      <div className="flex items-start gap-4">
+                        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 transition-transform duration-300 group-hover:scale-110">
+                          <service.icon className="h-6 w-6 text-white" />
+                        </div>
+                        <div>
+                          <CardTitle className="mb-3 text-xl font-bold text-gray-900">
+                            {service.title}
+                          </CardTitle>
+                          <CardDescription className="leading-relaxed text-gray-600">
+                            {service.description}
+                          </CardDescription>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section - Consistent with Home/About pages */}
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-24">
+        <div className="container mx-auto px-6 text-center lg:px-8">
+          <div className="animate-on-scroll">
+            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
+              Prêt à donner vie à votre projet ?
+            </h2>
+            <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
+              Contactez-moi dès aujourd&apos;hui pour discuter de vos besoins et
+              obtenir un devis personnalisé.
+            </p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button
                 asChild
                 size="lg"
-                className="rounded-xl bg-white px-8 py-6 text-lg font-semibold text-blue-600 shadow-xl transition-all duration-300 hover:bg-gray-100 hover:shadow-2xl"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-gray-50"
               >
-                <Link to="/contact" className="inline-flex items-center gap-2">
-                  Me contacter
-                  <ArrowRight className="h-5 w-5" />
+                <Link to="/contact">Me contacter</Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-blue-600"
+              >
+                <Link to="/projects" className="flex items-center gap-2">
+                  Voir mes réalisations
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
             </div>
           </div>
-        </AnimatedSection>
+        </div>
       </div>
     </div>
   );

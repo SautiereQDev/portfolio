@@ -1,38 +1,68 @@
-import { useState, useEffect, useRef } from "react";
-import { ProjectCard } from "../components/cards/ProjectCard.tsx";
-import { AnimatedSection } from "../components/ui/animated-section";
-import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
-import Breadcrumb from "../components/ui/breadcrumb";
-import SectionNavigation from "../components/ui/SectionNavigation.tsx";
+import { useState, useEffect } from "react";
 import {
   Search,
   Code,
   Smartphone,
   Globe,
   Database,
-  FolderOpen,
+  ArrowRight,
   Filter,
-  Grid,
+  TrendingUp,
 } from "lucide-react";
-import { gsap } from "gsap";
+import Seo from "../components/SEO";
+import { ProjectCard } from "../components/cards/ProjectCard";
+import { SectionHeader } from "../components/SectionHeader";
+import { CTASection } from "../components/CTASection";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
+import { OptimizedImage } from "../components/ui/OptimizedImage";
+import { useScrollAnimations } from "../hooks/useScrollAnimations";
 import banner from "../assets/images/project_banner.svg";
 import projects from "../data/projects.json";
+import type { ProjectCategory, ProjectStats, Project } from "../types";
 
+/**
+ * Projects Page - Version finale avec architecture moderne et animations fiables
+ */
 export const Projects = () => {
+  // State management
   const [filteredProjects, setFilteredProjects] = useState(projects);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
-  const heroRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  // Hook d'animations simples et fiables
+  useScrollAnimations({
+    threshold: 0.2,
+    triggerOnce: true,
+  });
 
-  const sections = [
-    { id: "intro", title: "Introduction", icon: FolderOpen },
-    { id: "filters", title: "Filtres", icon: Filter },
-    { id: "projects", title: "Projets", icon: Grid },
-  ];
-  const categories = [
-    { id: "all", name: "Tous", icon: Globe, count: projects.length },
+  // Fonction utilitaire pour obtenir la classe de délai
+  const getDelayClass = (index: number): string => {
+    const delays = [
+      "delay-100",
+      "delay-200",
+      "delay-300",
+      "delay-400",
+      "delay-500",
+    ];
+    return delays[Math.min(index, delays.length - 1)];
+  };
+
+  // Configuration data
+  const categories: ProjectCategory[] = [
+    {
+      id: "all",
+      name: "Tous",
+      icon: Globe,
+      count: projects.length,
+      description: "Tous les projets",
+    },
     {
       id: "web",
       name: "Web",
@@ -40,6 +70,7 @@ export const Projects = () => {
       count: projects.filter((p) =>
         p.technos.some((t) => ["React", "Vue", "Nuxt", "Symfony"].includes(t))
       ).length,
+      description: "Applications web modernes",
     },
     {
       id: "mobile",
@@ -48,6 +79,7 @@ export const Projects = () => {
       count: projects.filter((p) =>
         p.technos.some((t) => ["React Native", "Expo"].includes(t))
       ).length,
+      description: "Applications mobiles",
     },
     {
       id: "api",
@@ -56,11 +88,12 @@ export const Projects = () => {
       count: projects.filter((p) =>
         p.technos.some((t) => ["NestJs", "API Platform", "PHP"].includes(t))
       ).length,
+      description: "APIs et services backend",
     },
     {
       id: "divers",
       name: "Divers",
-      icon: FolderOpen,
+      icon: TrendingUp,
       count: projects.filter(
         (p) =>
           !p.technos.some((t) =>
@@ -77,278 +110,340 @@ export const Projects = () => {
             ].includes(t)
           )
       ).length,
+      description: "Projets divers et expérimentaux",
     },
   ];
 
-  // Fonction pour changer de catégorie et réinitialiser la recherche
+  const stats: ProjectStats[] = [
+    {
+      value: projects.length,
+      label: "Projets réalisés",
+      color: "text-blue-600",
+    },
+    {
+      value: 20,
+      label: "Technologies maîtrisées",
+      color: "text-purple-600",
+    },
+    {
+      value: 5,
+      label: "Années d'expérience",
+      color: "text-green-600",
+    },
+    {
+      value: 2,
+      label: "Années d'études",
+      color: "text-orange-600",
+    },
+  ];
+
+  // Helper functions for filtering
+  const filterByCategory = (
+    projectList: Project[],
+    category: string
+  ): Project[] => {
+    if (category === "all") return projectList;
+
+    const categoryTechnos = {
+      web: ["React", "Vue", "Nuxt", "Symfony", "Tailwindcss"],
+      mobile: ["React Native", "Expo"],
+      api: ["NestJs", "API Platform", "PHP", "NodeJs"],
+    };
+
+    if (category === "divers") {
+      const allOtherTechnos = [
+        ...categoryTechnos.web,
+        ...categoryTechnos.mobile,
+        ...categoryTechnos.api,
+      ];
+      return projectList.filter(
+        (project: Project) =>
+          !project.technos.some((tech: string) =>
+            allOtherTechnos.includes(tech)
+          )
+      );
+    }
+
+    const techs = categoryTechnos[category as keyof typeof categoryTechnos];
+    return projectList.filter((project: Project) =>
+      project.technos.some((tech: string) => techs?.includes(tech))
+    );
+  };
+
+  const filterBySearch = (projectList: Project[], term: string): Project[] => {
+    if (!term) return projectList;
+
+    const lowerTerm = term.toLowerCase();
+    return projectList.filter(
+      (project: Project) =>
+        project.title.toLowerCase().includes(lowerTerm) ||
+        project.description.toLowerCase().includes(lowerTerm) ||
+        project.technos.some((tech: string) =>
+          tech.toLowerCase().includes(lowerTerm)
+        )
+    );
+  };
+
+  const getProjectCountText = () => {
+    const count = filteredProjects.length;
+    const plural = count > 1 ? "s" : "";
+    const baseText = `${count} projet${plural} trouvé${plural}`;
+    const searchText = searchTerm ? ` pour "${searchTerm}"` : "";
+    return baseText + searchText;
+  };
+
+  const resetFilters = () => {
+    setSelectedCategory("all");
+    setSearchTerm("");
+  };
+
   const handleCategoryChange = (categoryId: string) => {
     setSelectedCategory(categoryId);
-    setSearchTerm(""); // Réinitialise la barre de recherche
+    setSearchTerm("");
   };
+
+  // Filter logic
   useEffect(() => {
-    let tl: gsap.core.Timeline | null = null;
+    setIsLoading(true);
 
-    // Animation daposentrée du hero
-    if (heroRef.current) {
-      tl = gsap.timeline();
+    const timer = setTimeout(() => {
+      let filtered = filterByCategory(projects, selectedCategory);
+      filtered = filterBySearch(filtered, searchTerm);
 
-      // Animation de laposimage avec les blobs
-      tl.fromTo(
-        ".hero-image",
-        { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 1, ease: "power2.out" }
-      )
-        // Animation du badge
-        .fromTo(
-          ".hero-badge",
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-          "-=0.5"
-        )
-        // Animation du titre
-        .fromTo(
-          ".hero-title",
-          { y: 40, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-          "-=0.3"
-        )
-        // Animation de la description
-        .fromTo(
-          ".hero-description",
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-          "-=0.3"
-        );
-    }
+      setFilteredProjects(filtered);
+      setIsLoading(false);
+    }, 300);
 
-    // Animation des statistiques
-    let observer: IntersectionObserver | null = null;
-    if (statsRef.current) {
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const counters = entry.target.querySelectorAll("[data-count]");
-              counters.forEach((counter) => {
-                const target = parseInt(
-                  counter.getAttribute("data-count") ?? "0"
-                );
-                gsap.to(counter, {
-                  innerHTML: target,
-                  duration: 2,
-                  ease: "power2.out",
-                  snap: { innerHTML: 1 },
-                });
-              });
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-
-      observer.observe(statsRef.current);
-    }
-
-    // Nettoyage des animations
-    return () => {
-      if (tl) tl.kill();
-      if (observer) observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    let filtered = projects;
-
-    // Filtrage par catégorie
-    if (selectedCategory !== "all") {
-      const categoryTechnos = {
-        web: ["React", "Vue", "Nuxt", "Symfony", "Tailwindcss"],
-        mobile: ["React Native", "Expo"],
-        api: ["NestJs", "API Platform", "PHP", "NodeJs"],
-      };
-
-      if (selectedCategory === "divers") {
-        // Pour la catégorie "divers", on filtre les projets qui naposont AUCUNE des technologies des autres catégories
-        const allOtherTechnos = [
-          ...categoryTechnos.web,
-          ...categoryTechnos.mobile,
-          ...categoryTechnos.api,
-        ];
-
-        filtered = filtered.filter(
-          (project) =>
-            !project.technos.some((tech) => allOtherTechnos.includes(tech))
-        );
-      } else {
-        filtered = filtered.filter((project) =>
-          project.technos.some((tech) =>
-            categoryTechnos[
-              selectedCategory as keyof typeof categoryTechnos
-            ]?.includes(tech)
-          )
-        );
-      }
-    }
-
-    // Filtrage par recherche
-    if (searchTerm) {
-      filtered = filtered.filter(
-        (project) =>
-          project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          project.description
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()) ||
-          project.technos.some((tech) =>
-            tech.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-      );
-    }
-
-    setFilteredProjects(filtered);
+    return () => clearTimeout(timer);
   }, [selectedCategory, searchTerm]);
+
   return (
     <div className="min-h-screen bg-white font-[Manrope]">
-      {/* Navigation par sections */}
-      <SectionNavigation sections={sections} />
-      {/* Breadcrumb */}
-      <div className="pt-4 pb-4">
-        <div className="container mx-auto px-4">
-          <Breadcrumb />
+      <Seo page="projects" />
+      {/* Hero Section - Animations CSS fiables */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-24 lg:py-32">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5" />
+        <div className="relative z-10 container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="hero-title mb-8">
+              <OptimizedImage
+                src={banner}
+                alt="Mes projets"
+                className="mx-auto mb-8 w-64 drop-shadow-2xl"
+              />
+            </div>
+            <h1 className="hero-subtitle mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl leading-tight font-bold text-transparent md:text-6xl">
+              Mes Réalisations
+            </h1>
+            <p className="hero-description mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 md:text-xl">
+              Découvrez une sélection de mes projets, des applications web
+              modernes aux solutions mobiles innovantes. Chaque projet témoigne
+              de ma passion pour la création de solutions numériques
+              performantes.
+            </p>
+          </div>
         </div>
       </div>
-      {/* Hero Section */}
-      <div id="intro">
-        <section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-16 sm:py-20 lg:py-24">
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(59,130,246,0.3)_1px,transparent_0)] bg-[length:50px_50px]"></div>
-          </div>
-          <div
-            ref={heroRef}
-            className="relative z-10 container mx-auto px-6 lg:px-8"
-          >
-            <div className="space-y-8 text-center">
-              <div className="hero-image relative inline-block">
-                <img
-                  src={banner}
-                  alt="Projets illustration"
-                  className="mx-auto h-auto w-64"
-                />
-                <div className="animate-blob absolute -top-4 -right-4 h-32 w-32 rounded-full bg-blue-200 opacity-70 mix-blend-multiply blur-xl filter"></div>
-                <div className="animate-blob animation-delay-2000 absolute -bottom-4 -left-4 h-32 w-32 rounded-full bg-purple-200 opacity-70 mix-blend-multiply blur-xl filter"></div>
-              </div>
-              <div className="space-y-4">
-                <Badge className="hero-badge border-0 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800">
-                  Portfolio
-                </Badge>
-                <h1 className="hero-title bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
-                  Mes Projets
-                </h1>
-                <p className="hero-description mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 sm:text-xl">
-                  Découvrez une sélection de mes réalisations, des applications
-                  web modernes aux solutions mobiles innovantes
-                </p>
-              </div>
+      {/* Stats Section */}
+      <div className="bg-gray-50 py-24">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl">
+            <div className="animate-on-scroll">
+              <SectionHeader
+                badge={{
+                  text: "Statistiques",
+                  className:
+                    "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800",
+                }}
+                title="Quelques chiffres"
+                description="Un aperçu de mon parcours et de mon expérience"
+              />
             </div>
-          </div>
-        </section>
-      </div>
-      {/* Statistiques */}
-      <AnimatedSection className="bg-gray-50 py-16">
-        <div ref={statsRef} className="container mx-auto px-6 lg:px-8">
-          <div className="grid gap-8 text-center md:grid-cols-4">
-            <div className="space-y-2">
-              <div
-                className="text-3xl font-bold text-blue-600"
-                data-count={projects.length}
-              >
-                0
-              </div>
-              <div className="text-gray-600">Projets réalisés</div>
-            </div>
-            <div className="space-y-2">
-              <div
-                className="text-3xl font-bold text-purple-600"
-                data-count="20"
-              >
-                0
-              </div>
-              <div className="text-gray-600">Technologies maîtrisées</div>
-            </div>
-            <div className="space-y-2">
-              <div className="text-3xl font-bold text-green-600" data-count="5">
-                0
-              </div>
-              <div className="text-gray-600">Années d&apos;expérience</div>
-            </div>
-            <div className="space-y-2">
-              <div
-                className="text-3xl font-bold text-orange-600"
-                data-count="2"
-              >
-                0
-              </div>
-              <div className="text-gray-600">Années d&apos;études</div>
+
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={
+                    index > 0
+                      ? `stat-card h-full delay-${index}00`
+                      : "stat-card h-full"
+                  }
+                >
+                  <Card className="border-0 bg-white text-center shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl">
+                    <CardContent className="p-6">
+                      <div className={`text-4xl font-bold ${stat.color} mb-2`}>
+                        {stat.value}
+                      </div>
+                      <CardDescription className="font-medium text-gray-600">
+                        {stat.label}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </AnimatedSection>
-      {/* Filtres et Recherche */}
-      <div id="filters">
-        <AnimatedSection className="py-12">
-          <div className="container mx-auto px-6 lg:px-8">
+      </div>
+      {/* Filters Section */}
+      <div className="py-24">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl">
+            <div className="animate-on-scroll">
+              <SectionHeader
+                badge={{
+                  text: "Filtres",
+                  className:
+                    "bg-gradient-to-r from-indigo-100 to-blue-100 text-indigo-800",
+                }}
+                title="Explorer mes projets"
+                description="Trouvez rapidement les projets qui vous intéressent"
+              />
+            </div>{" "}
             <div className="space-y-8">
-              {/* Barre de recherche */}
-              <div className="relative mx-auto max-w-md">
-                <Search className="absolute top-1/2 left-3 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Rechercher un projet..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full rounded-xl border border-gray-200 py-3 pr-4 pl-10 transition-all duration-200 focus:border-transparent focus:ring-2 focus:ring-blue-500"
-                />
+              {/* Search Bar - Simplifié */}
+              <div className="animate-on-scroll">
+                <div className="relative">
+                  {/* Icône de recherche simplifiée */}
+                  <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 text-gray-400" />
+
+                  {/* Input simplifié */}
+                  <input
+                    type="text"
+                    placeholder="Rechercher un projet, une technologie..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full rounded-xl border border-gray-200 bg-white py-4 pr-6 pl-12 text-lg placeholder-gray-400 transition-all duration-300 hover:border-gray-300 focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+                  />
+
+                  {/* Indicateur de résultats */}
+                  {searchTerm && (
+                    <div className="absolute top-1/2 right-4 flex -translate-y-1/2 items-center gap-3">
+                      <div className="rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-600">
+                        {filteredProjects.length} résultat
+                        {filteredProjects.length > 1 ? "s" : ""}
+                      </div>
+                      <button
+                        onClick={() => setSearchTerm("")}
+                        className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-200 transition-colors duration-200 hover:bg-gray-300"
+                        title="Effacer la recherche"
+                      >
+                        <span className="text-sm text-gray-500">✕</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-              {/* Filtres par catégorie */}
-              <div className="flex flex-wrap justify-center gap-4">
-                {categories.map((category) => (
-                  <Button
+              {/* Category Filters */}
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+                {categories.map((category, index) => (
+                  <div
                     key={category.id}
-                    onClick={() => handleCategoryChange(category.id)}
-                    variant={
-                      selectedCategory === category.id ? "default" : "outline"
-                    }
-                    className={`flex items-center gap-1.5 px-3 py-2 text-xs transition-all duration-300 sm:gap-2 sm:px-4 sm:py-2.5 sm:text-sm ${
-                      selectedCategory === category.id
-                        ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
-                        : "hover:border-blue-300"
-                    }`}
+                    className={`filter-card h-full ${index > 0 ? getDelayClass(index) : ""}`}
                   >
-                    <category.icon className="h-4 w-4" />
-                    {category.name}
-                    <Badge variant="secondary" className="ml-1">
-                      {category.count}
-                    </Badge>
-                  </Button>
+                    <Card
+                      className={`group h-full cursor-pointer border-0 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl ${
+                        selectedCategory === category.id
+                          ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                          : "bg-white hover:bg-gray-50"
+                      }`}
+                      onClick={() => handleCategoryChange(category.id)}
+                    >
+                      <CardContent className="flex h-full flex-col justify-between p-4 text-center">
+                        <div className="mb-3 flex justify-center">
+                          <div
+                            className={`flex h-12 w-12 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${
+                              selectedCategory === category.id
+                                ? "bg-white/20"
+                                : "bg-gradient-to-r from-blue-100 to-purple-100"
+                            }`}
+                          >
+                            <category.icon
+                              className={`h-6 w-6 ${
+                                selectedCategory === category.id
+                                  ? "text-white"
+                                  : "text-blue-600"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <CardTitle
+                            className={`mb-1 text-lg font-bold ${
+                              selectedCategory === category.id
+                                ? "text-white"
+                                : "text-gray-900"
+                            }`}
+                          >
+                            {category.name}
+                          </CardTitle>
+                          <CardDescription
+                            className={`mb-2 text-sm ${
+                              selectedCategory === category.id
+                                ? "text-white/80"
+                                : "text-gray-600"
+                            }`}
+                          >
+                            {category.description}
+                          </CardDescription>{" "}
+                        </div>
+                        <div className="mt-2">
+                          <Badge
+                            className={`inline-flex h-6 min-w-[2rem] items-center justify-center rounded-full px-2 py-1 text-xs font-bold transition-all duration-300 ${
+                              selectedCategory === category.id
+                                ? "bg-white/90 text-blue-600 shadow-sm"
+                                : "border border-blue-200 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700"
+                            } `}
+                          >
+                            {category.count}
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
                 ))}
               </div>
             </div>
           </div>
-        </AnimatedSection>
-      </div>
-      {/* Grille des projets */}
-      <div id="projects">
-        <AnimatedSection className="py-8 lg:py-12">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            {filteredProjects.length > 0 ? (
-              <div
-                className="projects-grid grid gap-12 lg:grid-cols-2"
-                key={`projects-${selectedCategory}-${searchTerm}-${filteredProjects.length}-${Date.now()}`}
-              >
+        </div>
+      </div>{" "}
+      {/* Projects Grid Section */}
+      <div className="projects-section relative bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 py-24">
+        {/* Glassmorphisme background elements */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-purple-500/5" />
+        <div className="absolute top-0 left-1/4 h-64 w-64 rounded-full bg-blue-400/10 blur-3xl" />
+        <div className="absolute right-1/4 bottom-0 h-96 w-96 rounded-full bg-purple-400/10 blur-3xl" />
+
+        <div className="relative container mx-auto px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl">
+            <div className="animate-on-scroll">
+              <SectionHeader
+                badge={{
+                  text: "Portfolio",
+                  className:
+                    "bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800",
+                }}
+                title={
+                  selectedCategory === "all"
+                    ? "Tous mes projets"
+                    : `Projets ${categories.find((c) => c.id === selectedCategory)?.name}`
+                }
+                description={getProjectCountText()}
+              />
+            </div>
+
+            {isLoading ? (
+              <div className="flex items-center justify-center py-24">
+                <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
+              </div>
+            ) : filteredProjects.length > 0 ? (
+              <div className="grid gap-8 lg:grid-cols-2">
                 {filteredProjects.map((project, index) => (
                   <div
                     key={`${project.title}-${selectedCategory}-${searchTerm}`}
-                    className="project-card"
-                    style={{ animationDelay: `${index * 0.1 + 0.1}s` }}
+                    className={`project-card`}
+                    style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <ProjectCard
                       title={project.title}
@@ -363,19 +458,45 @@ export const Projects = () => {
                 ))}
               </div>
             ) : (
-              <div className="animate-fade-in py-24 text-center">
-                <div className="mb-4 text-6xl text-gray-400">🔍</div>
-                <h3 className="mb-2 text-xl font-semibold text-gray-700">
-                  Aucun projet trouvé
-                </h3>
-                <p className="text-gray-500">
-                  Essayez de modifier vos critères de recherche ou de filtrage
-                </p>
+              <div className="animate-on-scroll">
+                <Card className="border-0 bg-white shadow-lg">
+                  <CardContent className="py-24 text-center">
+                    <div className="mb-6 text-6xl">🔍</div>
+                    <CardTitle className="mb-4 text-2xl font-bold text-gray-900">
+                      Aucun projet trouvé
+                    </CardTitle>
+                    <CardDescription className="mb-6 text-lg text-gray-600">
+                      Essayez de modifier vos critères de recherche ou de
+                      filtrage
+                    </CardDescription>
+                    <Button
+                      onClick={resetFilters}
+                      className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+                    >
+                      <Filter className="mr-2 h-4 w-4" />
+                      Réinitialiser les filtres
+                    </Button>
+                  </CardContent>
+                </Card>
               </div>
             )}
           </div>
-        </AnimatedSection>
+        </div>
       </div>
+      {/* CTA Section */}
+      <CTASection
+        title="Un projet en tête ?"
+        description="Discutons de votre projet et voyons comment je peux vous aider à concrétiser vos idées"
+        primaryCta={{
+          text: "Me contacter",
+          href: "/contact",
+        }}
+        secondaryCta={{
+          text: "Voir mes services",
+          href: "/services",
+          icon: <ArrowRight className="h-4 w-4" />,
+        }}
+      />
     </div>
   );
 };

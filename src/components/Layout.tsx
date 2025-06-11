@@ -1,6 +1,4 @@
 import { memo, ReactNode } from "react";
-import NavBar from "./NavBar";
-import { Footer } from "./Footer";
 import { SectionNavigation } from "./ui/SectionNavigation";
 import { ErrorBoundary } from "./ErrorBoundary";
 import type { BaseComponentProps, SectionLink } from "../types";
@@ -27,13 +25,10 @@ export const Layout = memo<LayoutProps>(
     return (
       <ErrorBoundary>
         <div
-          className={`flex min-h-screen flex-col bg-white ${className || ""}`}
+          className={`flex min-h-screen flex-col bg-white ${className ?? ""}`}
         >
-          {/* Navigation Bar */}
-          <NavBar />
-
           {/* Main Content */}
-          <main className="flex-1 pt-16">
+          <main className="flex-1">
             <ErrorBoundary
               fallback={
                 <div className="flex min-h-screen items-center justify-center">
@@ -52,9 +47,6 @@ export const Layout = memo<LayoutProps>(
               {children}
             </ErrorBoundary>
           </main>
-
-          {/* Footer */}
-          <Footer />
 
           {/* Section Navigation */}
           {showSectionNav && sections.length > 0 && (

@@ -1,8 +1,11 @@
 import { useRef, memo, useCallback } from "react";
 import { ChevronDown } from "lucide-react";
+import { gsap } from "gsap";
 import { useScrollThreshold } from "../hooks/useScrollThreshold";
 import { useHeroAnimations } from "../hooks/useHeroAnimations";
+import { useTypewriterEffect } from "../hooks/useTypewriterEffect";
 import { useScrollNavigation } from "../hooks/useScrollNavigation";
+import { OptimizedIllustration } from "./ui/OptimizedIllustration";
 import { SCROLL_THRESHOLDS } from "../constants";
 import type { HeroSectionProps } from "../types";
 
@@ -11,7 +14,15 @@ import type { HeroSectionProps } from "../types";
  * Features parallax animations, scroll-triggered effects, and responsive design
  */
 export const HeroSection = memo<HeroSectionProps>(
-  ({ title, subtitle, description, ctaText, ctaLink, imageUrl }) => {
+  ({
+    title,
+    subtitle,
+    description,
+    ctaText,
+    ctaLink,
+    imageUrl,
+    illustrationName,
+  }) => {
     // Refs for DOM elements
     const heroRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -24,6 +35,38 @@ export const HeroSection = memo<HeroSectionProps>(
     // Custom hooks
     const { isAtTop } = useScrollThreshold(SCROLL_THRESHOLDS.HERO_TOP);
     const { navigateToSection } = useScrollNavigation();
+
+    // Effet typewriter amélioré sur le titre
+    useTypewriterEffect(titleRef, {
+      text: title,
+      speed: 0.04, // Vitesse optimisée
+      delay: 1.0, // Délai initial
+      cursorBlinkSpeed: 0.6,
+      naturalTyping: true, // Variations naturelles de vitesse
+      pauseOnPunctuation: 0.4, // Pause sur la ponctuation
+      pauseOnSpace: 0.12, // Pause sur les espaces
+      revealEffect: true, // Effet de révélation des caractères
+      soundEnabled: false, // Désactivé par défaut (peut être activé pour les tests)
+      onCharacterTyped: (char, _index) => {
+        // Feedback subtil pour certains caractères spéciaux
+        if (char === "!" || char === "?") {
+          // Micro-animation sur les exclamations/questions
+        }
+      },
+      onComplete: () => {
+        // Animation terminée - déclenche d'autres effets
+        if (titleRef.current) {
+          // Petit effet de "satisfaction" à la fin
+          gsap.to(titleRef.current, {
+            scale: 1.02,
+            duration: 0.2,
+            yoyo: true,
+            repeat: 1,
+            ease: "power2.inOut",
+          });
+        }
+      },
+    });
 
     // GSAP animations setup - moved to custom hook
     useHeroAnimations({
@@ -60,12 +103,25 @@ export const HeroSection = memo<HeroSectionProps>(
             {/* Text Content */}
             <div className="order-2 space-y-6 lg:order-1 lg:space-y-8">
               <div className="space-y-3 lg:space-y-4">
-                <h1
-                  ref={titleRef}
-                  className="text-3xl leading-tight font-extrabold break-words text-gray-900 drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl"
-                >
-                  {title}
-                </h1>
+                <div className="relative inline-block max-w-full">
+                  <h1
+                    ref={titleRef}
+                    className="translate-y-4 transform text-3xl leading-tight font-extrabold text-gray-900 opacity-0 drop-shadow-lg sm:text-4xl md:text-5xl lg:text-6xl"
+                    style={{
+                      transition:
+                        "opacity 0.3s ease-out, transform 0.3s ease-out",
+                      whiteSpace: "nowrap",
+                      wordBreak: "keep-all",
+                      position: "relative",
+                      display: "inline",
+                      lineHeight: "1.1",
+                      maxWidth: "100%",
+                      overflow: "visible",
+                    }}
+                  >
+                    {/* Le titre sera rempli par l'effet typewriter amélioré */}
+                  </h1>
+                </div>
                 <p
                   ref={subtitleRef}
                   className="text-lg font-bold text-black drop-shadow-md sm:text-xl md:text-2xl"
@@ -103,12 +159,20 @@ export const HeroSection = memo<HeroSectionProps>(
             {/* Hero Image */}
             <div className="relative order-1 mb-8 lg:order-2 lg:mb-0">
               <div className="relative z-10">
-                <img
-                  ref={imageRef}
-                  src={imageUrl}
-                  alt="Hero illustration"
-                  className="mx-auto h-auto w-full max-w-sm object-contain sm:max-w-md lg:max-w-lg"
-                />
+                {illustrationName ? (
+                  <OptimizedIllustration
+                    name={illustrationName}
+                    alt="Hero illustration"
+                    className="mx-auto h-auto w-full max-w-sm object-contain sm:max-w-md lg:max-w-lg"
+                  />
+                ) : (
+                  <img
+                    ref={imageRef}
+                    src={imageUrl}
+                    alt="Hero illustration"
+                    className="mx-auto h-auto w-full max-w-sm object-contain sm:max-w-md lg:max-w-lg"
+                  />
+                )}
               </div>
               {/* Decorative Elements */}
               <div className="animate-blob absolute -top-2 -left-2 h-32 w-32 rounded-full bg-blue-200 opacity-70 mix-blend-multiply blur-xl filter sm:-top-4 sm:-left-4 sm:h-48 sm:w-48 lg:h-72 lg:w-72"></div>
@@ -117,11 +181,11 @@ export const HeroSection = memo<HeroSectionProps>(
           </div>
         </div>
 
-        {/* Animated Chevron - only shown when at top */}
+        {/* Animated Chevron - only shown when at top and hidden on mobile */}
         {isAtTop && (
           <div
             ref={chevronRef}
-            className="absolute bottom-16 left-1/2 z-50 -translate-x-1/2 transform sm:bottom-20 lg:bottom-24"
+            className="absolute bottom-8 left-1/2 z-50 hidden -translate-x-1/2 transform sm:bottom-12 md:block lg:bottom-16"
           >
             <button
               onClick={handleScrollToNext}
