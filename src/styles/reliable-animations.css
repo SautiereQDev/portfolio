@@ -1,0 +1,179 @@
+/* Animation CSS fiables pour éviter les problèmes GSAP */
+
+/* Classes d'animation de base */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* Délais pour les animations staggerées */
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation au scroll avec Intersection Observer */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Classe pour empêcher définitivement la réanimation */
+.animation-completed {
+  animation: none !important;
+}
+
+.animation-completed.animate-on-scroll {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: none !important;
+}
+
+/* Animation pour les cartes de projets */
+.project-card {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: all 0.5s ease-out;
+}
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Animation pour les statistiques */
+.stat-card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease-out;
+}
+
+.stat-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero animations - avec protection contre la réanimation */
+.hero-title {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: slideUp 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.hero-title.visible {
+  animation: none !important;
+  /* Empêche la réanimation */
+}
+
+.hero-subtitle {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: slideUp 0.6s ease-out 0.2s both;
+}
+
+.hero-subtitle.visible {
+  animation: none !important;
+  /* Empêche la réanimation */
+}
+
+.hero-description {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: slideUp 0.5s ease-out 0.4s both;
+}
+
+.hero-description.visible {
+  animation: none !important;
+  /* Empêche la réanimation */
+}
+
+/* Fallback pour forcer la visibilité */
+.force-visible {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Animation pour les filtres */
+.filter-card {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.3s ease-out;
+}
+
+.filter-card.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Media queries pour désactiver les animations sur les appareils qui préfèrent moins de mouvement */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .slide-up,
+  .scale-in,
+  .animate-on-scroll,
+  .project-card,
+  .stat-card,
+  .filter-card {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

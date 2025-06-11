@@ -4,5 +4,6 @@
 @import "./styles/base.css";
 @import "./styles/typography.css";
 @import "./styles/animations.css";
+@import "./styles/reliable-animations.css";
 @import "./styles/typewriter.css";
 @import "./styles/components.css";
