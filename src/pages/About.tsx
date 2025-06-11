@@ -67,14 +67,14 @@ export const About = () => {
                   <div className="flex flex-col items-center gap-8 lg:flex-row">
                     <div className="flex-shrink-0">
                       <OptimizedImage
-                        src="/profile_picture.png"
+                        src="/profile_picture.webp"
                         alt="Photo de profil"
                         className="h-48 w-48 rounded-full border-4 border-blue-200 object-cover shadow-lg"
                       />
                     </div>
                     <div className="flex-grow text-center lg:text-left">
                       <h3 className="mb-4 text-2xl font-bold text-gray-900">
-                        Sauti El Fadil
+                        Quentin Sautière
                       </h3>
                       <CardDescription className="mb-6 text-lg leading-relaxed text-gray-600">
                         Passionné par l&apos;innovation technologique et le
