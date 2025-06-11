@@ -14,9 +14,7 @@
     "type-check": "tsc --noEmit",
     "preview": "vite preview",
     "prepare": "husky",
-    "fix-all": "npm run lint:fix && npm run format",
-    "optimize:svg": "svgo --folder=src/assets/images --config=svgo.config.cjs",
-    "optimize:images": "node scripts/optimize-images.mjs"
+    "fix-all": "npm run lint:fix && npm run format"
   },
   "dependencies": {
     "@hookform/resolvers": "^4.1.0",

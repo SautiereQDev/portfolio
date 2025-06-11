@@ -257,9 +257,9 @@ export const Contact = () => {
               </h1>
 
               <p className="hero-subtitle mx-auto max-w-3xl text-xl leading-relaxed text-gray-600">
-                Vous avez un projet en tête ? Discutons de vos idées et
-                donnons-leur vie ensemble. Je suis là pour transformer votre
-                vision en réalité digitale.
+                Vous avez un projet en tête ? Discutons de votre idée et
+                donnons-lui vie ensemble. Je suis là pour transformer votre
+                vision en réalité.
               </p>
             </div>
           </div>
@@ -274,7 +274,7 @@ export const Contact = () => {
                 Comment me contacter
               </h2>
               <p className="text-xl text-gray-600">
-                Plusieurs moyens de me joindre selon vos préférences
+                Tout les moyens de me contacter pour discuter de votre projet
               </p>
             </div>
 

@@ -108,8 +108,8 @@ export const Service = () => {
             <p className="hero-description mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 md:text-xl">
               Je suis spécialisé dans le développement Web full-stack, qui
               comprend à la fois le travail front-end et back-end. Je peux vous
-              aider avec tout, des simples pages de destination aux applications
-              Web complexes.
+              aider à toutes les échelles, du simple site vitrine à une
+              applications Web complexe.
             </p>
           </div>
         </div>

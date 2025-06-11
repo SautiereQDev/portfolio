@@ -39,10 +39,10 @@ export const About = () => {
               Développeur web et logiciel
             </h1>
             <p className="hero-description mx-auto max-w-3xl text-lg leading-relaxed text-gray-600 md:text-xl">
-              Développeur et concepteur Web depuis plus de cinq ans. Je suis un
-              amoureux de la création de sites web esthétiques et fonctionnels
-              et je contribue au développement de sociétés grâce à la création
-              de solutions numériques innovantes.
+              Développeur passionné depuis plus de cinq ans, je crée des
+              expériences web qui allient esthétique et performance. Mon
+              objectif ? Donner vie à vos idées à travers des solutions
+              numériques sur mesure qui font vraiment la différence.
             </p>
           </div>
         </div>
@@ -77,14 +77,14 @@ export const About = () => {
                         Quentin Sautière
                       </h3>
                       <CardDescription className="mb-6 text-lg leading-relaxed text-gray-600">
-                        Passionné par l&apos;innovation technologique et le
+                        Passionné par les innovations technologiques et le
                         design, je transforme vos idées en solutions numériques
                         performantes. Mon approche allie créativité et expertise
-                        technique pour créer des expériences utilisateur
-                        exceptionnelles. Quand je ne code pas, vous me trouverez
-                        probablement en train de courir sur piste en compétition
-                        de demi-fond, où persévérance et performance sont mes
-                        maîtres-mots.
+                        technique pour créer des expériences utilisateur qui
+                        retiendra l&apos;attention de vos clients. Quand je ne
+                        code pas, vous me trouverez probablement en train de
+                        courir sur piste en compétition de demi-fond,
+                        persévérance et performance sont mes maîtres-mots.
                       </CardDescription>
                     </div>
                   </div>
