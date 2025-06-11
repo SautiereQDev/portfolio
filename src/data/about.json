@@ -24,6 +24,7 @@
     "Accessibility",
     "Typescript",
     "React",
+    "Rect Native",
     "Node.js",
     "NestJs",
     "Vue.js",
@@ -33,7 +34,10 @@
     "Git",
     "Docker",
     "Symfony",
-    "Next"
+    "Next",
+    "C# .NET",
+    "WPF",
+    "Java"
   ],
   "interests": ["Informatique", "Course à pied", "Voile", "Randonnée"]
 }
