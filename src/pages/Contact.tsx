@@ -326,8 +326,9 @@ export const Contact = () => {
                 </p>
               </CardHeader>
               <CardContent>
+                {" "}
                 {isSubmitted ? (
-                  <div className="success-message py-8">
+                  <div className="success-message w-full py-8">
                     <CustomAlert
                       type="success"
                       title="Message envoyé avec succès !"
@@ -441,7 +442,6 @@ export const Contact = () => {
                     </Button>
                   </form>
                 )}
-
                 <div className="mt-6 pt-6">
                   <Separator className="mb-6" />
                   <p className="mb-4 text-center text-sm text-gray-500">

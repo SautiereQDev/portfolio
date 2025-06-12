@@ -1,11 +1,9 @@
-import { Alert, AlertDescription, AlertTitle } from "./alert";
 import { Button } from "./button";
 import { X, CheckCircle, AlertTriangle, Info, AlertCircle } from "lucide-react";
 import { cn } from "../../lib/utils";
 import { useState } from "react";
 
 interface CustomAlertProps {
-  variant?: "default" | "destructive";
   type?: "success" | "warning" | "info" | "error";
   title?: string;
   description: string;
@@ -24,19 +22,17 @@ const alertIcons = {
   error: AlertCircle,
 };
 
-const alertColors = {
-  success: "border-green-200 bg-green-50 text-green-800",
-  warning: "border-yellow-200 bg-yellow-50 text-yellow-800",
-  info: "border-blue-200 bg-blue-50 text-blue-800",
-  error: "border-red-200 bg-red-50 text-red-800",
+const alertStyles = {
+  success: "bg-green-50 border-green-200 text-green-800",
+  warning: "bg-yellow-50 border-yellow-200 text-yellow-800",
+  info: "bg-blue-50 border-blue-200 text-blue-800",
+  error: "bg-red-50 border-red-200 text-red-800",
 };
 
 /**
- * Custom Alert component using shadcn/ui
- * Provides additional features like different types, icons, and dismissible alerts
+ * Custom Alert component - Simple and robust design
  */
 export const CustomAlert = ({
-  variant = "default",
   type = "info",
   title,
   description,
@@ -50,44 +46,52 @@ export const CustomAlert = ({
   if (!isVisible) return null;
 
   return (
-    <Alert
-      variant={variant}
+    <div
       className={cn(
-        "relative",
-        type !== "error" && alertColors[type],
+        "w-full rounded-lg border p-6",
+        alertStyles[type],
         className
       )}
     >
-      <div className="flex items-start space-x-3">
-        <Icon className="mt-0.5 h-5 w-5 flex-shrink-0" />
-        <div className="min-w-0 flex-1">
-          {title && <AlertTitle className="mb-1">{title}</AlertTitle>}
-          <AlertDescription className="text-sm">{description}</AlertDescription>
-          {action && (
-            <div className="mt-3">
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={action.onClick}
-                className="h-8"
-              >
-                {action.label}
-              </Button>
-            </div>
+      {/* Header avec icône et bouton de fermeture */}
+      <div className="mb-4 flex items-start justify-between">
+        <div className="flex items-center gap-3">
+          <Icon className="h-6 w-6 flex-shrink-0" />
+          {title && (
+            <h3 className="text-lg leading-tight font-semibold">{title}</h3>
           )}
         </div>
         {dismissible && (
           <Button
             variant="ghost"
             size="sm"
-            className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
+            className="h-8 w-8 p-0 text-gray-500 hover:text-gray-700"
             onClick={() => setIsVisible(false)}
           >
             <X className="h-4 w-4" />
           </Button>
         )}
       </div>
-    </Alert>
+
+      {/* Description */}
+      <div className="mb-6">
+        <p className="text-base leading-relaxed">{description}</p>
+      </div>
+
+      {/* Bouton d'action */}
+      {action && (
+        <div className="w-full">
+          <Button
+            size="lg"
+            variant="outline"
+            onClick={action.onClick}
+            className="h-12 w-full border-2 border-current bg-white/50 text-base font-medium transition-all duration-300 hover:bg-white/80"
+          >
+            {action.label}
+          </Button>
+        </div>
+      )}
+    </div>
   );
 };
 
