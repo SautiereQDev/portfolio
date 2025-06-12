@@ -427,7 +427,6 @@ export const Projects = () => {
                 }
                 description={getProjectCountText()}
                 layout="centered"
-                showSeparator
               />
             </div>
 
