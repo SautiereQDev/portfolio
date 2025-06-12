@@ -9,6 +9,7 @@ import {
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
+import { CTASection } from "../components/ui/cta-section";
 import {
   ArrowRight,
   Code,
@@ -18,6 +19,7 @@ import {
   Monitor,
   Database,
   Search,
+  Star,
 } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { useScrollAnimations } from "../hooks/useScrollAnimations";
@@ -198,39 +200,25 @@ export const Home = () => {
             </Button>
           </div>
         </div>
-      </div>{" "}
-      {/* CTA Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-24">
-        <div className="container mx-auto px-6 text-center lg:px-8">
-          <div className="animate-on-scroll">
-            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-              Prêt à donner vie à votre projet ?
-            </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
-              Discutons de votre projet et voyons comment je peux vous aider à
-              atteindre vos objectifs
-            </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                variant="secondary"
-                className="bg-white text-blue-600 hover:bg-gray-50"
-              >
-                <Link to="/contact">Contactez-moi</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600"
-              >
-                <Link to="/projects">Voir mes réalisations</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
       </div>
+      {/* Enhanced CTA Section */}
+      <CTASection
+        title="Prêt à donner vie à votre projet ?"
+        description="Discutons de votre projet et voyons comment je peux vous aider à atteindre vos objectifs"
+        primaryCta={{
+          text: "Contactez-moi",
+          href: "/contact",
+        }}
+        secondaryCta={{
+          text: "Voir mes réalisations",
+          href: "/projects",
+        }}
+        badge={{
+          text: "Première consultation gratuite",
+          icon: <Star className="h-3 w-3" />,
+        }}
+        variant="gradient"
+      />
     </div>
   );
 };

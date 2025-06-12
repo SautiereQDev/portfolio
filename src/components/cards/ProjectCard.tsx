@@ -8,7 +8,8 @@ import {
 } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { ExternalLink, GitBranch, CheckCircle } from "lucide-react";
+import { ExternalLink, CheckCircle } from "lucide-react";
+import { GitHubIcon } from "../ui/icons";
 
 interface ProjectCardProps {
   title: string;
@@ -156,7 +157,7 @@ export const ProjectCard = ({
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2"
             >
-              <GitBranch className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              <GitHubIcon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
               GitHub
             </a>
           </Button>

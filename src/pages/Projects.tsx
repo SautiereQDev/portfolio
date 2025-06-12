@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 import Seo from "../components/SEO";
 import { ProjectCard } from "../components/cards/ProjectCard";
-import { SectionHeader } from "../components/SectionHeader";
-import { CTASection } from "../components/CTASection";
+import { SectionHeader } from "../components/ui/section-header";
+import { CTASection } from "../components/ui/cta-section";
 import {
   Card,
   CardContent,
@@ -252,11 +252,10 @@ export const Projects = () => {
               <SectionHeader
                 badge={{
                   text: "Statistiques",
-                  className:
-                    "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800",
                 }}
                 title="Quelques chiffres"
                 description="Un aperçu de mon parcours et de mon expérience"
+                layout="centered"
               />
             </div>
 
@@ -294,11 +293,10 @@ export const Projects = () => {
               <SectionHeader
                 badge={{
                   text: "Filtres",
-                  className:
-                    "bg-gradient-to-r from-indigo-100 to-blue-100 text-indigo-800",
                 }}
                 title="Explorer mes projets"
                 description="Trouvez rapidement les projets qui vous intéressent"
+                layout="centered"
               />
             </div>{" "}
             <div className="space-y-8">
@@ -421,8 +419,6 @@ export const Projects = () => {
               <SectionHeader
                 badge={{
                   text: "Portfolio",
-                  className:
-                    "bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800",
                 }}
                 title={
                   selectedCategory === "all"
@@ -430,6 +426,7 @@ export const Projects = () => {
                     : `Projets ${categories.find((c) => c.id === selectedCategory)?.name}`
                 }
                 description={getProjectCountText()}
+                layout="centered"
               />
             </div>
 
@@ -496,6 +493,11 @@ export const Projects = () => {
           href: "/services",
           icon: <ArrowRight className="h-4 w-4" />,
         }}
+        badge={{
+          text: "Contact",
+          icon: <ArrowRight className="h-3 w-3" />,
+        }}
+        variant="gradient"
       />
     </div>
   );
