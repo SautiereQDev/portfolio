@@ -1,8 +1,8 @@
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { Layout } from "../components/Layout";
-import { Footer } from "../components/Footer";
 import PageNavigation from "../components/ui/PageNavigation.tsx";
 import React from "react";
+import Footer from "../components/Footer.tsx";
 
 // Le tanstack devtool n'apparait qu'en mode développement
 const TanStackRouterDevtools =

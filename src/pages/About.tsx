@@ -1,9 +1,8 @@
 import { GraduationCap, ArrowRight } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 import Seo from "../components/SEO";
 import { Card, CardContent, CardDescription } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
+import { EnhancedCTASection } from "../components/ui/enhanced-cta-section";
 import { OptimizedImage } from "../components/ui/OptimizedImage";
 import { useScrollAnimations } from "../hooks/useScrollAnimations";
 import banner from "../assets/images/about_banner.svg";
@@ -254,41 +253,25 @@ export const About = () => {
         </div>
       </div>
 
-      {/* CTA Section - Consistent with Home page */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 py-24">
-        <div className="container mx-auto px-6 text-center lg:px-8">
-          <div className="animate-on-scroll">
-            <h2 className="mb-6 text-3xl font-bold text-white md:text-4xl">
-              Prêt à collaborer ensemble ?
-            </h2>
-            <p className="mx-auto mb-8 max-w-2xl text-xl text-blue-100">
-              Découvrez mes services ou contactez-moi pour discuter de votre
-              projet
-            </p>
-            <div className="flex flex-col justify-center gap-4 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                variant="secondary"
-                className="bg-white text-blue-600 hover:bg-gray-50"
-              >
-                <Link to="/services">Voir mes services</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-blue-600"
-              >
-                <Link to="/contact" className="flex items-center gap-2">
-                  Me contacter
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      {/* Enhanced CTA Section */}
+      <EnhancedCTASection
+        title="Prêt à collaborer ensemble ?"
+        description="Découvrez mes services ou contactez-moi pour discuter de votre projet"
+        primaryCta={{
+          text: "Voir mes services",
+          href: "/services",
+        }}
+        secondaryCta={{
+          text: "Me contacter",
+          href: "/contact",
+          icon: <ArrowRight className="h-4 w-4" />,
+        }}
+        badge={{
+          text: "Collaboration",
+          icon: <GraduationCap className="h-3 w-3" />,
+        }}
+        variant="gradient"
+      />
     </div>
   );
 };

@@ -11,8 +11,8 @@ import {
 } from "lucide-react";
 import Seo from "../components/SEO";
 import { ProjectCard } from "../components/cards/ProjectCard";
-import { SectionHeader } from "../components/SectionHeader";
-import { CTASection } from "../components/CTASection";
+import { EnhancedSectionHeader } from "../components/ui/enhanced-section-header";
+import { EnhancedCTASection } from "../components/ui/enhanced-cta-section";
 import {
   Card,
   CardContent,
@@ -202,6 +202,64 @@ export const Projects = () => {
     setSearchTerm("");
   };
 
+  // Render function for projects content to avoid nested ternary
+  const renderProjectsContent = () => {
+    if (isLoading) {
+      return (
+        <div className="flex items-center justify-center py-24">
+          <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
+        </div>
+      );
+    }
+
+    if (filteredProjects.length > 0) {
+      return (
+        <div className="grid gap-8 lg:grid-cols-2">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={`${project.title}-${selectedCategory}-${searchTerm}`}
+              className={`project-card`}
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <ProjectCard
+                title={project.title}
+                description={project.description}
+                imageUrl={project.imageUrl}
+                visit_link={project.visit_link}
+                github_link={project.github_link}
+                key_points={project.key_points}
+                technos={project.technos}
+              />
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return (
+      <div className="animate-on-scroll">
+        <Card className="border-0 bg-white shadow-lg">
+          <CardContent className="py-24 text-center">
+            <div className="mb-6 text-6xl">🔍</div>
+            <CardTitle className="mb-4 text-2xl font-bold text-gray-900">
+              Aucun projet trouvé
+            </CardTitle>
+            <CardDescription className="mb-6 text-lg text-gray-600">
+              Essayez de modifier vos critères de recherche ou de filtrage
+            </CardDescription>
+            <Button
+              onClick={resetFilters}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
+            >
+              <Filter className="mr-2 h-4 w-4" />
+              Réinitialiser les filtres
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  };
+
   // Filter logic
   useEffect(() => {
     setIsLoading(true);
@@ -249,14 +307,14 @@ export const Projects = () => {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <div className="animate-on-scroll">
-              <SectionHeader
+              <EnhancedSectionHeader
                 badge={{
                   text: "Statistiques",
-                  className:
-                    "bg-gradient-to-r from-blue-100 to-purple-100 text-blue-800",
                 }}
                 title="Quelques chiffres"
                 description="Un aperçu de mon parcours et de mon expérience"
+                layout="centered"
+                showSeparator
               />
             </div>
 
@@ -291,14 +349,13 @@ export const Projects = () => {
         <div className="container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <div className="animate-on-scroll">
-              <SectionHeader
+              <EnhancedSectionHeader
                 badge={{
                   text: "Filtres",
-                  className:
-                    "bg-gradient-to-r from-indigo-100 to-blue-100 text-indigo-800",
                 }}
                 title="Explorer mes projets"
                 description="Trouvez rapidement les projets qui vous intéressent"
+                layout="centered"
               />
             </div>{" "}
             <div className="space-y-8">
@@ -418,11 +475,9 @@ export const Projects = () => {
         <div className="relative container mx-auto px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="animate-on-scroll">
-              <SectionHeader
+              <EnhancedSectionHeader
                 badge={{
                   text: "Portfolio",
-                  className:
-                    "bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800",
                 }}
                 title={
                   selectedCategory === "all"
@@ -430,61 +485,17 @@ export const Projects = () => {
                     : `Projets ${categories.find((c) => c.id === selectedCategory)?.name}`
                 }
                 description={getProjectCountText()}
+                layout="centered"
+                showSeparator
               />
             </div>
 
-            {isLoading ? (
-              <div className="flex items-center justify-center py-24">
-                <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600"></div>
-              </div>
-            ) : filteredProjects.length > 0 ? (
-              <div className="grid gap-8 lg:grid-cols-2">
-                {filteredProjects.map((project, index) => (
-                  <div
-                    key={`${project.title}-${selectedCategory}-${searchTerm}`}
-                    className={`project-card`}
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <ProjectCard
-                      title={project.title}
-                      description={project.description}
-                      imageUrl={project.imageUrl}
-                      visit_link={project.visit_link}
-                      github_link={project.github_link}
-                      key_points={project.key_points}
-                      technos={project.technos}
-                    />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="animate-on-scroll">
-                <Card className="border-0 bg-white shadow-lg">
-                  <CardContent className="py-24 text-center">
-                    <div className="mb-6 text-6xl">🔍</div>
-                    <CardTitle className="mb-4 text-2xl font-bold text-gray-900">
-                      Aucun projet trouvé
-                    </CardTitle>
-                    <CardDescription className="mb-6 text-lg text-gray-600">
-                      Essayez de modifier vos critères de recherche ou de
-                      filtrage
-                    </CardDescription>
-                    <Button
-                      onClick={resetFilters}
-                      className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
-                    >
-                      <Filter className="mr-2 h-4 w-4" />
-                      Réinitialiser les filtres
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-            )}
+            {renderProjectsContent()}
           </div>
         </div>
       </div>
       {/* CTA Section */}
-      <CTASection
+      <EnhancedCTASection
         title="Un projet en tête ?"
         description="Discutons de votre projet et voyons comment je peux vous aider à concrétiser vos idées"
         primaryCta={{
@@ -496,6 +507,11 @@ export const Projects = () => {
           href: "/services",
           icon: <ArrowRight className="h-4 w-4" />,
         }}
+        badge={{
+          text: "Contact",
+          icon: <ArrowRight className="h-3 w-3" />,
+        }}
+        variant="gradient"
       />
     </div>
   );

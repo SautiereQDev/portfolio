@@ -10,7 +10,6 @@ import {
   Phone,
   MapPin,
   Send,
-  CheckCircle,
   MessageSquare,
   Clock,
   Globe,
@@ -26,6 +25,8 @@ import {
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Badge } from "../components/ui/badge";
+import { EnhancedAlert } from "../components/ui/enhanced-alert";
+import { Separator } from "../components/ui/separator";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -326,14 +327,17 @@ export const Contact = () => {
               </CardHeader>
               <CardContent>
                 {isSubmitted ? (
-                  <div className="success-message py-8 text-center">
-                    <CheckCircle className="mx-auto mb-4 h-16 w-16 text-green-500" />
-                    <h3 className="mb-2 text-xl font-semibold text-gray-900">
-                      Message envoyé avec succès !
-                    </h3>
-                    <p className="text-gray-600">
-                      Je vous répondrai dans les plus brefs délais.
-                    </p>
+                  <div className="success-message py-8">
+                    <EnhancedAlert
+                      type="success"
+                      title="Message envoyé avec succès !"
+                      description="Je vous répondrai dans les plus brefs délais. Merci de votre intérêt !"
+                      action={{
+                        label: "Envoyer un autre message",
+                        onClick: () => setIsSubmitted(false),
+                      }}
+                      dismissible={true}
+                    />
                   </div>
                 ) : (
                   <form
@@ -438,7 +442,8 @@ export const Contact = () => {
                   </form>
                 )}
 
-                <div className="mt-6 border-t border-gray-200 pt-6">
+                <div className="mt-6 pt-6">
+                  <Separator className="mb-6" />
                   <p className="mb-4 text-center text-sm text-gray-500">
                     Ou contactez-moi directement :
                   </p>
@@ -521,7 +526,9 @@ export const Contact = () => {
                           {faq.answer}
                         </p>
                         {index < faqs.length - 1 && (
-                          <div className="mt-6 border-b border-gray-200" />
+                          <div className="mt-6">
+                            <Separator />
+                          </div>
                         )}
                       </div>
                     ))}
