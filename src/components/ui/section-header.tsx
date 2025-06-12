@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "./card";
-import { Separator } from "./separator";
 import { Button } from "./button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "../../lib/utils";
@@ -37,7 +36,6 @@ interface SectionHeaderProps {
     };
   };
   layout?: "default" | "centered" | "split" | "card";
-  showSeparator?: boolean;
 }
 
 /**
@@ -53,7 +51,6 @@ export const SectionHeader = ({
   children,
   actions,
   layout = "default",
-  showSeparator = false,
 }: SectionHeaderProps) => {
   const renderContent = () => (
     <>
@@ -86,12 +83,6 @@ export const SectionHeader = ({
           <p className="mx-auto max-w-2xl text-xl leading-relaxed text-gray-600">
             {description}
           </p>
-        )}
-
-        {showSeparator && (
-          <div className="flex justify-center pt-2">
-            <Separator className="w-24 bg-gradient-to-r from-blue-600 to-purple-600" />
-          </div>
         )}
       </div>
 

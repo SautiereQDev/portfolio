@@ -256,7 +256,6 @@ export const Projects = () => {
                 title="Quelques chiffres"
                 description="Un aperçu de mon parcours et de mon expérience"
                 layout="centered"
-                showSeparator
               />
             </div>
 
