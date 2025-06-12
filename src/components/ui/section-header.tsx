@@ -12,7 +12,7 @@ import { Button } from "./button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-interface EnhancedSectionHeaderProps {
+interface SectionHeaderProps {
   badge?: {
     text: string;
     variant?: "default" | "secondary" | "destructive" | "outline";
@@ -44,7 +44,7 @@ interface EnhancedSectionHeaderProps {
  * Enhanced Section Header Component using shadcn/ui
  * Provides multiple layouts and enhanced visual elements
  */
-export const EnhancedSectionHeader = ({
+export const SectionHeader = ({
   badge,
   title,
   subtitle,
@@ -54,7 +54,7 @@ export const EnhancedSectionHeader = ({
   actions,
   layout = "default",
   showSeparator = false,
-}: EnhancedSectionHeaderProps) => {
+}: SectionHeaderProps) => {
   const renderContent = () => (
     <>
       {badge && (
@@ -262,4 +262,4 @@ export const EnhancedSectionHeader = ({
   }
 };
 
-export default EnhancedSectionHeader;
+export default SectionHeader;

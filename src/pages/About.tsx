@@ -2,7 +2,7 @@ import { GraduationCap, ArrowRight } from "lucide-react";
 import Seo from "../components/SEO";
 import { Card, CardContent, CardDescription } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { EnhancedCTASection } from "../components/ui/enhanced-cta-section";
+import { CTASection } from "../components/ui/cta-section";
 import { OptimizedImage } from "../components/ui/OptimizedImage";
 import { useScrollAnimations } from "../hooks/useScrollAnimations";
 import banner from "../assets/images/about_banner.svg";
@@ -254,7 +254,7 @@ export const About = () => {
       </div>
 
       {/* Enhanced CTA Section */}
-      <EnhancedCTASection
+      <CTASection
         title="Prêt à collaborer ensemble ?"
         description="Découvrez mes services ou contactez-moi pour discuter de votre projet"
         primaryCta={{

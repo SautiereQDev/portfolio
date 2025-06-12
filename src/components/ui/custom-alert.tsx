@@ -4,7 +4,7 @@ import { X, CheckCircle, AlertTriangle, Info, AlertCircle } from "lucide-react";
 import { cn } from "../../lib/utils";
 import { useState } from "react";
 
-interface EnhancedAlertProps {
+interface CustomAlertProps {
   variant?: "default" | "destructive";
   type?: "success" | "warning" | "info" | "error";
   title?: string;
@@ -32,10 +32,10 @@ const alertColors = {
 };
 
 /**
- * Enhanced Alert component using shadcn/ui
+ * Custom Alert component using shadcn/ui
  * Provides additional features like different types, icons, and dismissible alerts
  */
-export const EnhancedAlert = ({
+export const CustomAlert = ({
   variant = "default",
   type = "info",
   title,
@@ -43,7 +43,7 @@ export const EnhancedAlert = ({
   dismissible = false,
   action,
   className,
-}: EnhancedAlertProps) => {
+}: CustomAlertProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const Icon = alertIcons[type];
 
@@ -91,4 +91,4 @@ export const EnhancedAlert = ({
   );
 };
 
-export default EnhancedAlert;
+export default CustomAlert;

@@ -25,7 +25,7 @@ import {
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { Badge } from "../components/ui/badge";
-import { EnhancedAlert } from "../components/ui/enhanced-alert";
+import { CustomAlert } from "../components/ui/custom-alert";
 import { Separator } from "../components/ui/separator";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -328,7 +328,7 @@ export const Contact = () => {
               <CardContent>
                 {isSubmitted ? (
                   <div className="success-message py-8">
-                    <EnhancedAlert
+                    <CustomAlert
                       type="success"
                       title="Message envoyé avec succès !"
                       description="Je vous répondrai dans les plus brefs délais. Merci de votre intérêt !"

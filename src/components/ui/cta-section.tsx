@@ -2,10 +2,11 @@ import { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "./button";
+import { Badge } from "./badge";
 import { Separator } from "./separator";
 import { cn } from "../../lib/utils";
 
-interface EnhancedCTASectionProps {
+interface CTASectionProps {
   title: string;
   description: string;
   primaryCta: {
@@ -27,19 +28,20 @@ interface EnhancedCTASectionProps {
 }
 
 /**
- * Enhanced CTA Section Component
+ * CTA Section Component
  * Reusable call-to-action section with shadcn/ui enhancements
  * Features: badges, multiple variants, separators, and enhanced styling
  */
-export const EnhancedCTASection = ({
+export const CTASection = ({
   title,
   description,
   primaryCta,
   secondaryCta,
+  badge,
   variant = "gradient",
   showSeparator = true,
   className = "",
-}: EnhancedCTASectionProps) => {
+}: CTASectionProps) => {
   const getVariantClasses = () => {
     switch (variant) {
       case "glass":
@@ -78,6 +80,24 @@ export const EnhancedCTASection = ({
       )}
 
       <div className="relative container mx-auto px-6 text-center lg:px-8">
+        {/* Badge */}
+        {badge && (
+          <div className="mb-8">
+            <Badge
+              variant="secondary"
+              className={cn(
+                "inline-flex items-center gap-2 px-4 py-2 text-sm font-medium",
+                variant === "gradient"
+                  ? "border-white/30 bg-white/20 text-white hover:bg-white/30"
+                  : "border-blue-200 bg-blue-100 text-blue-800"
+              )}
+            >
+              {badge.icon && <span className="h-3 w-3">{badge.icon}</span>}
+              {badge.text}
+            </Badge>
+          </div>
+        )}
+
         {/* Title */}
         <h2
           className={cn(
@@ -167,3 +187,5 @@ export const EnhancedCTASection = ({
     </section>
   );
 };
+
+export default CTASection;

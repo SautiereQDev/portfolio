@@ -20,7 +20,7 @@ import {
   CardTitle,
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
-import { EnhancedCTASection } from "../components/ui/enhanced-cta-section";
+import { CTASection } from "../components/ui/cta-section";
 import { OptimizedImage } from "../components/ui/OptimizedImage";
 import { useScrollAnimations } from "../hooks/useScrollAnimations";
 import banner from "../assets/images/services_banner.svg";
@@ -327,7 +327,7 @@ export const Service = () => {
       </div>
 
       {/* Enhanced CTA Section */}
-      <EnhancedCTASection
+      <CTASection
         title="Prêt à donner vie à votre projet ?"
         description="Contactez-moi dès aujourd'hui pour discuter de vos besoins et obtenir un devis personnalisé."
         primaryCta={{

@@ -9,7 +9,7 @@ import {
 } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
-import { EnhancedCTASection } from "../components/ui/enhanced-cta-section";
+import { CTASection } from "../components/ui/cta-section";
 import {
   ArrowRight,
   Code,
@@ -202,7 +202,7 @@ export const Home = () => {
         </div>
       </div>
       {/* Enhanced CTA Section */}
-      <EnhancedCTASection
+      <CTASection
         title="Prêt à donner vie à votre projet ?"
         description="Discutons de votre projet et voyons comment je peux vous aider à atteindre vos objectifs"
         primaryCta={{

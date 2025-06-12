@@ -30,7 +30,6 @@ export default defineConfig({
         },
       },
     }),
-
   ],
   base: "/",
   assetsInclude: ["**/*.webp"],

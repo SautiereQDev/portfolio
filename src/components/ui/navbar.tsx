@@ -19,7 +19,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "./sheet";
-import { Progress } from "./progress";
 import { Separator } from "./separator";
 import {
   Tooltip,
@@ -30,7 +29,6 @@ import {
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { useNavbarAnimations } from "../../hooks/useNavbarAnimations";
-import { useScrollNavigation } from "../../hooks/useScrollNavigation";
 import type { NavigationItem } from "../../types";
 
 // Navigation items configuration
@@ -68,10 +66,10 @@ const NAVIGATION_ITEMS: NavigationItem[] = [
 ];
 
 /**
- * Enhanced Navigation Bar Component using shadcn/ui components
+ * Navigation Bar Component using shadcn/ui components
  * Features improved mobile experience, hover cards, and tooltips
  */
-export const EnhancedNavBar = memo(() => {
+export const NavBar = memo(() => {
   // State
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -79,66 +77,61 @@ export const EnhancedNavBar = memo(() => {
   const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
-
-  // Router state
-  const router = useRouterState();
-
   // Custom hooks
-  const { scrollProgress, showBackToTop } = useScrollPosition();
-  const { scrollToTop } = useScrollNavigation();
-  // Navigation animations
+  const { y } = useScrollPosition();
+  const router = useRouterState();
+  // Animations
   useNavbarAnimations({ navRef, logoRef, menuRef });
 
-  // Get current page title
-  const getCurrentPageTitle = useCallback(() => {
-    const currentItem = NAVIGATION_ITEMS.find(
-      (item) => item.path === router.location.pathname
-    );
-    return currentItem?.name ?? "Portfolio";
-  }, [router.location.pathname]);
+  // Navigation logic
+  const isActiveLink = useCallback(
+    (path: string) => {
+      if (path === "/") return router.location.pathname === "/";
+      return router.location.pathname.startsWith(path);
+    },
+    [router.location.pathname]
+  );
 
-  // Toggle mobile menu
+  const getCurrentPageTitle = useCallback(() => {
+    const currentItem = NAVIGATION_ITEMS.find((item) =>
+      isActiveLink(item.path)
+    );
+    return currentItem?.name || "Portfolio";
+  }, [isActiveLink]);
+
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
   }, []);
 
-  // Close mobile menu
   const closeMenu = useCallback(() => {
     setIsMenuOpen(false);
   }, []);
 
-  // Check if link is active
-  const isActiveLink = useCallback(
-    (path: string) => {
-      return router.location.pathname === path;
-    },
-    [router.location.pathname]
-  );
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  // Show back to top button after scrolling
+  const showBackToTop = y > 400;
 
   return (
     <TooltipProvider>
       <>
         <nav
           ref={navRef}
-          className="fixed top-0 right-0 left-0 z-50 border-b border-gray-300/60 bg-white/95 font-[Manrope] shadow-lg shadow-black/5 backdrop-blur-xl"
+          className="navbar-container fixed top-0 z-40 w-full border-b border-gray-200/50 bg-white/95 backdrop-blur-xl transition-all duration-300"
         >
-          {/* Scroll Progress Bar */}
-          <Progress
-            ref={progressRef}
-            value={scrollProgress}
-            className="absolute bottom-0 left-0 h-1 rounded-none border-0 bg-transparent"
-            style={{
-              background:
-                "linear-gradient(to right, rgb(59 130 246), rgb(147 51 234))",
-            }}
-          />
-
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex h-16 items-center justify-between">
-              {/* Logo */}
-              <div ref={logoRef} className="flex items-center space-x-3">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-600 to-purple-600">
+              {/* Logo Section */}
+              <div className="flex items-center space-x-3">
+                <div
+                  ref={logoRef}
+                  className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 transition-transform duration-300 hover:scale-105"
+                >
                   <span className="text-sm font-bold text-white">S</span>
                 </div>
                 <span className="text-xl font-bold text-gray-900">
@@ -288,6 +281,6 @@ export const EnhancedNavBar = memo(() => {
   );
 });
 
-EnhancedNavBar.displayName = "EnhancedNavBar";
+NavBar.displayName = "NavBar";
 
-export default EnhancedNavBar;
+export default NavBar;
