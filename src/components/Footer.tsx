@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Heart, Linkedin, Mail } from "lucide-react";
 import { gsap } from "gsap";
 
 export const Footer = () => {
@@ -16,7 +16,7 @@ export const Footer = () => {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com/in/quentin-sautiere",
+      url: "https://linkedin.com/in/quentin-sautière",
       color: "hover:text-blue-600",
     },
     {
