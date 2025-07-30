@@ -1,23 +1,23 @@
 [
   {
     "title": "Records Viewer",
-    "description": "Un site web pour consulter les records d'athletisme sous forme de tabelau avec des fonctionalités de tri et de recherche. Vous pouvez également consulter les détails du record et des athlètes.",
+    "description": "Un site web pour consulter les records d'athlétisme sous forme de tableau avec des fonctionnalités de tri et de recherche. Vous pouvez également consulter les détails du record et des athlètes.",
     "imageUrl": "https://cdn.quentinsautiere.com/portfolio/records-viewer/0.png",
     "github_link": "https://github.com/SautiereQDev/RecordsViewer",
     "key_points": [
       "Responsive design",
       "Tableau de records",
-      "Fonctionalités de tri et de recherche",
+      "Fonctionnalités de tri et de recherche",
       "Détails des records et des athlètes",
-      "Map intéractive"
+      "Map interactive"
     ],
     "technos": [
       "Symfony",
-      "API Plateform",
-      "Vuejs",
+      "API Platform",
+      "Vue.js",
       "Nuxt",
       "Pinia",
-      "Tailwindcss",
+      "Tailwind CSS",
       "Leaflet",
       "Docker"
     ]
@@ -31,21 +31,21 @@
       "Application mobile Android et iOS",
       "Design UI et UX optimisé",
       "Application éco-responsable",
-      "Conforme au normes RGPD"
+      "Conforme aux normes RGPD"
     ],
     "technos": [
       "React Native",
       "Expo",
       "PHP",
       "MariaDB",
-      "React hook form",
+      "React Hook Form",
       "React Query",
       "Zod"
     ]
   },
   {
     "title": "Mailer",
-    "description": "Une API REST basé sur NestJs qui permet de s'envoyer des mails à soi-même dans le cadre de formualires de contact. L'api embarque un système de templates Handlebars pour rendre les mails plus acceuillants.",
+    "description": "Une API REST basée sur NestJs qui permet de s'envoyer des mails à soi-même dans le cadre de formulaires de contact. L'API embarque un système de templates Handlebars pour rendre les mails plus accueillants.",
     "imageUrl": "https://cdn.quentinsautiere.com/portfolio/mailer/0.jpg",
     "visit_link": "https://api.quentinsautiere.com/contact",
     "github_link": "https://github.com/SautiereQDev/mailer",

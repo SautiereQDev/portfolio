@@ -11,7 +11,7 @@
       "school": "Ecole de voile des Glénans, Archipel des Glénans, 29900"
     },
     {
-      "title": "Bacalauréat Général (mathématiques, physique-chimie)",
+      "title": "Baccalauréat Général (mathématiques, physique-chimie)",
       "date": "2020-2023",
       "mention": "Assez bien",
       "school": "Lycée Condorcet, Saint-Maur-des-Fossés, 94100"
@@ -24,7 +24,7 @@
     "Accessibility",
     "Typescript",
     "React",
-    "Rect Native",
+    "React Native",
     "Node.js",
     "NestJs",
     "Vue.js",
