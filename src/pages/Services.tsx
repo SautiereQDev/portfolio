@@ -247,7 +247,7 @@ export const Service = () => {
                       <step.icon className="h-6 w-6 text-white" />
                     </div>
                     {index < processSteps.length - 1 && (
-                      <div className="mt-4 h-16 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300" />
+                      <div className="mt-4 h-40 w-0.5 bg-gradient-to-b from-blue-300 to-purple-300" />
                     )}
                   </div>
                   <div className="flex-grow">
