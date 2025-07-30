@@ -1,4 +1,4 @@
-import { useEffect, RefObject } from "react";
+import { useEffect, RefObject, useRef } from "react";
 import { gsap } from "gsap";
 import { ANIMATION_EASES } from "../constants";
 import { useTypingSound } from "./useTypingSound";
@@ -41,6 +41,9 @@ export const useTypewriterEffect = (
     onCharacterTyped,
   } = options;
 
+  // Use a ref to track if the animation has already run
+  const animationHasRun = useRef(false);
+
   // Initialize typing sound hook
   const { playTypingSound } = useTypingSound({
     enabled: soundEnabled,
@@ -52,6 +55,12 @@ export const useTypewriterEffect = (
   useEffect(() => {
     const element = elementRef.current;
     if (!element || !text) return;
+
+    // Skip if animation has already run
+    if (animationHasRun.current) return;
+
+    // Mark animation as having run
+    animationHasRun.current = true;
 
     // Clear any existing content
     element.innerHTML = "";
