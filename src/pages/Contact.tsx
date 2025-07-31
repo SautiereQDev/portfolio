@@ -204,11 +204,17 @@ export const Contact = () => {
 
       const response = await fetch("https://api.quentinsautiere.com/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(sanitizedData),
       });
 
-      if (!response.ok) throw new Error("Erreur d'envoi");
+      if (!response.ok) {
+        console.error(
+          "Erreur de réponse:",
+          response.status,
+          response.statusText
+        );
+        throw new Error(`Erreur d'envoi: ${response.status}`);
+      }
 
       reset();
       setIsSubmitted(true);
